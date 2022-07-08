@@ -44,6 +44,10 @@ nav a:visited {
     position: absolute;
 }
 
+#carImg {
+    max-width: max-content;
+}
+
 img {
     max-width: 100%;
     max-height: 100%;
@@ -70,8 +74,8 @@ canvas {
     display: grid;
     width: 100%;
     height: 100vh;
-    grid-template-rows: 10% 35% 10% 35% 10%;
-    grid-template-columns: 10% 35% 10% 35% 10%;
+    grid-template-rows: 10% 30% 20% 30% 10%;
+    grid-template-columns: 10% 30% 20% 30% 10%;
 }
 
 .project {
@@ -86,42 +90,65 @@ canvas {
 #projGV {
     grid-column: 4;
     grid-row: 2;
-    justify-content: end;
-    align-items: start;
 }
 
-#projSSB {
+#projSS {
     grid-column: 2;
     grid-row: 4;
-    justify-content: start;
-    align-items: end;
 }
 
 #aboutMe {
     grid-column: 4;
     grid-row: 4;
-    justify-content: end;
-    align-items: end;
+}
+
+.projectText {
+    font: 22px Corbel Light;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+#hiddenFields {
+    background-color: black;
+}
+
+#projHFText {
+    background-color: #3d3d3d;
+}
+
+#graphVisualizer {
+    background-color: blue;
+}
+
+#projGVText {
+    background-color: #0000e0;
+}
+
+#spotifySearch {
+    background-color: #1ed760;
+    text-align: center;
+}
+
+#projSSText {
+    background-color: #00ba42;
 }
 
 figure {
     position: absolute;
     z-index: 1;
-    width: 150px; /* needs to change dynamically */
-    height: 150px;
+    width: 100%;
+    height: 100%;
     border: 2px solid grey;
     margin: 0;
+    background-color: lightgrey;
 }
 
 img, .projectText {
     transition: .5s ease;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-}
-
-.projectText {
-    font: 22px Corbel Light;
-    color: white;
 }
 
 a {
@@ -136,6 +163,7 @@ a {
     padding: 8px 16px;
     background-color: snow;
     border: 1px solid black;
+    text-align: center;
 }
 
 figure:hover img, figure:hover .projectText {
@@ -152,19 +180,6 @@ figure:hover a {
 
 .textHover {
     opacity: 1;
-}
-
-#hiddenFields {
-    background-color: black;
-}
-
-#graphVisualizer {
-    background-color: blue;
-}
-
-#spotifySearch {
-    background-color: #1ed760;
-    text-align: center;
 }
 
 .imgGrad {
@@ -187,4 +202,10 @@ figure:hover a {
     background-size: 155px 110px; */
     background-color: grey;
     border: 1px solid black;
+}
+
+.squareContainer {
+    height: 0;
+    width: 40%;
+    padding-bottom: 40%;
 }

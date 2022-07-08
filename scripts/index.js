@@ -1,4 +1,5 @@
 import { Point, Rectangle, Parallelogram } from './shapes.js';
+import { mobileCheck } from './utility.js'; 
 
 let car;
 let velocity = 0;
@@ -17,15 +18,20 @@ let drivingDirections = {};
 
 let hilightedFig = false;
 
-const VELOCITY_FORWARD = .25;
-const VELOCITY_BACKWARD = .2;
+let VELOCITY_FORWARD = .25;
+let VELOCITY_BACKWARD = .2;
 const DRIVE_RATE = 35;
 const FRICTION = 0.005;
-const TURN_ANGLE_CAP = Math.PI / 11;
+const TURN_ANGLE_CAP = Math.PI / 10.5;
+const MOBILE = mobileCheck();
 
 window.addEventListener("keydown", driveCar);
 window.addEventListener("keyup", keyup);
 window.addEventListener("load", () => {
+
+    VELOCITY_FORWARD = (!MOBILE) ? document.body.clientWidth / 5200 : .6;
+    VELOCITY_BACKWARD = (!MOBILE) ? document.body.clientWidth / 6500 : .5;
+    console.log(VELOCITY_FORWARD + ", " + VELOCITY_BACKWARD);
 
     header = document.getElementsByClassName('header')[0];
 
@@ -275,14 +281,14 @@ function driveCar (e) {
                 if (velocity == 0) break;
 
                 angChange = (Math.PI / 18) / // 10 deg / half-velocity, spiked when slow
-                    ((velocity < 1.25 && velocity > -1.25) ? TURN_ANGLE_CAP + 1 / (velocity * 2) : velocity / 2);
+                    ((velocity < 1.25 && velocity > -1.25) ? TURN_ANGLE_CAP + 1 / (velocity * 2) : velocity / 2.5);
                 angle += (Math.abs(angChange) < TURN_ANGLE_CAP) ? angChange : TURN_ANGLE_CAP * Math.sign(angChange);
                 break;
             case 'ArrowRight':
                 if (velocity == 0) break;
                 
                 angChange = (Math.PI / 18) / // 10 deg / half-velocity, spiked when slow
-                    ((velocity < 1.25 && velocity > -1.25) ? TURN_ANGLE_CAP + 1 / (velocity * 2) : velocity / 2);
+                    ((velocity < 1.25 && velocity > -1.25) ? TURN_ANGLE_CAP + 1 / (velocity * 2) : velocity / 2.5);
                 angle -= (Math.abs(angChange) < TURN_ANGLE_CAP) ? angChange : TURN_ANGLE_CAP * Math.sign(angChange);
         }
     
