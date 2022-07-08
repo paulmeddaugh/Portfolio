@@ -5,7 +5,9 @@ html, body {
 }
 
 body {
-    
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .header {
@@ -36,18 +38,25 @@ nav a:visited {
 }
 
 #car {
-    width: 28px;
-    height: 50px;
+    z-index: 2;
+    width: 24px;
+    height: 48px;
     position: absolute;
 }
 
-#carImg {
+img {
     max-width: 100%;
     max-height: 100%;
 }
 
-#backgroundContainer {
+#car:focus-visible {
+    outline: none;
+}
+
+#content {
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 canvas {
@@ -56,3 +65,126 @@ canvas {
     left: 0px;
 }
 
+.projectGrid {
+    position: absolute;
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    grid-template-rows: 10% 35% 10% 35% 10%;
+    grid-template-columns: 10% 35% 10% 35% 10%;
+}
+
+.project {
+    position: relative;
+}
+
+#projHF {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#projGV {
+    grid-column: 4;
+    grid-row: 2;
+    justify-content: end;
+    align-items: start;
+}
+
+#projSSB {
+    grid-column: 2;
+    grid-row: 4;
+    justify-content: start;
+    align-items: end;
+}
+
+#aboutMe {
+    grid-column: 4;
+    grid-row: 4;
+    justify-content: end;
+    align-items: end;
+}
+
+figure {
+    position: absolute;
+    z-index: 1;
+    width: 150px; /* needs to change dynamically */
+    height: 150px;
+    border: 2px solid grey;
+    margin: 0;
+}
+
+img, .projectText {
+    transition: .5s ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.projectText {
+    font: 22px Corbel Light;
+    color: white;
+}
+
+a {
+    font-family: Corbel Light;
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 8px 16px;
+    background-color: snow;
+    border: 1px solid black;
+}
+
+figure:hover img, figure:hover .projectText {
+    opacity: 0.3;
+}
+
+.imgHover {
+    opacity: 0.3;
+}
+
+figure:hover a {
+    opacity: 1;
+}
+
+.textHover {
+    opacity: 1;
+}
+
+#hiddenFields {
+    background-color: black;
+}
+
+#graphVisualizer {
+    background-color: blue;
+}
+
+#spotifySearch {
+    background-color: #1ed760;
+    text-align: center;
+}
+
+.imgGrad {
+    background-image: linear-gradient(to top right, #1a1a1a, transparent);
+}
+
+.flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invert {
+    color: black;
+    background-color: white;
+}
+
+.wall {
+    /* background: url("./resources/brickwall.png");
+    background-size: 155px 110px; */
+    background-color: grey;
+    border: 1px solid black;
+}

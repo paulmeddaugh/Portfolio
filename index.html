@@ -5,26 +5,46 @@
         <title> Paul Meddaugh </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./index.css" />
-        <script src="./index.js"></script>
+        <script type="module" src="./scripts/index.js"></script>
     </head>
     <body>
         <div class="header">
             <div class="headerTitle"> Paul Meddaugh </div>
-            <nav>
-                <a href="#"> Projects </a>
-                <a href="#"> About Me </a>
-            </nav>
         </div>
 
-        <div id="backgroundContainer">
+        <div id="content"></div>
             <canvas id="background"></canvas>
-            <canvas id="trailingEffect"></canvas>
-        </div>
-        
-        <img id="track" src="./track.jpg" alt="No track image" hidden="true"/>
 
-        <div id="car">
-            <img id="carImg" src="car.png" alt="car" max-width="28" max-height="50">
-        </div>
+            <div id="car" tabindex="0">
+                <img id="carImg" src="./resources/car.png" alt="car" max-width="24" max-height="48">
+            </div>
+
+            <div class="projectGrid">
+                <div class="project" id="projHF">
+                    <figure id="hiddenFields" class="flexCenter">
+                        <img src="./resources/HiddenFields.png" alt="Hidden Fields">
+                        <a href="http://34.174.108.159/">Visit</a>
+                    </figure>
+                </div>
+                <div class="project flexCenter" id="projGV">
+                    <figure id="graphVisualizer" class="flexCenter">
+                        <div class="projectText">Graph Visualizer</div>
+                        <a href="http://paulmeddaugh.github.io">Visit</a>
+                    </figure>
+                </div>
+                <div class="project flexCenter" id="projSSB">
+                    <figure id="spotifySearch" class="flexCenter">
+                        <div class="projectText">Spotify Search Bar</div>
+                        <a >Visit</a>
+                    </figure>
+                </div>
+                <div class="project flexCenter" id="aboutMe">
+                    <figure id="me" class="flexCenter">
+                        <img src="./resources/Faceshot.jpg" alt="Paul Meddaugh Picture">
+                        <a >About Me</a>
+                    </figure>
+                </div>
+            </div>
+
     </body>
 </html>
