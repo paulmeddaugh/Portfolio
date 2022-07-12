@@ -1,51 +1,36 @@
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
-}
-
-.headerTitle {
-    padding: 0px 20px;
-    font: 16px Calibri;
-}
-
-nav {
-    display: inline-block;
-    text-align: center;
-}
-
-nav a {
-    margin: 0px 30px 0px 0px;
-    text-decoration: none;
-    border-bottom: 1px solid #00BFFF;
-}
-
-nav a:visited {
-    color: #00BFFF;
-}
-
 #car {
     z-index: 2;
     width: 24px;
     height: 48px;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 #carImg {
     max-width: max-content;
+}
+
+#instructions {
+    z-index: 3;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    text-align: center;
+    width: 200px;
+    height: 125px;
+    background-color: white;
+    transition: 1s ease;
+    opacity: .8;
+}
+
+#instructions div {
+    width: 100%;
 }
 
 img {
@@ -59,22 +44,20 @@ img {
 
 #content {
     position: relative;
-    display: flex;
-    flex-direction: column;
+    flex: 1 1 auto;
 }
 
 canvas {
     position: absolute;
-    top: 0px;
     left: 0px;
+    width: 100%;
 }
 
 .projectGrid {
-    position: absolute;
     display: grid;
     width: 100%;
     height: 100vh;
-    grid-template-rows: 10% 30% 20% 30% 10%;
+    grid-template-rows: 6% 33% 20% 33% 10%;
     grid-template-columns: 10% 30% 20% 30% 10%;
 }
 
@@ -110,6 +93,10 @@ canvas {
     text-align: center;
 }
 
+.projectDescrip {
+    font-size: small;
+}
+
 #hiddenFields {
     background-color: black;
 }
@@ -118,12 +105,20 @@ canvas {
     background-color: #3d3d3d;
 }
 
+#projHFText .projectDescrip {
+    color: rgb(156, 156, 156);
+}
+
 #graphVisualizer {
     background-color: blue;
 }
 
 #projGVText {
     background-color: #0000e0;
+}
+
+#projGVText .projectDescrip {
+    color: #bcbcff;
 }
 
 #spotifySearch {
@@ -135,12 +130,16 @@ canvas {
     background-color: #00ba42;
 }
 
+#projSSText .projectDescrip {
+    color: #b6ffcf;
+}
+
 figure {
     position: absolute;
     z-index: 1;
     width: 100%;
     height: 100%;
-    border: 2px solid grey;
+    border: 1px solid dimgray;
     margin: 0;
     background-color: lightgrey;
 }
@@ -151,15 +150,12 @@ img, .projectText {
     backface-visibility: hidden;
 }
 
-a {
+figure a {
     font-family: Corbel Light;
     transition: .5s ease;
     opacity: 0;
+    visibility: hidden;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
     padding: 8px 16px;
     background-color: snow;
     border: 1px solid black;
@@ -176,25 +172,40 @@ figure:hover img, figure:hover .projectText {
 
 figure:hover a {
     opacity: 1;
+    visibility: visible;
 }
 
 .textHover {
     opacity: 1;
+    visibility: visible;
 }
 
-.imgGrad {
-    background-image: linear-gradient(to top right, #1a1a1a, transparent);
-}
-
-.flexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.invert {
-    color: black;
+#meFig img {
     background-color: white;
+}
+
+#meFig div { /* The gradient at the bottom */
+    position: absolute;
+    bottom: 0%;
+    padding: 4% 0px;
+    z-index: 2;
+    text-align: left;
+}
+
+#meFig div::after {
+    content:'';
+    position:absolute;
+    left:0; top:0;
+    width:100%; height:100%;
+    z-index: -1;
+    display:inline-block;
+    background-image: linear-gradient(to top, #1a1a1a, transparent);
+}
+
+#aboutMeText {
+    padding-left: 14px;
+    display: inline-block;
+    font-size: 15pt;
 }
 
 .wall {
@@ -202,10 +213,4 @@ figure:hover a {
     background-size: 155px 110px; */
     background-color: grey;
     border: 1px solid black;
-}
-
-.squareContainer {
-    height: 0;
-    width: 40%;
-    padding-bottom: 40%;
 }

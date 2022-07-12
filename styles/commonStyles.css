@@ -1,0 +1,69 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    flex: 1 1 auto;
+    z-index: 1;
+    opacity: .8;
+    background-color: white;
+    border: 2px solid transparent;
+}
+
+.headerTitle {
+    padding: 0px 20px;
+    font: 16px Corbel Light;
+    width: 150px;
+}
+
+.header a {
+    margin: 0px 20px;
+    font: 16px Corbel Light;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.headerLinkContainer { /* Resizes link container for the car highlighting */
+    height: 100%;
+    border: 2px solid transparent;
+    transition: .5s ease;
+}
+
+h2 {
+    position: relative;
+    margin: 0;
+    color:black;
+    font: 22pt Corbel Light;
+    padding: 10px 0px;
+    background-color: white;
+    width: 100vw;
+    opacity: .8;
+    text-align: center;
+}
+
+.flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.translateCenter { /* works with 'position: absolute' or 'position: relative' */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

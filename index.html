@@ -4,47 +4,77 @@
         <meta charset="utf-8">
         <title> Paul Meddaugh </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./index.css" />
+        <link rel="stylesheet" href="./styles/commonStyles.css" />
+        <link rel="stylesheet" href="./styles/index.css" />
         <script type="module" src="./scripts/index.js"></script>
     </head>
     <body>
+
         <div class="header">
-            <div class="headerTitle"> Paul Meddaugh </div>
+            <div class="headerTitle">Paul Meddaugh</div>
+            <div class="headerLinkContainer flexCenter">
+                <a href="#">Projects</a>
+            </div>
+            <div class="headerLinkContainer flexCenter">
+                <a href="./page/aboutMe.html">About Me</a>
+            </div>
         </div>
 
-        <div id="content"></div>
-            <canvas id="background"></canvas>
+        <canvas id="background"></canvas>
 
-            <div id="car" tabindex="0">
-                <img id="carImg" src="./resources/car.png" alt="car" max-width="24" max-height="48">
-            </div>
+        <div id="car" tabindex="0">
+            <img id="carImg" src="./resources/car.png" alt="car" max-width="24" max-height="48">
+        </div>
 
-            <div class="projectGrid">
-                <div class="project flexCenter" id="projHF">
-                    <figure id="hiddenFields" class="flexCenter">
-                        <div class="projectText" id="projHFText">Hidden Fields</div>
-                        <a href="http://34.174.108.159/">Explore</a>
-                    </figure>
-                </div>
-                <div class="project flexCenter" id="projGV">
-                    <figure id="graphVisualizer" class="flexCenter">
-                        <div class="projectText" id="projGVText">Graph Visualizer</div>
-                        <a href="https://paulmeddaugh.github.io/Graph-Visualizer/">Visualize</a>
-                    </figure>
-                </div>
-                <div class="project flexCenter" id="projSS">
-                    <figure id="spotifySearch" class="flexCenter">
-                        <div class="projectText" id="projSSText">Spotify Search</div>
-                        <a >Search</a>
-                    </figure>
-                </div>
-                <div class="project flexCenter" id="aboutMe">
-                    <figure id="me" class="flexCenter">
-                        <img src="./resources/Faceshot.jpg" alt="Flash was too bright" id="picture">
-                        <a >About Me</a>
+        <div id="instructions" class="instructionsBlack">
+            <div class="translateCenter"></div>
+        </div>
+
+        <h2>Projects</h2>
+        <div class="projectGrid">
+            <div class="project flexCenter" id="projHF">
+                <figure id="hiddenFields" class="flexCenter">
+                    <div class="projectText" id="projHFText">
+                        Hidden Fields</br>
+                        <span class="projectDescrip">
+                            A website for buying and selling items on a backend database.
+                        </span>
+                    </div>
+                    <a class="translateCenter" href="http://34.174.108.159/">Show</a>
+                </figure>
+            </div>
+            <div class="project flexCenter" id="projGV">
+                <figure id="graphVisualizer" class="flexCenter">
+                    <div class="projectText" id="projGVText">
+                        Graph Visualizer</br>
+                        <span class="projectDescrip">
+                            A visualizer of the <b>Graph</b> data structure capabilities.
+                        </span>
+                    </div>
+                    <a class="translateCenter" href="https://paulmeddaugh.github.io/Graph-Visualizer/">Visualize</a>
+                </figure>
+            </div>
+            <div class="project flexCenter" id="projSS">
+                <figure id="spotifySearch" class="flexCenter">
+                    <div class="projectText" id="projSSText">
+                        Spotify Bar</br>
+                        <span class="projectDescrip">
+                            An easy access Spotify search bar on desktop.
+                        </span>
+                    </div>
+                    <a class="translateCenter" href="./resources/Spotify Search.exe" download>Download</a>
+                </figure>
+            </div>
+            <div class="project flexCenter" id="aboutMe">
+                <div class="flexCenter">
+                    <figure id="meFig" class="flexCenter">
+                        <img src="./resources/Faceshot.jpg" alt="Flash was too bright">
+                        <a class="translateCenter" href="./page/aboutMe.html">Paul Meddaugh</a>
+                        <div class="projectText"><span id="aboutMeText">About Me<span></div>
                     </figure>
                 </div>
             </div>
+        </div>
 
     </body>
 </html>

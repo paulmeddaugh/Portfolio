@@ -44,7 +44,7 @@ export class Rectangle {
      * 
      * @returns the distance between the two {@link Point}'s as a Number.
      */
-    getDistance () {
+    getDiagonalDistance () {
         let xParen = (this.p2.x - this.p1.x) * (this.p2.x - this.p1.x);
         let yParen = (this.p2.y - this.p1.y) * (this.p2.y - this.p1.y);
         return Math.sqrt(xParen + yParen);
@@ -89,9 +89,9 @@ export class Parallelogram {
     getCenterPoint () {
         // finds the furthest point from p1
         let furthestP = this.p2;
-        let furthestDist = new Rectangle(this.p1, this.p2).getDistance();
+        let furthestDist = new Rectangle(this.p1, this.p2).getDiagonalDistance();
         for (let p of [this.p3, this.p4]) {
-            let dist = new Rectangle(this.p1, p).getDistance();
+            let dist = new Rectangle(this.p1, p).getDiagonalDistance();
             if (furthestDist < dist) {
                 furthestP = p;
                 furthestDist = dist;
@@ -107,12 +107,12 @@ export class Parallelogram {
     rotate(radians) {
         
         let center = this.getCenterPoint();
-        let dist = new Rectangle(this.p1, center).getDistance();
+        let dist = new Rectangle(this.p1, center).getDiagonalDistance();
 
         // rotates each of the four corners
         let rect = new Parallelogram(), arr = [this.p1, this.p2, this.p3, this.p4];
         for (let i = 0; i < arr.length; i++) {
-            let angle = Math.atan2(arr[i].y - center.y, arr[i].x - center.x) + Math.PI / 2;
+            let angle = Math.atan2(arr[i].y - center.y, arr[i].x - center.x);
             rect['p' + String(i + 1)] = new Point(
                 center.x - dist * Math.cos(angle + radians),
                 center.y - dist * Math.sin(angle + radians)
