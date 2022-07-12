@@ -95,7 +95,8 @@ function animateCar () {
 
     currentFPS++;
 
-    velocity = (vel - FRICTION > 0) ? vel - FRICTION : (vel + FRICTION < 0) ? vel + FRICTION : 0;
+    velocity = (velocity - FRICTION > 0) ? velocity - FRICTION :
+        (velocity + FRICTION < 0) ? velocity + FRICTION : 0;
     carPoint = new Point(
         carPoint.x + velocity * Math.cos(angle),
         carPoint.y + velocity * Math.sin(angle)
