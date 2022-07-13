@@ -3,6 +3,7 @@ import { getElementBounds } from "./utility.js";
 
 let hilightedFig = false;
 let highlightedLink = false;
+let instructionsHighlighted = false;
 
 /**
  * Manually adds the classes that animate hovering over a project when the car drives within one.
@@ -75,4 +76,23 @@ export function carWithinHeaderLink () {
     }
 
     return null;
+}
+
+export function highlightInstructions () {
+    let instructions = document.getElementById('instructions');
+    let x = document.getElementById('closeInstructions');
+
+    let within = carWithin(getElementBounds(instructions));
+
+    if (!instructionsHighlighted && within) {
+        instructions.style.border = '2px solid gold';
+        instructions.style.background = '#fffade';
+        x.style.opacity = 1;
+        instructionsHighlighted = true;
+    } else if (instructionsHighlighted && !within) {
+        instructions.style.border = '2px solid black';
+        instructions.style.background = 'white';
+        x.style.opacity = 0;
+        instructionsHighlighted = false;
+    }
 }

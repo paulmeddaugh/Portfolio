@@ -1,3 +1,7 @@
+body {
+    overflow-y: auto;
+}
+
 #car {
     z-index: 2;
     width: 24px;
@@ -33,6 +37,16 @@
     width: 100%;
 }
 
+#closeInstructions {
+    position: absolute;
+    right: 15px;
+    top: 14px;
+    cursor: pointer;
+    font: 10pt Arial;
+    transition: .5s ease;
+    opacity: 0;
+}
+
 img {
     max-width: 100%;
     max-height: 100%;
@@ -50,7 +64,6 @@ img {
 canvas {
     position: absolute;
     left: 0px;
-    width: 100%;
 }
 
 .projectGrid {
@@ -75,7 +88,7 @@ canvas {
     grid-row: 2;
 }
 
-#projSS {
+#projSF {
     grid-column: 2;
     grid-row: 4;
 }
@@ -98,15 +111,15 @@ canvas {
 }
 
 #hiddenFields {
-    background-color: black;
+    background-color: #1ed760; /* black */
 }
 
 #projHFText {
-    background-color: #3d3d3d;
+    background-color: #00ba42; /* #3d3d3d */
 }
 
 #projHFText .projectDescrip {
-    color: rgb(156, 156, 156);
+    color: #b6ffcf; /* rgb(156, 156, 156) */
 }
 
 #graphVisualizer {
@@ -121,17 +134,30 @@ canvas {
     color: #bcbcff;
 }
 
-#spotifySearch {
+#spotifyBar {
     background-color: #1ed760;
     text-align: center;
 }
 
-#projSSText {
+#projSBText {
     background-color: #00ba42;
 }
 
-#projSSText .projectDescrip {
+#projSBText .projectDescrip {
     color: #b6ffcf;
+}
+
+#snowFinder {
+    background-color: #f4f4f4;
+}
+
+#projSFText {
+    background-color: white;
+    color: black;
+}
+
+#projSFText .projectDescrip {
+    color: black;
 }
 
 figure {

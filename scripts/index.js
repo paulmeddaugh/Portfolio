@@ -1,7 +1,8 @@
 import { Point, Rectangle, Parallelogram } from './shapes.js';
 import { mobileCheck, getElementBounds } from './utility.js'; 
 import { Predict } from './predict.js';
-import { carWithinFigure, showHideLinks, carWithinHeaderLink, highlightHeaderLinks } from './showHideElements.js'
+import { carWithinFigure, showHideLinks, carWithinHeaderLink, highlightHeaderLinks, highlightInstructions } from './showHideElements.js';
+import { drawTrail } from './tailLightTrail.js'; // doesn't work
 
 let car;
 let velocity = 0;
@@ -9,18 +10,14 @@ let angle = Math.PI / 2; // 90
 
 let carPoint = new Point();
 
-let canvas;
-let ctx;
 let header;
-
-let trailPoint;
-let trailingp2;
 
 let drivingDirections = {};
 
+const calculateFPS = false;
 const AVERAGE_RANGE_FPS = 5;
 const AVERAGE_CALC_PER_SEC = 4;
-let totalFPS = 1, lastFPS = 1, currentFPS = 0, FPSindex = AVERAGE_RANGE_FPS - 1;
+let aveFPS = 0, totalFPS = 1, lastFPS = 1, currentFPS = 0, FPSindex = AVERAGE_RANGE_FPS - 1;
 
 export let VELOCITY_FORWARD = .25;
 export let VELOCITY_REVERSE = .2;
@@ -34,44 +31,32 @@ window.addEventListener("keyup", (e) => drivingDirections[e.key] = false);
 window.addEventListener("click", driveCarToPoint);
 window.addEventListener("load", () => {
 
+    // Sets the speed of the car based on the width of the browser
     VELOCITY_FORWARD = (!MOBILE) ? document.body.clientWidth / 4200 : .6;
     VELOCITY_REVERSE = (!MOBILE) ? document.body.clientWidth / 5500 : .5;
+
+    for (let a of document.getElementsByClassName('header')[0].getElementsByTagName('A')) {
+        a.addEventListener("click", preventNotCarWithin);
+    }
     
     document.getElementById('instructions').children[0].innerHTML = (!MOBILE) ? 
         "Arrow Keys - Drive</br>'Enter' - Go to a Link" :
         "Tap - Drive to Link";
 
-    canvas = document.getElementById('background');
-    canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight;
-
-    ctx = canvas.getContext('2d');
-    drawBackground();
-
-    ctx.strokeStyle = 'red';
-    ctx.lineWidth = 1;
-    ctx.translate(0.5, 0.5);  // 1-pixel width lines, such as x of 10 to x of 20 draws from
-    // between 9.5 and 10.5 to 19.5 and 20.5, which is rendered as a 2 pixel line instead.
-
     car = document.getElementById('car');
     placeCarInCenter();
 
-    // createProjectFacingWalls();
-
-    trailPoint = new Point(
-        parseInt(window.getComputedStyle(car).left) + 18,
-        parseInt(window.getComputedStyle(car).top) - 3
-    );
-
     // Calculates the frames per second
-    setInterval(() => {
-        currentFPS *= AVERAGE_CALC_PER_SEC;
-        totalFPS = (totalFPS - lastFPS) + currentFPS;
-        //console.log(totalFPS / (AVERAGE_RANGE_FPS - FPSindex));
-        if (!FPSindex) lastFPS = currentFPS;
-        else FPSindex--;
-        currentFPS = 0;
-    }, 1000 / AVERAGE_CALC_PER_SEC);
+    if (calculateFPS) {
+        setInterval(() => {
+            currentFPS *= AVERAGE_CALC_PER_SEC;
+            totalFPS = (totalFPS - lastFPS) + currentFPS;
+            aveFPS = totalFPS / (AVERAGE_RANGE_FPS - FPSindex);
+            if (!FPSindex) lastFPS = currentFPS;
+            else FPSindex--;
+            currentFPS = 0;
+        }, 1000 / AVERAGE_CALC_PER_SEC);
+    }
 
     // Hides instructions
     setTimeout(() => {
@@ -82,10 +67,12 @@ window.addEventListener("load", () => {
     animateCar();
 });
 
+/**
+ * Places the car in the center of the page. Called when loading and resizing.
+ */
 function placeCarInCenter() {
     car.style.left = (carPoint.x = (document.body.clientWidth / 2 - car.clientWidth / 2)) + "px";
     car.style.top = (carPoint.y = (document.body.clientHeight / 2 - car.clientHeight / 2)) + "px";
-    car.focus(); // chrome still keeps focus on url bar initially
 }
 
 /**
@@ -93,7 +80,7 @@ function placeCarInCenter() {
  */
 function animateCar () {
 
-    currentFPS++;
+    if (calculateFPS) currentFPS++;
 
     velocity = (velocity - FRICTION > 0) ? velocity - FRICTION :
         (velocity + FRICTION < 0) ? velocity + FRICTION : 0;
@@ -105,11 +92,6 @@ function animateCar () {
     car.style.left = carPoint.x + "px";
     car.style.top = carPoint.y + "px";
     car.style.transform = "rotate(" + (angle - Math.PI / 2) * (180 / Math.PI)  + "deg)";
-
-    // Re-draws the background constantly with little opacity to allow for trailing effects of what is drawn
-    ctx.globalAlpha = 0.15;
-    drawBackground();
-    ctx.globalAlpha = 1;
 
     let boundary;
     if (boundary = outOfBounds()) {
@@ -124,13 +106,9 @@ function animateCar () {
 
     showHideLinks();
     highlightHeaderLinks();
+    highlightInstructions();
 
     requestAnimationFrame(animateCar);
-}
-
-function drawBackground() {
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, document.body.clientWidth, document.body.clientHeight);
 }
 
 /**
@@ -197,38 +175,6 @@ function outOfBounds() {
     return false;
 }
 
-/**
- * Draws two red backlights that fade over time.
- * Doesn't work.
- */
-function drawTrail() {
-    //let carPara = getElementBounds(car).getParallelogram().rotate(angle - Math.PI / 2);
-    //console.log(carPara);
-
-    let centerX = parseInt(window.getComputedStyle(car).left) + (parseInt(window.getComputedStyle(car).width) / 2);
-    let centerY = parseInt(window.getComputedStyle(car).top) - (parseInt(window.getComputedStyle(car).height) / 2);
-
-    let center = {
-        x: centerX,
-        y: centerY + parseInt(window.getComputedStyle(header).height)
-    }
-    let length = angle;
-    let newp1 = new Point(center.x, center.y);
-    let newp2 = new Point(
-        parseInt(window.getComputedStyle(car).left), 
-        parseInt(window.getComputedStyle(car).top)
-    );
-
-    ctx.beginPath();
-    ctx.moveTo(trailPoint.x, trailPoint.y);
-    ctx.lineTo(newp1.x, newp1.y);
-    ctx.closePath();
-    ctx.stroke();
-
-    trailPoint = newp1;
-    trailingp2 = newp2;
-}
-
 function driveCar (e) {
 
     if (e.key == 'Enter') {
@@ -237,12 +183,19 @@ function driveCar (e) {
 
         let link = carWithinHeaderLink();
         if (link) window.location.href = link.children[0].href;
+
+        let instructions = document.getElementById('instructions');
+        if (carWithin(getElementBounds(instructions))) {
+            instructions.style.opacity = 0;
+        }
     }
 
     if (e.repeat) return; // the repeat event when key is held down
     drivingDirections[e.key] = true;
 
     requestAnimationFrame(() => drive(e.key));
+
+    e.preventDefault();
 }
 
 let drive = (key) => {
@@ -339,4 +292,16 @@ function getBreakDistanceAndTime(velocity) {
     }
 
     return predict;
+}
+
+/**
+ * If mobile, prevents a link from changing pages if the car is not in its container.
+ * 
+ * @param {*} e the 'onclick' event object.
+ */
+function preventNotCarWithin (e) {
+    if (MOBILE && !carWithin(getElementBounds(e.currentTarget.parentElement))) {
+        e.preventDefault();
+        driveCarToPoint(e);
+    }
 }
