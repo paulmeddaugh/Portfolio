@@ -1,4 +1,4 @@
-import { VELOCITY_FORWARD, VELOCITY_REVERSE, DRIVE_RATE } from './index.js';
+import { carProps } from './car.js';
 
 /** The almost exact consistent average Predict if off by on my laptop, I believe because the
  * car is still travelling at velocity when not incrementing, which Predict doesn't account for. */
@@ -10,6 +10,9 @@ export class Predict {
     time;
     averageFPS;
 
+    VELOCITY_FORWARD;
+    VELOCITY_REVERSE;
+
     /**
      * Creates an object that holds values for predicted car movement. If no parameters are assigned,
      * initializes values to 0.
@@ -20,6 +23,8 @@ export class Predict {
      */
     constructor(velocity = 0, distance = 0, time = 0) {
         this.setValues(velocity, distance, time);
+        VELOCITY_FORWARD = carProps.setVelocityForward();
+        VELOCITY_REVERSE = carProps.setVelocityReverse();
     }
 
     /**

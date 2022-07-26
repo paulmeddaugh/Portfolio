@@ -1,9 +1,9 @@
-import { carWithin } from "./index.js";
+import { carWithin } from "./car.js";
 import { getElementBounds } from "./utility.js";
 
 let hilightedFig = false;
 let highlightedLink = false;
-let instructionsHighlighted = false;
+let titleHighlighted = false;
 
 /**
  * Manually adds the classes that animate hovering over a project when the car drives within one.
@@ -78,21 +78,16 @@ export function carWithinHeaderLink () {
     return null;
 }
 
-export function highlightInstructions () {
-    let instructions = document.getElementById('instructions');
-    let x = document.getElementById('closeInstructions');
+export function highlightTitle () {
+    let title = document.getElementsByClassName('headerTitle');
 
-    let within = carWithin(getElementBounds(instructions));
+    let within = carWithin(getElementBounds(title));
 
-    if (!instructionsHighlighted && within) {
-        instructions.style.border = '2px solid gold';
-        instructions.style.background = '#fffade';
-        x.style.opacity = 1;
-        instructionsHighlighted = true;
-    } else if (instructionsHighlighted && !within) {
-        instructions.style.border = '2px solid black';
-        instructions.style.background = 'white';
-        x.style.opacity = 0;
-        instructionsHighlighted = false;
+    if (!titleHighlighted && within) {
+        title.style.fontWeight = 'bold';
+        titleHighlighted = true;
+    } else if (titleHighlighted && !within) {
+        title.style.fontWeight = 'none';
+        titleHighlighted = false;
     }
 }

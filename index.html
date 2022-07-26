@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./styles/commonStyles.css" />
         <link rel="stylesheet" href="./styles/index.css" />
-        <script type="module" src="./scripts/index.js"></script>
+        <script type="module" src="./scripts/car.js"></script>
     </head>
     <body>
 
@@ -18,9 +18,19 @@
             <div class="headerLinkContainer flexCenter">
                 <a href="./page/aboutMe.html">About Me</a>
             </div>
+            <div class="headerLinkContainer flexCenter">
+                <a class="noUnderline" href="https://github.com/paulmeddaugh">
+                    <img id="githubLogo" src="./resources/GitHub-Mark-64px.png" alt="Github" />
+                </a>
+            </div>
+            <div class="headerLinkContainer flexCenter">
+                <a class="noUnderline" href="https://www.instagram.com/paulleland174">
+                    <img id="instagramLogo" src="./resources/instagram-logo.png" alt="Instagram" />
+                </a>
+            </div>
         </div>
 
-        <canvas id="background"></canvas>
+        <canvas id="background" width="0" height="0"></canvas>
 
         <div id="car">
             <img id="carImg" src="./resources/car.png" alt="car" max-width="24" max-height="48">
@@ -32,7 +42,7 @@
         </div>
 
         <h2>Projects</h2>
-        <div class="projectGrid">
+        <div id="projectGrid">
             <div class="project flexCenter" id="projHF">
                 <figure id="hiddenFields" class="flexCenter">
                     <div class="projectText" id="projHFText">
@@ -60,7 +70,7 @@
                     <div class="projectText" id="projSFText">
                         Snow Finder</br>
                         <span class="projectDescrip">
-                            Searches for snow near a zip code or in major cities.
+                            Searches for snow near a zip code or in major cities on desktop.
                         </span>
                     </div>
                     <a class="translateCenter" href="./resources/Snow Finder.exe" download>Download</a>
