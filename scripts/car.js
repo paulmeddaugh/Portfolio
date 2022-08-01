@@ -70,8 +70,8 @@ window.addEventListener("click", driveCarToPoint);
 window.addEventListener("load", () => {
 
     // Sets the speed of the car based on the width of the browser
-    carProps.setVelocityForward((!MOBILE) ? document.body.clientWidth / 4200 : .6);
-    carProps.setVelocityReverse((!MOBILE) ? document.body.clientWidth / 5500 : .5);
+    carProps.setVelocityForward((!MOBILE) ? window.innerWidth / 4200 : .6);
+    carProps.setVelocityReverse((!MOBILE) ? window.innerWidth / 5500 : .5);
 
     car = document.getElementById('car');
     placeCarInCenter();
@@ -100,8 +100,8 @@ window.addEventListener("load", () => {
  */
  export function placeCarInCenter() {
     let point = new Point(
-        document.body.clientWidth / 2 - car.clientWidth / 2,
-        document.body.clientHeight / 2 - car.clientHeight / 2
+        window.innerWidth / 2 - car.clientWidth / 2,
+        window.innerHeight / 2 - car.clientHeight / 2
     );
 
     carProps.setPoint(point);
@@ -128,6 +128,20 @@ window.addEventListener("load", () => {
         carPoint.y + velocity * Math.sin(angle)
     ));
 
+    // Scrolls the window if the car reaches a 'y' co-or close to the window top or bottom
+    let scrollingPosBottom = parseInt(window.innerHeight) - 115 + window.scrollY;
+    let scrollingPosTop = window.scrollY + 50;
+    if (newPoint.y > scrollingPosBottom) {
+        window.scroll({
+            top: (newPoint.y - scrollingPosBottom) + window.scrollY, 
+            left: 0,
+        });
+    } else if (newPoint.y < scrollingPosTop) {
+        window.scroll({
+            top: (newPoint.y - scrollingPosTop) + window.scrollY, 
+            left: 0,
+        });
+    }
     car.style.left = newPoint.x + "px";
     car.style.top = newPoint.y + "px";
     car.style.transform = "rotate(" + (angle - Math.PI / 2) * (180 / Math.PI)  + "deg)";
@@ -163,14 +177,12 @@ window.addEventListener("load", () => {
     let carPoint = carProps.getPoint();
 
     if (p1 instanceof Rectangle) {
-        return p1.pointWithin(new Point(carPoint.x, carPoint.y));
+        return p1.pointWithin(carPoint);
     }
 
     if ((p1.x <= carPoint.x && p2.x >= carPoint.x) && (p1.y <= carPoint.y && p2.y >= carPoint.y)) {
         return true;
     }
-
-    return false;
 }
 
 export /**
@@ -210,13 +222,13 @@ export /**
     if (carWithin(boundary = new Rectangle(new Point(0, -borderSize), new Point(x2, 0)))) return boundary;
 
     // east
-    if (carWithin(boundary = new Rectangle(new Point(x2, 0), new Point(x2 + borderSize, y2)))) return boundary;
+    if (carWithin(boundary = new Rectangle(new Point(x2 - 30, 0), new Point(x2 + borderSize, y2)))) return boundary;
 
     // south
-    if (carWithin(boundary = new Rectangle(new Point(0, y2), new Point(x2, y2 + borderSize)))) return boundary;
+    if (carWithin(boundary = new Rectangle(new Point(0, y2 - 50), new Point(x2, y2 + borderSize)))) return boundary;
 
     // west
-    if (carWithin(boundary = new Rectangle(new Point(-borderSize, 0), new Point(0, y2)))) return boundary;
+    if (carWithin(boundary = new Rectangle(new Point(-borderSize, 0), new Point(12, y2)))) return boundary;
 
     return false;
 }
@@ -239,6 +251,7 @@ export function driveCar (e) {
 
     if (e.repeat) return; // the repeat event when key is held down
 
+    
     carProps.setDrivingDirections(Object.defineProperty({}, e.key, {value: true, enumerable: true}));
 
     requestAnimationFrame(() => drive(key));

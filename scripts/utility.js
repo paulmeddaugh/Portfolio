@@ -15,12 +15,27 @@ import { Point, Rectangle } from "./shapes.js";
  * Generates the beginning co-ordinates and ending co-ordinates of an element and returns the points in
  * a {@link Rectangle} object.
  * 
- * @param {*} wall the element to find its beginning an ending point.
+ * @param {*} el The element to find its beginning an ending point.
  * @returns A {@link Rectangle} object with the two {@link Point} objects.
  */
- export function getElementBounds (wall) {
-    let p1 = new Point(wall.getBoundingClientRect().left, wall.getBoundingClientRect().top);
-    let p2 = new Point(p1.x + parseInt(window.getComputedStyle(wall).width),
-                        p1.y + parseInt(window.getComputedStyle(wall).height));
+ export function getElementBounds (el) {
+    let p1 = new Point(el.getBoundingClientRect().left, el.getBoundingClientRect().top);
+    let p2 = new Point(p1.x + parseInt(window.getComputedStyle(el).width),
+                        p1.y + parseInt(window.getComputedStyle(el).height));
     return new Rectangle(p1, p2);
+}
+
+/**
+ * Determines if a point is to the left, on, or to the right of a line.
+ * 
+ * @param {Point} line1 The beginning point of the line.
+ * @param {Point} line2 The ending point of the line.
+ * @param {Point} p The point to determine its position with regard to the line.
+ * @returns A number greater than 0 if on the left side of the line, 0 if on the line, and a number less
+ * than 0 if on the right side of the line.
+ */
+export function pointOnLine(line1, line2, p) {
+    Point.checkIfPoints({ line1, line2, p});
+
+    return (line2.x - line1.x) * (p.y - line1.y) - (p.x - line1.x) * (line2.y - line1.y);
 }

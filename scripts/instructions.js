@@ -9,11 +9,11 @@ window.addEventListener("load", () => {
 
     instructions = document.getElementById('instructions');
     closeInstructions = document.getElementById('closeInstructions');
-    
-    instructions.children[0].innerHTML = (!MOBILE) ? 
-        "<img id='arrowKeys' src='../resources/arrowkeys.png' alt='Arrow Keys'><div id='driveText'> - Drive</div>" +
-        "</br><img id='enter' src='../resources/enter.png' alt='Enter'><div> - Perform Action</div>" :
-        "";
+
+    if (MOBILE) {
+        instructions.style.display = 'none';
+        return;
+    }
 
     // Hides instructions
     setInstructionTimeouts();
@@ -21,7 +21,6 @@ window.addEventListener("load", () => {
 
 export function highlightInstructions () {
     let instructions = document.getElementById('instructions');
-    let x = document.getElementById('closeInstructions');
 
     let within = carWithin(getElementBounds(instructions));
 
@@ -43,7 +42,7 @@ document.getElementById('closeInstructions').addEventListener("click", (e) => {
 
 function setInstructionTimeouts() {
 
-    // // Immediately highlights instructions
+    // Transition eases instructions to display on load
     instructions.style.opacity = 1;
 
     // Closes instructions
@@ -53,7 +52,7 @@ function setInstructionTimeouts() {
 }
 
 /**
- * Changes the border to '2px solid gold' and the background to a light gold color.
+ * 'Highlights' the element by changing its border and background to a gold theme.
  * 
  * @param {*} element The element to highlight.
  */
@@ -66,12 +65,12 @@ function setInstructionTimeouts() {
 }
 
 /**
- * Changes the border to '2px solid gold' and the background to a light gold color.
+ * 'Un-highlights' an element by changing its border and background color to display white.
  * 
- * @param {*} element The element to highlight.
+ * @param {*} element The element to un-highlight.
  */
  export function unhighlight(element) {
-    element.style.border = '1px solid transparent';
+    element.style.border = '1px solid lightgrey';
     element.style.background = 'white';
     if (element.children[1].id == 'closeInstructions') {
         element.children[1].style.opacity = 0;

@@ -1,5 +1,5 @@
 body {
-    overflow-y: auto;
+    display: block;
 }
 
 #car {
@@ -23,7 +23,7 @@ body {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    border: 1px solid transparent;
+    border: 1px solid lightgray;
     text-align: center;
     width: 200px;
     height: 100px;
@@ -93,7 +93,7 @@ canvas {
 #projectGrid {
     display: grid;
     width: 100%;
-    height: 100vh;
+    height: 70vh;
     grid-template-rows: 6% 33% 20% 33% 10%;
     grid-template-columns: 10% 30% 20% 30% 10%;
 }
@@ -181,7 +181,7 @@ canvas {
 }
 
 #projSFText .projectDescrip {
-    color: black;
+    color: grey;
 }
 
 figure {
@@ -204,7 +204,6 @@ figure a {
     font-family: Corbel Light;
     transition: .5s ease;
     opacity: 0;
-    visibility: hidden;
     position: absolute;
     padding: 8px 16px;
     background-color: snow;
@@ -222,12 +221,10 @@ figure:hover img, figure:hover .projectText {
 
 figure:hover a {
     opacity: 1;
-    visibility: visible;
 }
 
 .textHover {
     opacity: 1;
-    visibility: visible;
 }
 
 #meFig img {
@@ -264,3 +261,51 @@ figure:hover a {
     background-color: grey;
     border: 1px solid black;
 }
+
+.aboutMeSection {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.content {
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+    border: 1px solid grey;
+}
+
+.bioContent {
+    padding: 25px;
+    font: 16pt Corbel;
+    width: 50%;
+    height: 60vh;
+    background-color: #f0f0f0;
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+
+.content div {
+    width: 50%;
+}
+
+.content div figure {
+    height: 60vh;
+    margin: 0;
+    padding: 20px;
+    width: 35%;
+    background: none;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    html, body {
+        
+    }
+}
+
+@media (max-width: 652px) {
+    .projectText {
+        font-size: calc(1.8vw * 1.9);
+    }
+} 
