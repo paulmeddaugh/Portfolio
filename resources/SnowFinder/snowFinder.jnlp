@@ -1,11 +1,11 @@
  <?xml version='1.0' encoding='UTF-8'?>
     <jnlp
-        codebase="http://www.paulmeddaugh.github.io/resources"
+        codebase="http://www.paulmeddaugh.github.io/resources/SnowFinder/"
         href="SnowFinder.jnlp">
         <information>
             <title>Snow Finder</title>
             <vendor>Paul Meddaugh</vendor>
-    	    <homepage href="../index.html"></homepage>
+    	    <homepage href="../../index.html"></homepage>
             <description>Searches for snow near a zip code or in major U.S. cities.</description>
             <icon href="snowFinderIcon.png"></icon>
             <offline-allowed></offline>

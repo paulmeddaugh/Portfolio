@@ -129,14 +129,14 @@ window.addEventListener("load", () => {
     ));
 
     // Scrolls the window if the car reaches a 'y' co-or close to the window top or bottom
-    let scrollingPosBottom = parseInt(window.innerHeight) - 115 + window.scrollY;
-    let scrollingPosTop = window.scrollY + 50;
-    if (newPoint.y > scrollingPosBottom) {
+    let scrollingPosBottom = parseInt(window.innerHeight) - 65 + window.scrollY - 50;//(carProps.getVelocity() * 20);
+    let scrollingPosTop = window.scrollY + 50;//(carProps.getVelocity() * 20);
+    if (newPoint.y > scrollingPosBottom && carProps.getVelocity() != 0) {
         window.scroll({
             top: (newPoint.y - scrollingPosBottom) + window.scrollY, 
             left: 0,
         });
-    } else if (newPoint.y < scrollingPosTop) {
+    } else if (newPoint.y < scrollingPosTop && carProps.getVelocity() != 0) {
         window.scroll({
             top: (newPoint.y - scrollingPosTop) + window.scrollY, 
             left: 0,
