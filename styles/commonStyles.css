@@ -1,13 +1,6 @@
 html, body {
     margin: 0;
 }
-    /* -ms-overflow-style: none;  /* IE and Edge
-    scrollbar-width: none;  Firefox 
-}
-
-html::-webkit-scrollbar, body::-webkit-scrollbar { /* Hide scrollbar for Chrome, Safari and Opera
-    display: none;
-} */
 
 body {
     display: flex;
@@ -24,6 +17,7 @@ body {
     opacity: .8;
     background-color: white;
     border: 2px solid transparent;
+    padding-bottom: 15px;
 }
 
 .headerTitle {
@@ -35,6 +29,15 @@ body {
     transition: .5s ease;
     padding: 0px 20px;
     flex-shrink: 100;
+}
+
+#titleText {
+    font: 20pt Corbel Light;
+}
+
+#titleText span {
+    font: 12pt Corbel Light;
+    margin-left: 40px;
 }
 
 .header a {
@@ -63,6 +66,11 @@ a[class="noUnderline"] {
     height: 24px;
 }
 
+#emailIcon {
+    width: 25px;
+    height: 17px;
+}
+
 .headerLinkContainer { /* Resizes link container for the car highlighting */
     height: 100%;
     border: 2px solid transparent;
@@ -74,7 +82,7 @@ h2 {
     margin: 0;
     color:black;
     font: 22pt Corbel Light;
-    padding: 10px 0px;
+    padding: 15px 0px;
     background-color: white;
     width: 100%;
     opacity: .8;

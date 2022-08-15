@@ -71,7 +71,7 @@ window.addEventListener("load", () => {
 
     // Sets the speed of the car based on the width of the browser
     carProps.setVelocityForward((!MOBILE) ? window.innerWidth / 4200 : .6);
-    carProps.setVelocityReverse((!MOBILE) ? window.innerWidth / 5500 : .5);
+    carProps.setVelocityReverse((!MOBILE) ? window.innerWidth / 3800 : .6);
 
     car = document.getElementById('car');
     placeCarInCenter();
@@ -129,8 +129,9 @@ window.addEventListener("load", () => {
     ));
 
     // Scrolls the window if the car reaches a 'y' co-or close to the window top or bottom
-    let scrollingPosBottom = parseInt(window.innerHeight) - 65 + window.scrollY - 50;//(carProps.getVelocity() * 20);
-    let scrollingPosTop = window.scrollY + 50;//(carProps.getVelocity() * 20);
+    const scrollMargin = -75;
+    let scrollingPosBottom = parseInt(window.innerHeight) - 65 + window.scrollY + scrollMargin;
+    let scrollingPosTop = window.scrollY - scrollMargin;
     if (newPoint.y > scrollingPosBottom && carProps.getVelocity() != 0) {
         window.scroll({
             top: (newPoint.y - scrollingPosBottom) + window.scrollY, 
@@ -234,6 +235,9 @@ export /**
 }
 
 export function driveCar (e) {
+
+    e.preventDefault();
+    e.stopPropagation();
 
     const key = e.key;
 

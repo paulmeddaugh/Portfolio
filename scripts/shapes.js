@@ -88,7 +88,7 @@ export class Rectangle {
      */
     pointWithin (p) {
         if ((this.p1.x <= p.x && this.p2.x >= p.x) && (this.p1.y <= p.y && this.p2.y >= p.y)) {
-            return true;
+            return true; 
         }
     
         return false;

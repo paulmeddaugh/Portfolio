@@ -19,7 +19,9 @@ import { Point, Rectangle } from "./shapes.js";
  * @returns A {@link Rectangle} object with the two {@link Point} objects.
  */
  export function getElementBounds (el) {
-    let p1 = new Point(el.getBoundingClientRect().left, el.getBoundingClientRect().top);
+    let p1 = new Point(el.getBoundingClientRect().left + window.scrollX,
+        el.getBoundingClientRect().top + window.scrollY);
+    
     let p2 = new Point(p1.x + parseInt(window.getComputedStyle(el).width),
                         p1.y + parseInt(window.getComputedStyle(el).height));
     return new Rectangle(p1, p2);

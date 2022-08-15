@@ -45,6 +45,7 @@ let titleHighlighted = false;
  */
 export function carWithinFigure() {
     for (let fig of document.getElementsByTagName('figure')) {
+        if (fig.id == 'bigPicture') continue;
         let figRect = getElementBounds(fig);
         if (carWithin(figRect)) return fig;
     }
