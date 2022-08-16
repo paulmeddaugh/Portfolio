@@ -71,6 +71,11 @@ a[class="noUnderline"] {
     height: 17px;
 }
 
+#ocaIcon {
+    width: 50px;
+    height: 54px;
+}
+
 .headerLinkContainer { /* Resizes link container for the car highlighting */
     height: 100%;
     border: 2px solid transparent;
@@ -81,8 +86,8 @@ h2 {
     position: relative;
     margin: 0;
     color:black;
-    font: 22pt Corbel Light;
-    padding: 15px 0px;
+    font: 20pt Corbel Light;
+    padding: 10px 0px;
     background-color: white;
     width: 100%;
     opacity: .8;

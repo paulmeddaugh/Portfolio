@@ -3,15 +3,19 @@ body {
 }
 
 h1 {
-    height: 40vh;
+    height: 32vh;
     font: 28pt Corbel;
     text-align: center;
+    display: flex;
+    justify-content: end;
     flex-direction: column;
     margin: 0;
+    padding-bottom: 5vh;
 }
 
-h1 > span {
-    font: 20pt Corbel Light;
+h1 > div {
+    font: 22pt Corbel Light;
+    padding-top: 3px;
 }
 
 #car {
@@ -31,7 +35,7 @@ h1 > span {
 
 #instructions {
     position: absolute;
-    top: 65%;
+    top: 78%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -61,6 +65,15 @@ h1 > span {
     top: -5px;
 }
 
+#instructions:hover {
+    border: 1px solid gold;
+    background: #fffade;
+}
+
+#instructions:hover #closeInstructions {
+    opacity: 1;
+}
+
 #closeInstructions {
     position: absolute;
     right: 15px;
@@ -69,6 +82,14 @@ h1 > span {
     font: 8pt Arial;
     transition: .75s ease;
     opacity: 0;
+}
+
+#arrowDownContainer {
+    position: absolute;
+    right: 0%;
+    bottom: 0vh;
+    height: 75px;
+    width: 75px;
 }
 
 #arrowKeys {
@@ -115,23 +136,23 @@ canvas {
 }
 
 #projHF {
-    grid-column: 2;
+    grid-column-start: 2;
+    grid-column-end: 5;
     grid-row: 2;
 }
 
 #projGV {
-    grid-column: 4;
-    grid-row: 2;
-}
-
-#projSF {
     grid-column: 2;
     grid-row: 4;
 }
 
-#aboutMe {
+#projSF {
     grid-column: 4;
     grid-row: 4;
+}
+
+#aboutMe { /* fourth project section */
+    
 }
 
 .projectText {
@@ -296,11 +317,12 @@ figure:hover a {
 
 .bioContent {
     padding: 25px;
-    font: 16pt Corbel;
+    font: 14pt Corbel;
     width: 100%;
     height: 70vh;
     background-color: #f0f0f0;
     flex: 1 1 auto;
+    flex-direction: column;
     overflow-y: auto;
     box-sizing: border-box;
 }
@@ -313,7 +335,6 @@ figure:hover a {
     .content {
         flex-direction: column;
         align-items: center;
-        width: unset;
     }
     #bigPicture {
         padding: 30px;

@@ -12,13 +12,35 @@ import { Point, Rectangle } from "./shapes.js";
 }
 
 /**
+ * Memoizes the results of a function, providing caching for its results.
+ * 
+ * @param {function} fn The function to memoize.
+ * @returns A function wrapping the function to memoize with caching.
+ */
+function memoize (fn) {
+    let cache = {};
+    return (...args) => {
+        let n = args[0];
+        if (n in cache) {
+            return cache[n];
+        }
+        else {
+            let result = fn(n);
+            cache[n] = result;
+            return result;
+        }
+    }
+}
+
+/**
  * Generates the beginning co-ordinates and ending co-ordinates of an element and returns the points in
  * a {@link Rectangle} object.
  * 
- * @param {*} el The element to find its beginning an ending point.
+ * @param {*} el The element to find its beginning and ending point.
  * @returns A {@link Rectangle} object with the two {@link Point} objects.
  */
- export function getElementBounds (el) {
+export function getElementBounds (el) {
+
     let p1 = new Point(el.getBoundingClientRect().left + window.scrollX,
         el.getBoundingClientRect().top + window.scrollY);
     

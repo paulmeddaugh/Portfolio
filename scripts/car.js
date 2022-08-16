@@ -117,6 +117,7 @@ window.addEventListener("load", () => {
     if (calculateFPS) currentFPS++;
 
     let velocity = carProps.getVelocity();
+
     let angle = carProps.getAngle();
     let carPoint = carProps.getPoint(), newPoint;
 

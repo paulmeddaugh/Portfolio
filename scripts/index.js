@@ -4,10 +4,12 @@ import { getElementBounds, mobileCheck, pointOnLine } from './utility.js';
 export const MOBILE = mobileCheck();
 
 window.addEventListener("load", () => {
-    window.scroll({
-        top: 0,
-        left: 0
-    });
+    setTimeout(() => {
+        window.scroll({
+            top: 0,
+            left: 0
+        });
+    }, 5);
 });
 
 document.getElementById('snowFinder').getElementsByTagName('A')[0].addEventListener('click', (e) => {

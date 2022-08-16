@@ -12,6 +12,7 @@ window.addEventListener("load", () => {
 
     if (MOBILE) {
         instructions.style.display = 'none';
+        instructions.style.zIndex = 0;
         return;
     }
 
@@ -34,10 +35,12 @@ export function highlightInstructions () {
 }
 
 document.getElementById('closeInstructions').addEventListener("click", (e) => {
-    if (e.currentTarget.style.opacity > 0) {
-        instructions.style.opacity = 0;
-        e.stopPropagation();
-    }
+    instructions.style.opacity = 0;
+    setTimeout(() => { // Lets transition happen
+        instructions.style.zIndex = 0;
+    }, 1000);
+    
+    e.stopPropagation();
 });
 
 function setInstructionTimeouts() {
@@ -48,6 +51,9 @@ function setInstructionTimeouts() {
     // Closes instructions
     setTimeout(() => {
         instructions.style.opacity = 0;
+        setTimeout(() => { // Lets transition happen
+            instructions.style.zIndex = 0;
+        }, 1000);
     }, 10000);
 }
 
