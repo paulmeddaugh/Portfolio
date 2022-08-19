@@ -54,7 +54,7 @@ function setInstructionTimeouts() {
         setTimeout(() => { // Lets transition happen
             instructions.style.zIndex = 0;
         }, 1000);
-    }, 10000);
+    }, 8000);
 }
 
 /**

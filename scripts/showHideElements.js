@@ -22,6 +22,9 @@ let titleHighlighted = false;
                 figChildren[i].classList.add('imgHover'); // opacity to .3
             }
         }
+        if (fig.id == 'hiddenFields') {
+            document.getElementsByClassName('quickAccessAccount')[0].classList.add('showAccount');
+        }
         hilightedFig = fig;
 
     // Removes highlight classes if first time out of highlighted fig
@@ -33,6 +36,9 @@ let titleHighlighted = false;
             } else {
                 figChildren[i].classList.remove('imgHover');
             }
+        }
+        if (hilightedFig.id == 'hiddenFields') {
+            document.getElementsByClassName('quickAccessAccount')[0].classList.remove('showAccount');
         }
         hilightedFig = false;
     }

@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-    height: 32vh;
+    height: 42vh;
     font: 28pt Corbel;
     text-align: center;
     display: flex;
@@ -34,11 +34,11 @@ h1 > div {
 }
 
 #instructions {
-    position: absolute;
-    top: 78%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    position: fixed;
+    top: 86%;
+    right: 50%;
+    -ms-transform: translate(50%, -50%);
+    transform: translate(50%, -50%);
     border: 1px solid lightgray;
     text-align: center;
     width: 200px;
@@ -79,17 +79,25 @@ h1 > div {
     right: 15px;
     top: 14px;
     cursor: pointer;
-    font: 8pt Arial;
+    font: 10pt Arial;
     transition: .75s ease;
     opacity: 0;
 }
 
 #arrowDownContainer {
     position: absolute;
-    right: 0%;
+    right: 3%;
     bottom: 0vh;
-    height: 75px;
-    width: 75px;
+    height: 40px;
+    animation: upAndDown 2s;
+    animation-iteration-count: infinite;
+    transition: .5s ease;
+}
+
+@keyframes upAndDown {
+    0%   {bottom: 1vh;}
+    50%  {bottom: 6vh;}
+    100% {bottom: 1vh;}
 }
 
 #arrowKeys {
@@ -141,6 +149,33 @@ canvas {
     grid-row: 2;
 }
 
+.quickAccessAccount {
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    transform: translateY(-100%);
+    background-color: white;
+    border: 1px solid black;
+    border-top-width: 0px;
+    font: 10pt Arial;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: .5s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#projHF:hover .quickAccessAccount {
+    opacity: 1;
+    transform: translateY(0%);
+}
+
+.showAccount {
+    opacity: 1;
+    transform: translateY(0%);
+}
+
 #projGV {
     grid-column: 2;
     grid-row: 4;
@@ -149,10 +184,6 @@ canvas {
 #projSF {
     grid-column: 4;
     grid-row: 4;
-}
-
-#aboutMe { /* fourth project section */
-    
 }
 
 .projectText {
@@ -168,15 +199,15 @@ canvas {
 }
 
 #hiddenFields {
-    background-color: #1ed760; /* black */
+    background-color: #43c873; /* #43c170; /* #1ed760; /* black */
 }
 
 #projHFText {
-    background-color: #00ba42; /* #3d3d3d */
+    background-color: #4ad77b; /* #4bd17a; /* #00ba42; /* #3d3d3d */
 }
 
 #projHFText .projectDescrip {
-    color: #b6ffcf; /* rgb(156, 156, 156) */
+    color: #f2fff7; /* #e1ffec; /* #b6ffcf; /* rgb(156, 156, 156) */
 }
 
 #graphVisualizer {
@@ -325,6 +356,10 @@ figure:hover a {
     flex-direction: column;
     overflow-y: auto;
     box-sizing: border-box;
+}
+
+.bioContent span {
+    padding-bottom: 1.3em;
 }
 
 #bigPicture:hover img {

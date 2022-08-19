@@ -1,4 +1,3 @@
-import { Parallelogram, Point } from './shapes.js';
 import { getElementBounds, mobileCheck, pointOnLine } from './utility.js';
 
 export const MOBILE = mobileCheck();

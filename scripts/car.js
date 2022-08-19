@@ -7,6 +7,8 @@ import { highlightInstructions } from './instructions.js';
 
 let car;
 
+let initialScroll = false;
+
 export let carProps = (() => {
     let velocity = 0;
     let angle = Math.PI / 2; // 90
@@ -69,12 +71,10 @@ window.addEventListener("keyup", keyup);
 window.addEventListener("click", driveCarToPoint);
 window.addEventListener("load", () => {
 
-    // Sets the speed of the car based on the width of the browser
-    carProps.setVelocityForward((!MOBILE) ? window.innerWidth / 4200 : .6);
-    carProps.setVelocityReverse((!MOBILE) ? window.innerWidth / 3800 : .6);
+    setCarAcceleration();
 
     car = document.getElementById('car');
-    placeCarInCenter();
+    placeCarInCenter(false);
 
     // Calculates the frames per second
     if (calculateFPS) {
@@ -96,17 +96,28 @@ window.addEventListener("load", () => {
 });
 
 /**
- * Places the car in the center of the page. Called when loading and resizing.
+ * Places the car in the center of the window, with or without considering scrolling. Called when 
+ * loading and resizing.
+ * 
+ * @param withScrolling If true, places car in the center of the window, regardless of scrolling the user
+ * may have done. If false, places car in the center at the top of the document without considering
+ * the scrollbar (used for loading). Defaults to true.
  */
- export function placeCarInCenter() {
+ export function placeCarInCenter(withScrolling = true) {
     let point = new Point(
-        window.innerWidth / 2 - car.clientWidth / 2,
-        window.innerHeight / 2 - car.clientHeight / 2
+        document.body.clientWidth / 2 - car.clientWidth / 2,
+        (window.innerHeight) / 2 + ((withScrolling) ? window.scrollY : 0) - car.clientHeight / 2
     );
 
     carProps.setPoint(point);
     car.style.left = point.x + "px";
     car.style.top = point.y + "px";
+}
+
+function setCarAcceleration() {
+    // Sets the speed of the car based on the width of the browser
+    carProps.setVelocityForward((!MOBILE) ? window.innerWidth / 4200 : .6);
+    carProps.setVelocityReverse((!MOBILE) ? window.innerWidth / 3800 : .6);
 }
 
 /**
@@ -161,7 +172,6 @@ window.addEventListener("load", () => {
 
     showHideLinks();
     highlightHeaderLinks();
-    highlightInstructions();
     //highlightTitle();
 
     requestAnimationFrame(animateCar);
@@ -176,7 +186,7 @@ window.addEventListener("load", () => {
  */
  export function carWithin(p1, p2) {
 
-    let carPoint = carProps.getPoint();
+    const carPoint = carProps.getPoint();
 
     if (p1 instanceof Rectangle) {
         return p1.pointWithin(carPoint);
@@ -243,25 +253,18 @@ export function driveCar (e) {
     const key = e.key;
 
     if (key == 'Enter') {
-        let fig = carWithinFigure();
-        if (fig) window.location.href = fig.getElementsByTagName('A')[0].href;
-
-        let link = carWithinHeaderLink();
-        if (link) window.location.href = link.children[0].href;
-
-        if (carWithin(getElementBounds(instructions))) {
-            instructions.style.opacity = 0;
+        let fig, link;
+        if (fig = carWithinFigure()) {
+            window.location.href = fig.getElementsByTagName('A')[0].href;
+        } else if (link = carWithinHeaderLink()) {
+            window.location.href = link.children[0].href;
         }
     }
 
     if (e.repeat) return; // the repeat event when key is held down
 
-    
     carProps.setDrivingDirections(Object.defineProperty({}, e.key, {value: true, enumerable: true}));
-
     requestAnimationFrame(() => drive(key));
-
-    e.preventDefault();
 }
 
 let drive = (key) => {
@@ -376,6 +379,17 @@ function getBreakDistanceAndTime(velocity) {
 
 window.addEventListener("resize", () => {
     placeCarInCenter();
+    setCarAcceleration();
+
     carProps.setAngle(Math.PI / 2);
     carProps.setVelocity(0);
+});
+
+window.addEventListener("scroll", () => {
+    if (!initialScroll) {
+        // Removes the arrow down animation from the page on first scroll
+        document.getElementById('arrowDownContainer').style.opacity = 0;
+        setTimeout(() => document.getElementById('arrowDownContainer').style.display = 'none', 500);
+        initialScroll = true;
+    }
 });

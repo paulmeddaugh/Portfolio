@@ -50,6 +50,7 @@ body {
 
 a[class="noUnderline"] {
     border-bottom: none;
+    flex-shrink: 0;
 }
 
 .header div {
@@ -80,6 +81,7 @@ a[class="noUnderline"] {
     height: 100%;
     border: 2px solid transparent;
     transition: .5s ease;
+    flex-shrink: 1;
 }
 
 h2 {
@@ -87,7 +89,7 @@ h2 {
     margin: 0;
     color:black;
     font: 20pt Corbel Light;
-    padding: 10px 0px;
+    padding: 15px 0px 5px;
     background-color: white;
     width: 100%;
     opacity: .8;
