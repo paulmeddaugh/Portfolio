@@ -3,10 +3,8 @@ import { Point, Rectangle } from './shapes.js';
 import { getElementBounds } from './utility.js'; 
 import { Predict } from './predict.js';
 import { carWithinFigure, showHideLinks, carWithinHeaderLink, highlightHeaderLinks, highlightTitle } from './showHideElements.js';
-import { highlightInstructions } from './instructions.js';
 
 let car;
-
 let initialScroll = false;
 
 export let carProps = (() => {
@@ -247,8 +245,9 @@ export /**
 
 export function driveCar (e) {
 
+    console.log('driving');
+
     e.preventDefault();
-    e.stopPropagation();
 
     const key = e.key;
 
@@ -265,6 +264,8 @@ export function driveCar (e) {
 
     carProps.setDrivingDirections(Object.defineProperty({}, e.key, {value: true, enumerable: true}));
     requestAnimationFrame(() => drive(key));
+
+    e.preventDefault();
 }
 
 let drive = (key) => {
