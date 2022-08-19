@@ -34,20 +34,28 @@ function memoize (fn) {
 
 /**
  * Generates the beginning co-ordinates and ending co-ordinates of an element and returns the points in
- * a {@link Rectangle} object.
+ * a {@link Rectangle} object. Uses cashing.
  * 
- * @param {*} el The element to find its beginning and ending point.
+ * @param {*} el The element to find its beginning and ending point; must have an id for caching.
  * @returns A {@link Rectangle} object with the two {@link Point} objects.
  */
 export function getElementBounds (el) {
-
-    let p1 = new Point(el.getBoundingClientRect().left + window.scrollX,
-        el.getBoundingClientRect().top + window.scrollY);
     
-    let p2 = new Point(p1.x + parseInt(window.getComputedStyle(el).width),
+    const rect = clientRect(el.id);
+
+    const p1 = new Point(rect.left, rect.top);
+    const p2 = new Point(p1.x + parseInt(window.getComputedStyle(el).width),
                         p1.y + parseInt(window.getComputedStyle(el).height));
     return new Rectangle(p1, p2);
 }
+
+const clientRect = memoize((elId) => {
+
+    const el = document.getElementById(elId);
+    const rect = el.getBoundingClientRect();
+
+    return { left: rect.left, top: rect.top };
+});
 
 /**
  * Determines if a point is to the left, on, or to the right of a line.
