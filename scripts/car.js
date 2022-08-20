@@ -3,6 +3,7 @@ import { Point, Rectangle } from './shapes.js';
 import { getElementBounds } from './utility.js'; 
 import { Predict } from './predict.js';
 import { carWithinFigure, showHideLinks, carWithinHeaderLink, highlightHeaderLinks, highlightTitle } from './showHideElements.js';
+import { highlightInstructions } from './instructions.js';
 
 let car;
 let initialScroll = false;
@@ -86,9 +87,18 @@ window.addEventListener("load", () => {
         }, 1000 / AVERAGE_CALC_PER_SEC);
     }
 
-    if (!MOBILE) {
+    if (!MOBILE && !window.navigator.userAgent.match(/Edg/)) {
         animateCar();
     } else {
+        const instructions = document.getElementById('instructions');
+        if (window.navigator.userAgent.match(/Edg/)) {
+            instructions.children[0].innerHTML = "Try in another browser to " 
+                + "navigate the page driving a car.";
+            instructions.style.font = '10pt Arial';
+        } else {
+            instructions.style.display = 'none';
+            instructions.style.zIndex = 0;
+        }
         car.style.display = 'none';
     }
 });
@@ -245,11 +255,10 @@ export /**
 
 export function driveCar (e) {
 
-    console.log('driving');
-
     e.preventDefault();
 
     const key = e.key;
+    if (e.repeat) return; // the repeat event when key is held down
 
     if (key == 'Enter') {
         let fig, link;
@@ -260,12 +269,8 @@ export function driveCar (e) {
         }
     }
 
-    if (e.repeat) return; // the repeat event when key is held down
-
     carProps.setDrivingDirections(Object.defineProperty({}, e.key, {value: true, enumerable: true}));
-    requestAnimationFrame(() => drive(key));
-
-    e.preventDefault();
+    drive(key);
 }
 
 let drive = (key) => {
@@ -279,7 +284,7 @@ let drive = (key) => {
     let angle = carProps.getAngle();
     const VELOCITY_FORWARD = carProps.getVelocityForward();
     const VELOCITY_REVERSE = carProps.getVelocityReverse();
-    
+
     let angChange;
     switch (key) {
         case 'ArrowUp':
@@ -306,7 +311,7 @@ let drive = (key) => {
     }
 
     setTimeout(() => {
-        requestAnimationFrame(() => drive(key));
+        drive(key);
     }, DRIVE_RATE);
 };
 

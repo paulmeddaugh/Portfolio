@@ -34,21 +34,22 @@ function memoize (fn) {
 
 /**
  * Generates the beginning co-ordinates and ending co-ordinates of an element and returns the points in
- * a {@link Rectangle} object. Uses cashing.
+ * a {@link Rectangle} object.
  * 
- * @param {*} el The element to find its beginning and ending point; must have an id for caching.
+ * @param {*} el The element to find its beginning and ending point.
  * @returns A {@link Rectangle} object with the two {@link Point} objects.
  */
 export function getElementBounds (el) {
     
-    const rect = clientRect(el.id);
+    const rect = el.getBoundingClientRect();
 
-    const p1 = new Point(rect.left, rect.top);
+    const p1 = new Point(rect.left + window.scrollX, rect.top + window.scrollY);
     const p2 = new Point(p1.x + parseInt(window.getComputedStyle(el).width),
                         p1.y + parseInt(window.getComputedStyle(el).height));
     return new Rectangle(p1, p2);
 }
 
+// Beta, attempted caching for getElementBounds(), doesn't work in Firefox
 const clientRect = memoize((elId) => {
 
     const el = document.getElementById(elId);
