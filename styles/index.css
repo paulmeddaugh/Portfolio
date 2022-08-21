@@ -92,6 +92,7 @@ h1 > div {
     animation: upAndDown 2s;
     animation-iteration-count: infinite;
     transition: .5s ease;
+    z-index: 2;
 }
 
 @keyframes upAndDown {
@@ -256,6 +257,7 @@ figure {
     border: 1px solid dimgray;
     margin: 0;
     background-color: lightgrey;
+    pointer-events: none;
 }
 
 img, .projectText {
@@ -347,6 +349,7 @@ figure:hover a {
 }
 
 .bioContent {
+    position: relative;
     padding: 25px;
     font: 14pt Corbel;
     width: 100%;
@@ -356,9 +359,10 @@ figure:hover a {
     flex-direction: column;
     overflow-y: auto;
     box-sizing: border-box;
+    justify-content: space-between;
 }
 
-.bioContent span {
+.bioContent > * {
     padding-bottom: 1.3em;
 }
 

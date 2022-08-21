@@ -17,3 +17,28 @@ document.getElementById('snowFinder').getElementsByTagName('A')[0].addEventListe
         e.preventDefault();
     }
 });
+
+window.addEventListener("mousemove", () => {
+    changePointerEvents(true);
+});
+
+window.addEventListener('keydown', () => {
+    changePointerEvents(false);
+});
+
+function changePointerEvents (on) {
+    // Figures
+    for (let f of document.getElementsByTagName('figure')) {
+        if (f.id && f.id != 'bigPicture') {
+            f.style.pointerEvents = (on) ? 'auto' : 'none';
+        }
+    }
+
+    // Quick Access account dropdown
+    document.getElementById('projHF').style.pointerEvents = (on) ? 'auto' : 'none';
+
+    // Header links
+    for (let h of document.getElementsByClassName('headerLinkContainer')) {
+        h.style.pointerEvents = (on) ? 'auto' : 'none';
+    }
+}

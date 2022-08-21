@@ -92,12 +92,14 @@ window.addEventListener("load", () => {
     } else {
         const instructions = document.getElementById('instructions');
         if (window.navigator.userAgent.match(/Edg/)) {
-            instructions.children[0].innerHTML = "Try in another browser to " 
-                + "navigate the page driving a car.";
-            instructions.style.font = '10pt Arial';
+            changeInstructionsText("Try in another browser to navigate driving a car.");
         } else {
-            instructions.style.display = 'none';
-            instructions.style.zIndex = 0;
+            changeInstructionsText("Try viewing on deskop to navigate driving a car.");
+        }
+        
+        function changeInstructionsText (text) {
+            instructions.children[0].innerHTML = text;
+            instructions.style.font = '10pt Arial';
         }
         car.style.display = 'none';
     }
