@@ -10,13 +10,7 @@ window.addEventListener("load", () => {
     instructions = document.getElementById('instructions');
     closeInstructions = document.getElementById('closeInstructions');
 
-    if (MOBILE) {
-        instructions.style.display = 'none';
-        instructions.style.zIndex = 0;
-        return;
-    }
-
-    // Hides instructions
+    // Shows and hides instructions
     setInstructionTimeouts();
 });
 
