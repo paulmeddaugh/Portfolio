@@ -261,7 +261,6 @@ figure {
     border: 1px solid dimgray;
     margin: 0;
     background-color: lightgrey;
-    pointer-events: none;
 }
 
 img, .projectText {
