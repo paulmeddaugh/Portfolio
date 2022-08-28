@@ -13,7 +13,7 @@ window.addEventListener("load", () => {
 
 document.getElementById('snowFinder').getElementsByTagName('A')[0].addEventListener('click', (e) => {
     if (MOBILE) {
-        alert("Snow Finder can only run on desktop unfortunately as it was written in Java.");
+        alert("Snow Finder is only a desktop application unfortunately.");
         e.preventDefault();
     }
 });

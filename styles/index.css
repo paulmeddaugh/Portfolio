@@ -3,8 +3,8 @@ body {
 }
 
 h1 {
-    height: 42vh;
-    font: 28pt Corbel;
+    height: 38vh;
+    font: 25pt Corbel;
     text-align: center;
     display: flex;
     justify-content: end;
@@ -14,7 +14,7 @@ h1 {
 }
 
 h1 > div {
-    font: 22pt Corbel Light;
+    font: 21pt Corbel Light;
     padding-top: 3px;
 }
 
@@ -192,7 +192,7 @@ canvas {
 }
 
 .projectText {
-    font: 22px Corbel Light;
+    font: 24px Corbel Light;
     color: white;
     width: 100%;
     padding: 10px;
@@ -362,9 +362,16 @@ figure:hover a {
     flex-direction: column;
     overflow-y: auto;
     box-sizing: border-box;
+    text-align: center;
+    display: table;
 }
 
-.bioContent > * {
+.bioContent > div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.bioContent > div * {
     margin: 0 0 1.3em;
 }
 
@@ -372,7 +379,12 @@ figure:hover a {
     opacity: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1274px) {
+    #bigPicture {
+    }
+}
+
+@media (max-width: 850px) {
     .content {
         flex-direction: column;
         align-items: center;
