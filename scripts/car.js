@@ -92,9 +92,9 @@ window.addEventListener("load", () => {
     } else {
         const instructions = document.getElementById('instructions');
         if (window.navigator.userAgent.match(/Edg/)) {
-            changeInstructionsText("Try in another browser to navigate driving a car.");
+            changeInstructionsText("Try in Chrome or Firefox to navigate driving a car.");
         } else {
-            changeInstructionsText("Try viewing on deskop to navigate driving a car.");
+            changeInstructionsText("Try viewing in Chrome or Firefox on deskop to navigate driving a car.");
         }
         
         function changeInstructionsText (text) {
