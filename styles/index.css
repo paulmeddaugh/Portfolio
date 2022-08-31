@@ -285,7 +285,7 @@ img, .projectText {
     backface-visibility: hidden;
 }
 
-#snowFinder img, #hiddenFields img { /* project images */
+#snowFinder img, #graphVisualizer img { /* project images */
     max-width: calc(100vw / 10);
 }
 
@@ -399,21 +399,24 @@ figure:hover a {
     opacity: 1;
 }
 
-@media (max-width: 1274px) {
-    #bigPicture {
+@media (max-width: 510px) {
+    #hiddenFields {
+        background-position-y: 0;
     }
-}
+} 
 
 @media (max-width: 850px) {
     .content {
         flex-direction: column;
         align-items: center;
     }
+
     #bigPicture {
         padding: 30px;
         height: 60vw;
         min-height: 300px;
     }
+
     #snowFinder img, #graphVisualizer img {
         display: none;
     }
