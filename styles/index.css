@@ -28,7 +28,7 @@ h2.aboutMeHeader {
 }
 
 #car {
-    z-index: 3;
+    z-index: 5;
     width: 24px;
     height: 48px;
     position: absolute;
@@ -210,10 +210,21 @@ canvas {
 
 #hiddenFields {
     background-color: #43c873; /* #43c170; /* #1ed760; /* black */
+    background-image: url(../resources/projectIcons/hiddenTreasures.jpg);
+    background-size: cover;
+    background-position-y: -14vw;
+}
+
+#hiddenFields img {
+    max-width: 100%;
+    max-height: 100vh;
+    position: absolute;
+    object-fit: cover;
 }
 
 #projHFText {
     background-color: #4ad77b; /* #4bd17a; /* #00ba42; /* #3d3d3d */
+    background-color: transparent;
 }
 
 #projHFText .projectDescrip {
@@ -229,7 +240,7 @@ canvas {
 }
 
 #projGVText .projectDescrip {
-    color: #bcbcff;
+    color: #dbdbff;
 }
 
 #spotifyBar {
@@ -272,6 +283,10 @@ img, .projectText {
     transition: .5s ease;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+#snowFinder img, #hiddenFields img { /* project images */
+    max-width: calc(100vw / 10);
 }
 
 figure a {
@@ -398,6 +413,9 @@ figure:hover a {
         padding: 30px;
         height: 60vw;
         min-height: 300px;
+    }
+    #snowFinder img, #graphVisualizer img {
+        display: none;
     }
 }
 
