@@ -77,6 +77,11 @@ a[class="noUnderline"] {
     height: 54px;
 }
 
+#linkedInIcon {
+    width: 24px;
+    height: 24px;
+}
+
 .headerLinkContainer { /* Resizes link container for the car highlighting */
     height: 100%;
     border: 2px solid transparent;
@@ -93,7 +98,7 @@ h2 {
     position: relative;
     margin: 0;
     color:black;
-    font: 20pt Corbel Light;
+    font: 22pt Corbel Light;
     padding: 15px 0px 5px;
     background-color: white;
     width: 100%;

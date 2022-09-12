@@ -8,19 +8,19 @@ body {
 }
 
 h1 {
-    height: 38vh;
-    font: 25pt "Open Sans";
+    height: 43vh;
+    font: 26pt "Open Sans";
     text-align: center;
     display: flex;
     justify-content: end;
     flex-direction: column;
     margin: 0;
-    padding-bottom: 5vh;
+    padding-bottom: 11vh;
 }
 
 h1 > div {
     font: 21pt Corbel Light;
-    padding-top: 3px;
+    padding-top: 6px;
 }
 
 h2.aboutMeHeader {
@@ -240,7 +240,7 @@ canvas {
 }
 
 #projGVText .projectDescrip {
-    color: #dbdbff;
+    color: #e1e1fd;
 }
 
 #spotifyBar {
@@ -287,6 +287,7 @@ img, .projectText {
 
 #snowFinder img, #graphVisualizer img { /* project images */
     max-width: calc(100vw / 10);
+    margin-left: 5px;
 }
 
 figure a {
