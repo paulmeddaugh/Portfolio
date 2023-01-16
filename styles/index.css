@@ -411,7 +411,7 @@ figure:hover a {
     }
 } 
 
-@media (max-width: 850px) {
+@media (max-width: 888px) {
     .content {
         flex-direction: column;
         align-items: center;
