@@ -27,6 +27,13 @@ h2.aboutMeHeader {
     padding-bottom: 18px;
 }
 
+.overflowHiddenBody {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+}
+
 #car {
     z-index: 5;
     width: 24px;
@@ -36,15 +43,35 @@ h2.aboutMeHeader {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    display: flex;
+}
+
+#car:focus-visible {
+    outline: none;
 }
 
 #carImg {
     max-width: max-content;
+    transition: none;
+}
+
+.carParts {
+    position: absolute;
+    max-width: 24px;
+    max-height: 24px;
+    border: 1px solid transparent;
+    transition: .5s ease;
+    padding: 3px;
+}
+
+.carParts:hover {
+    border: 1px solid rgb(255, 229, 83);
+    background-color: #fffade;
 }
 
 #instructions {
     position: fixed;
-    top: 86%;
+    top: 60%;
     right: 50%;
     -ms-transform: translate(50%, -50%);
     transform: translate(50%, -50%);
@@ -62,13 +89,15 @@ h2.aboutMeHeader {
     width: 100%;
 }
 
-#instructions div div { /* Instruction message text */
+#instructions .instructionsText {
     font: 12pt Corbel Light;
     display: inline-block;
     position: relative;
     top: -4px;
     margin: 2px 12px;
 }
+
+
 
 #instructions div #driveText {
     top: -5px;
@@ -125,10 +154,6 @@ h2.aboutMeHeader {
 img {
     max-width: 100%;
     max-height: 100%;
-}
-
-#car:focus-visible {
-    outline: none;
 }
 
 #content {
@@ -229,6 +254,8 @@ canvas {
     background-color: rgb(0, 0, 0, .25);
     font-family: 'Abuget';
     font-size: 36pt;
+    line-height: 18pt;
+    padding-top: 18px;
 }
 
 #projHFText .projectDescrip {
@@ -405,12 +432,6 @@ figure:hover a {
     opacity: 1;
 }
 
-@media (max-width: 510px) {
-    #hiddenFields {
-        background-position-y: 0;
-    }
-} 
-
 @media (max-width: 888px) {
     .content {
         flex-direction: column;
@@ -428,9 +449,37 @@ figure:hover a {
     }
 }
 
+@media (max-width: 510px) {
+    #hiddenFields {
+        background-position-y: center, 0;
+    }
+
+    #projectGrid {
+        height: 120vh;
+        grid-template-rows: 6% 24% 8% 24% 8% 24% 6%;
+    }
+
+    #projGV {
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row: 4;
+    }
+    
+    #projSF {
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row: 6;
+    }
+
+    #snowFinder img, #graphVisualizer img {
+        display: block;
+        max-width: 120px;
+    }
+} 
+
 @media (max-width: 652px) {
     .projectText {
-        font-size: calc(1.8vw * 1.9);
+        font-size: 20px;
     }
 } 
 

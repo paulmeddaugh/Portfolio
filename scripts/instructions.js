@@ -5,13 +5,16 @@ import { MOBILE } from './index.js';
 let instructions, closeInstructions;
 let instructionsHighlighted = false;
 
+const INSTRUCTIONS_FADE_OUT_SECS = 10;
+const INSTRUCTIONS_LOWER_SEC = 0;
+
 window.addEventListener("load", () => {
 
     instructions = document.getElementById('instructions');
     closeInstructions = document.getElementById('closeInstructions');
 
     // Shows and hides instructions
-    setInstructionTimeouts();
+    if (!MOBILE) setInstructionTimeouts();
 });
 
 export function highlightInstructions () {
@@ -41,14 +44,18 @@ function setInstructionTimeouts() {
 
     // Transition eases instructions to display on load
     instructions.style.opacity = 1;
+    setTimeout(() => {
+        instructions.style.top = '300%';
+    }, INSTRUCTIONS_LOWER_SEC * 1000);
 
     // Closes instructions
     setTimeout(() => {
         instructions.style.opacity = 0;
         setTimeout(() => { // Lets transition happen
             instructions.style.zIndex = 0;
+            instructions.style.display = 'none';
         }, 1000);
-    }, 8000);
+    }, INSTRUCTIONS_FADE_OUT_SECS * 1000);
 }
 
 /**

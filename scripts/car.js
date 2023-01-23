@@ -5,8 +5,10 @@ import { Predict } from './predict.js';
 import { carWithinFigure, showHideLinks, carWithinHeaderLink, highlightHeaderLinks, highlightTitle } from './showHideElements.js';
 import { highlightInstructions } from './instructions.js';
 
-let car;
+let car, carImg;
 let initialScroll = false;
+
+let randomCarObjectCount = 0; // 7 total
 
 export let carProps = (() => {
     let velocity = 0;
@@ -73,6 +75,7 @@ window.addEventListener("load", () => {
     setCarAcceleration();
 
     car = document.getElementById('car');
+    carImg = document.getElementById('carImg');
     placeCarInCenter(false);
 
     // Calculates the frames per second
@@ -115,7 +118,7 @@ window.addEventListener("load", () => {
  */
  export function placeCarInCenter(withScrolling = true) {
     let point = new Point(
-        document.body.clientWidth / 2 - car.clientWidth / 2,
+        document.body.offsetWidth / 2,
         (window.innerHeight) / 2 + ((withScrolling) ? window.scrollY : 0) - car.clientHeight / 2
     );
 
@@ -167,7 +170,7 @@ function setCarAcceleration() {
     }
     car.style.left = newPoint.x + "px";
     car.style.top = newPoint.y + "px";
-    car.style.transform = "rotate(" + (angle - Math.PI / 2) * (180 / Math.PI)  + "deg)";
+    carImg.style.transform = "rotate(" + (angle - Math.PI / 2) * (180 / Math.PI)  + "deg)";
 
     let boundary;
     if (boundary = outOfBounds()) {
@@ -239,18 +242,19 @@ export /**
     let x2 = document.body.clientWidth, y2 = document.body.clientHeight;
     let boundary;
     let borderSize = 40;
+    const NORTH_OFFSET = 25, EAST_OFFSET = 27, SOUTH_OFFSET = 28, WEST_OFFSET = 25;
     
     // north
-    if (carWithin(boundary = new Rectangle(new Point(0, -borderSize), new Point(x2, 0)))) return boundary;
+    if (carWithin(boundary = new Rectangle(new Point(0, -borderSize), new Point(x2, NORTH_OFFSET)))) return boundary;
 
     // east
-    if (carWithin(boundary = new Rectangle(new Point(x2 - 30, 0), new Point(x2 + borderSize, y2)))) return boundary;
+    if (carWithin(boundary = new Rectangle(new Point(x2 - EAST_OFFSET, 0), new Point(x2 + borderSize, y2)))) return boundary;
 
     // south
-    if (carWithin(boundary = new Rectangle(new Point(0, y2 - 50), new Point(x2, y2 + borderSize)))) return boundary;
+    if (carWithin(boundary = new Rectangle(new Point(0, y2 - SOUTH_OFFSET), new Point(x2, y2 + borderSize)))) return boundary;
 
     // west
-    if (carWithin(boundary = new Rectangle(new Point(-borderSize, 0), new Point(12, y2)))) return boundary;
+    if (carWithin(boundary = new Rectangle(new Point(-borderSize, 0), new Point(WEST_OFFSET, y2)))) return boundary;
 
     return false;
 }
@@ -268,6 +272,33 @@ export function driveCar (e) {
             window.location.href = fig.getElementsByTagName('A')[0].href;
         } else if (link = carWithinHeaderLink()) {
             window.location.href = link.children[0].href;
+        } else {
+
+            ({ // If 'Enter' pressed on no linkable object, performs a random action
+                0: () => dropObject('gear'), 
+                1: () => dropObject('wheel'),
+                2: () => changeCarImage(randomCarObjectCount - 2), 
+                3: () => changeCarImage(randomCarObjectCount - 2),
+                4: () => changeCarImage(randomCarObjectCount - 2), 
+                5: () => changeCarImage(randomCarObjectCount - 2),
+                6: () => changeCarImage(randomCarObjectCount = 0),
+            })[randomCarObjectCount++]();
+
+            function changeCarImage (imgNumber) {
+                carImg.src = `./resources/carImages/car${imgNumber}.png`;
+            }
+
+            function dropObject (fileName) {
+                const img = document.createElement('img');
+                img.src = './resources/carImages/' + fileName + '.png';
+                img.classList.add('carParts');
+                const carPoint = carProps.getPoint(), carSize = car.getBoundingClientRect();
+                img.style.left = (carPoint.x - (carSize.width / 3)) + 'px';
+                img.style.top = (carPoint.y - (carSize.height / 3)) + 'px';
+                img.addEventListener("click", () => img.remove());
+
+                document.body.appendChild(img);
+            }
         }
     }
 
