@@ -8,7 +8,7 @@ import { highlightInstructions } from './instructions.js';
 let car, carImg;
 let initialScroll = false;
 
-let randomCarObjectCount = 0; // 7 total
+let randomCarObjectCount = 1; // 7 total, 0 is initial blue car image
 
 export let carProps = (() => {
     let velocity = 0;
@@ -275,13 +275,13 @@ export function driveCar (e) {
         } else {
 
             ({ // If 'Enter' pressed on no linkable object, performs a random action
-                0: () => dropObject('gear'), 
-                1: () => dropObject('wheel'),
-                2: () => changeCarImage(randomCarObjectCount - 2), 
-                3: () => changeCarImage(randomCarObjectCount - 2),
-                4: () => changeCarImage(randomCarObjectCount - 2), 
-                5: () => changeCarImage(randomCarObjectCount - 2),
-                6: () => changeCarImage(randomCarObjectCount = 0),
+                0: () => changeCarImage(randomCarObjectCount - 1), 
+                1: () => changeCarImage(randomCarObjectCount - 1),
+                2: () => changeCarImage(randomCarObjectCount - 1), 
+                3: () => changeCarImage(randomCarObjectCount - 1),
+                4: () => changeCarImage(randomCarObjectCount - 1),
+                5: () => dropObject('gear'), 
+                6: () => {dropObject('wheel'); randomCarObjectCount = 0;},
             })[randomCarObjectCount++]();
 
             function changeCarImage (imgNumber) {

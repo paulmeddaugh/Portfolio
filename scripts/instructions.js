@@ -6,7 +6,10 @@ let instructions, closeInstructions;
 let instructionsHighlighted = false;
 
 const INSTRUCTIONS_FADE_OUT_SECS = 10;
+
+const INSTRUCTIONS_LOWER = true;
 const INSTRUCTIONS_LOWER_SEC = 0;
+const INSTRUCTIONS_LOWER_TO = '87%';
 
 window.addEventListener("load", () => {
 
@@ -44,8 +47,8 @@ function setInstructionTimeouts() {
 
     // Transition eases instructions to display on load
     instructions.style.opacity = 1;
-    setTimeout(() => {
-        instructions.style.top = '300%';
+    if (INSTRUCTIONS_LOWER) setTimeout(() => {
+        instructions.style.top = INSTRUCTIONS_LOWER_TO;
     }, INSTRUCTIONS_LOWER_SEC * 1000);
 
     // Closes instructions
