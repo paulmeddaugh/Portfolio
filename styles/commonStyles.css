@@ -7,28 +7,15 @@ body {
     flex-direction: column;
 }
 
-.header {
+.footer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50px;
     flex: 1 1 auto;
     z-index: 1;
-    opacity: .8;
-    background-color: white;
     border: 2px solid transparent;
     padding-bottom: 40px;
-}
-
-.headerTitle {
-    font: 20px Corbel Light;
-    font-size: clamp(10px, 100%, 20px);
-    width: 200px;
-    height: 100%;
-    white-space: nowrap;
-    transition: .5s ease;
-    padding: 0px 20px;
-    flex-shrink: 100;
 }
 
 #titleText {
@@ -40,7 +27,7 @@ body {
     margin-left: 40px;
 }
 
-.header a {
+.footer a {
     margin: 0px 20px;
     font: 16px Corbel Light;
     text-decoration: none;
@@ -53,7 +40,7 @@ a[class="noUnderline"] {
     flex-shrink: 0;
 }
 
-.header div {
+.footer div {
     justify-content: start;
 }
 
@@ -100,9 +87,7 @@ h2 {
     color:black;
     font: 22pt Corbel Light;
     padding: 15px 0px 5px;
-    background-color: white;
     width: 100%;
-    opacity: .8;
     text-align: center;
 }
 

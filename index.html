@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title> Paul Meddaugh </title>
+        <title> Paul Meddaugh | Full Stack Web Developer </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="./resources/carImages/carIcon.png"/>
         <link rel="stylesheet" href="./styles/commonStyles.css" />
@@ -10,6 +10,24 @@
         <script type="module" src="./scripts/car.js"></script>
     </head>
     <body>
+
+        <div id="header">
+            <div class="headerPanel header-l">
+                <div class="headerObjects headerLine"></div>
+                <div class="headerObjects headerDot"></div>
+            </div>
+            <div class="headerPanel header-t">
+                <div id="headerBar">
+                    <div id="headerTitle">Paul Meddaugh</div>
+                    <a id="projectHeader" class="headerSection">Projects</a>
+                    <a id="aboutHeader" class="headerSection">About</a>
+                </div>
+            </div>
+            <div class="headerPanel header-r">
+                <div class="headerObjects headerLine"></div>
+                <div class="headerObjects headerDot"></div>
+            </div>
+        </div>
 
         <canvas id="background" width="0" height="0"></canvas>
 
@@ -32,7 +50,7 @@
             <img src="./resources/arrowDown2.png" alt="There's more down">
         </div>
 
-        <h1>Paul Meddaugh</br><div>Web Developer</div></h1>
+        <h1 id="name">Paul Meddaugh</br><div>Full Stack Web Developer</div></h1>
 
         <div id="projectGrid">
             <div class="project flexCenter" id="projHF">
@@ -40,7 +58,7 @@
                     <div class="projectText" id="projHFText">
                         thoughtweb
                         <span class="projectDescrip">
-                            An online journal that organizes entries primarily by idea.
+                            An online, web-layout journal for following train of thought throughout entries.
                         </span>
                     </div>
                     <a class="translateCenter" href="https://correlation-journal-production.up.railway.app/">Write</a>
@@ -75,7 +93,7 @@
             </div>
         </div>
 
-        <h2 class="aboutMeHeader">About Me</h2>
+        <h2 id="aboutMeHeader">About Me</h2>
         <div class="aboutMeSection flexCenter">
             <div class="content flexCenter">
                 <figure class="flexCenter" id="bigPicture">
@@ -84,20 +102,21 @@
                 <div class="bioContent">
                     <div>
                         <p>
-                            It is a privilege and wonder to compose to life the art made through coding, 
+                            It is a privilege composing to life art made through coding, 
                             constructing what was just not thought do-able in wild imagination.  
                         </p>
 
                         <p>
-                            I am an Oral Roberts University graduate with a minor in Information 
-                            Technology, IT work experience of one semester, including programming
-                            5+ documentation pages, and certification as a Java SE 8 Oracle Certified Associate.
+                            I am an ORU graduate with a bachelor's in Biblical Literature and a 
+                            minor in Computer Information Technology. I have project experience building 
+                            the above, as well as a mobile app that informs clients of their queue status 
+                            in being serviced by a plumbing company, and a Spotify desktop bar.
                         </p>
 
                         <p>
-                            Web and software development, to me, is a gift given for serving and 
-                            loving others well, which compells it be done with excellence, and I 
-                            sincerely seek to bring as well as grow in that in the work I contribute to.
+                            Web development, to me, is a gift to serve and 
+                            love others well, and I seek to do that tangibly in everthing I do. I 
+                            sincerely would be honored to serve with the skills given.
                             Thanks so much for checking out the website!
                         </p>
                     </div>
@@ -105,7 +124,7 @@
             </div>
         </div>
 
-        <div class="header">
+        <div class="footer">
             <div class="headerLinkContainer flexCenter" id="aboutMe">
                 <a class="noUnderline" href="https://github.com/paulmeddaugh">
                     <img id="githubLogo" src="./resources/footerIcons/GitHub-Mark-120px.png" alt="Github" />
@@ -119,6 +138,11 @@
             <div class="headerLinkContainer flexCenter" id="email">
                 <a class="noUnderline" href="mailto:paul.meddaugh@gmail.com">
                     <img id="emailIcon" src="./resources/footerIcons/email-icon5.png" alt="E-mail" />
+                </a>
+            </div>
+            <div class="headerLinkContainer flexCenter" id="oca">
+                <a class="noUnderline" href="https://www.linkedin.com/in/paulmeddaugh/">
+                    <img id="linkedInIcon" src="./resources/footerIcons/linkedin-logo2.png" alt="LinkedIn" />
                 </a>
             </div>
             <div class="headerLinkContainer flexCenter" id="oca">

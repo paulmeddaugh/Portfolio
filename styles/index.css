@@ -5,6 +5,86 @@
 
 body {
     display: block;
+    background-color: rgba(245, 245, 245, 0.658);
+}
+
+#header {
+    width: 100%;
+    height: 100%;
+    position: sticky;
+    top: 0%;
+    z-index: 4;
+}
+
+.headerPanel {
+    position: absolute;
+    top: 0%;
+    width: 5%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5%;
+}
+
+.header-l {
+    left: 0%;
+    z-index: 5;
+}
+
+.header-r {
+    right: 0%;
+}
+
+.header-t {
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    padding: 0;
+    width: 100%;
+}
+
+#headerBar {
+    width: clamp(300px, 80%, 600px);
+    display: flex;
+    padding: 15px;
+    border-radius: 3px;
+}
+
+#headerTitle {
+    font: 16pt "Open Sans";
+    flex: 1;
+    opacity: 0;
+    transition: .5s;
+}
+
+.headerSection {
+    margin-left: 20px;
+    font: 16pt Corbel Light;
+    text-decoration: none;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.headerSection:visited {
+    background-color: initial;
+}
+
+.headerObjects {
+    background-color: rgb(135, 135, 135, .5);
+    position: absolute;
+}
+
+.headerLine {
+    width: 1px;
+    height: 100%;
+}
+
+.headerDot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    rotate: 45deg;
 }
 
 h1 {
@@ -23,7 +103,7 @@ h1 > div {
     padding-top: 6px;
 }
 
-h2.aboutMeHeader {
+#aboutMeHeader {
     padding-bottom: 18px;
 }
 
@@ -309,6 +389,7 @@ figure {
     border: 1px solid dimgray;
     margin: 0;
     background-color: lightgrey;
+    border-radius: 4px;
 }
 
 img, .projectText {
@@ -393,6 +474,7 @@ figure:hover a {
     width: 70%;
     justify-content: space-evenly;
     border: 1px solid grey;
+    border-radius: 4px;
 }
 
 #bigPicture {
@@ -400,14 +482,14 @@ figure:hover a {
     height: 70vh;
     padding: 25px;
     box-sizing: border-box;
-    background: transparent;
+    background: whitesmoke;
     border: none;
 }
 
 .bioContent {
     position: relative;
     padding: 25px;
-    font: 14pt Corbel;
+    font: 16pt Corbel Light;
     width: 100%;
     height: 70vh;
     background-color: #f0f0f0;
@@ -417,6 +499,7 @@ figure:hover a {
     box-sizing: border-box;
     text-align: center;
     display: table;
+    border-radius: 4px;
 }
 
 .bioContent > div {
@@ -430,6 +513,60 @@ figure:hover a {
 
 #bigPicture:hover img {
     opacity: 1;
+}
+
+.masked-overflow {
+    /* scroll bar width, for use in mask calculations */
+    --scrollbar-width: 8px;
+
+    /* mask fade distance, for use in mask calculations */
+    --mask-height: 32px;
+
+    /* If content exceeds height of container, overflow! */
+    overflow-y: auto;
+
+    /* Our height limit */
+    height: 300px;
+
+    /* Need to make sure container has bottom space,
+  otherwise content at the bottom is always faded out */
+    padding-bottom: var(--mask-height);
+
+    /* Keep some space between content and scrollbar */
+    padding-right: 20px;
+
+    /* The CSS mask */
+
+    /* The content mask is a linear gradient from top to bottom */
+    --mask-image-content: linear-gradient(
+        to bottom,
+        transparent,
+        black var(--mask-height),
+        black calc(100% - var(--mask-height)),
+        transparent
+    );
+
+    /* Here we scale the content gradient to the width of the container 
+  minus the scrollbar width. The height is the full container height */
+    --mask-size-content: calc(100% - var(--scrollbar-width)) 100%;
+
+    /* The scrollbar mask is a black pixel */
+    --mask-image-scrollbar: linear-gradient(black, black);
+
+    /* The width of our black pixel is the width of the scrollbar.
+  The height is the full container height */
+    --mask-size-scrollbar: var(--scrollbar-width) 100%;
+
+    /* Apply the mask image and mask size variables */
+    mask-image: var(--mask-image-content), var(--mask-image-scrollbar);
+    mask-size: var(--mask-size-content), var(--mask-size-scrollbar);
+
+    /* Position the content gradient in the top left, and the 
+  scroll gradient in the top right */
+    mask-position: 0 0, 100% 0;
+
+    /* We don't repeat our mask images */
+    mask-repeat: no-repeat, no-repeat;
 }
 
 @media (max-width: 888px) {
@@ -449,7 +586,7 @@ figure:hover a {
     }
 }
 
-@media (max-width: 510px) {
+@media (max-width: 637px) {
     #hiddenFields {
         background-position-y: center, 0;
     }

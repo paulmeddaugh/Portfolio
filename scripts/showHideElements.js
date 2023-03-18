@@ -1,9 +1,42 @@
 import { carWithin } from "./car.js";
 import { getElementBounds } from "./utility.js";
 
+/** Pre-processed Rectangle objects of the figures that are checked for collision. */
+let figures;
 let hilightedFig = false;
+
+let headerLinks;
 let highlightedLink = false;
 let titleHighlighted = false;
+
+/**
+ * Processes each figure to be represented as a Rectangle object that is checked for collision 
+ * on a car animation frame.
+ */
+function loadFigureRectangles () {
+    figures = [];
+    
+    for (let fig of document.getElementsByTagName('figure')) {
+        if (fig.id == 'bigPicture') continue;
+        figures.push({ rectangle: getElementBounds(fig), ref: fig });
+    }
+}
+
+function loadHeaderLinkRectangles () {
+    headerLinks = [];
+
+    for (let l of document.getElementsByClassName('headerLinkContainer')) {
+        headerLinks.push({ rectangle: getElementBounds(l), ref: l });
+    }
+}
+
+function loadCollisionRectangles () {
+    loadFigureRectangles();
+    loadHeaderLinkRectangles();
+}
+
+window.addEventListener("load", loadCollisionRectangles);
+window.addEventListener("resize", loadCollisionRectangles);
 
 /**
  * Manually adds the classes that animate hovering over a project when the car drives within one.
@@ -50,10 +83,8 @@ let titleHighlighted = false;
  * @returns If within a figure, returns the figure the car is within. Otherwise, returns false.
  */
 export function carWithinFigure() {
-    for (let fig of document.getElementsByTagName('figure')) {
-        if (fig.id == 'bigPicture') continue;
-        let figRect = getElementBounds(fig);
-        if (carWithin(figRect)) return fig;
+    for (let figObj of figures) {
+        if (carWithin(figObj.rectangle)) return figObj.ref;
     }
 
     return false;
@@ -65,7 +96,7 @@ export function highlightHeaderLinks () {
 
     if (highlightedLink && highlightedLink != link) {
         highlightedLink.style.border = '2px solid transparent';
-        highlightedLink.style.background = 'white';
+        highlightedLink.style.background = 'initial';
         highlightedLink = false;
     }
     if (link && link != highlightedLink) {
@@ -76,10 +107,8 @@ export function highlightHeaderLinks () {
 }
 
 export function carWithinHeaderLink () {
-    for (let l of document.getElementsByClassName('headerLinkContainer')) {
-        if (carWithin(getElementBounds(l))) {
-            return l;
-        }
+    for (let headerLinkObj of headerLinks) {
+        if (carWithin(headerLinkObj.rectangle)) return headerLinkObj.ref;
     }
 
     return null;

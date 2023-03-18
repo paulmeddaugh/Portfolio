@@ -24,10 +24,17 @@ export let carProps = (() => {
         setVelocity(vel) {velocity = vel;},
 
         getPoint() {return new Point(point.x, point.y);},
-        setPoint(p) {point = new Point(p.x, p.y);},
+        setPoint(p) {
+            point = new Point(p.x, p.y);
+            car.style.left = point.x + "px";
+            car.style.top = point.y + "px";
+        },
 
         getAngle() {return angle;},
-        setAngle(a) {angle = a;},
+        setAngle(a) {
+            angle = a;
+            carImg.style.transform = "rotate(" + (angle - Math.PI / 2) * (180 / Math.PI)  + "deg)";
+        },
 
         getDrivingDirections() {return JSON.parse(JSON.stringify(drivingDirections));},
         /**
@@ -61,6 +68,7 @@ export let carProps = (() => {
 const DRIVE_RATE = 35;
 const FRICTION = 0.005;
 const TURN_ANGLE_CAP = Math.PI / 10;
+const CAR_SCROLLING_MARGIN = -75;
 
 const calculateFPS = false;
 const AVERAGE_RANGE_FPS = 5;
@@ -90,24 +98,7 @@ window.addEventListener("load", () => {
         }, 1000 / AVERAGE_CALC_PER_SEC);
     }
 
-    if (!MOBILE && !window.navigator.userAgent.match(/Edg/)) {
-        animateCar();
-    } else {
-        const instructions = document.getElementById('instructions');
-        if (window.navigator.userAgent.match(/Edg/)) {
-            changeInstructionsText("Try in Chrome or Firefox to navigate by driving a car.");
-        } else {
-            changeInstructionsText("Try viewing in Chrome or Firefox on deskop to navigate driving a car.");
-        }
-        
-        function changeInstructionsText (text) {
-            instructions.children[0].innerHTML = text;
-            instructions.style.transition = '0s';
-            instructions.style.font = '14pt Arial';
-            instructions.style.width = '500px';
-        }
-        car.style.display = 'none';
-    }
+    animateCar();
 });
 
 /**
@@ -142,10 +133,8 @@ function setCarAcceleration() {
 
     if (calculateFPS) currentFPS++;
 
-    let velocity = carProps.getVelocity();
-
-    let angle = carProps.getAngle();
-    let carPoint = carProps.getPoint(), newPoint;
+    const velocity = carProps.getVelocity(), angle = carProps.getAngle(), carPoint = carProps.getPoint();
+    let newPoint;
 
     carProps.setVelocity((velocity - FRICTION > 0) ? velocity - FRICTION :
         (velocity + FRICTION < 0) ? velocity + FRICTION : 0);
@@ -156,9 +145,9 @@ function setCarAcceleration() {
     ));
 
     // Scrolls the window if the car reaches a 'y' co-or close to the window top or bottom
-    const scrollMargin = -75;
-    let scrollingPosBottom = parseInt(window.innerHeight) - 65 + window.scrollY + scrollMargin;
-    let scrollingPosTop = window.scrollY - scrollMargin;
+    const scrollingPosBottom = parseInt(window.innerHeight) - 65 + window.scrollY + CAR_SCROLLING_MARGIN;
+    const scrollingPosTop = window.scrollY - CAR_SCROLLING_MARGIN;
+
     if (newPoint.y > scrollingPosBottom && carProps.getVelocity() != 0) {
         window.scroll({
             top: (newPoint.y - scrollingPosBottom) + window.scrollY, 
@@ -170,9 +159,6 @@ function setCarAcceleration() {
             left: 0,
         });
     }
-    car.style.left = newPoint.x + "px";
-    car.style.top = newPoint.y + "px";
-    carImg.style.transform = "rotate(" + (angle - Math.PI / 2) * (180 / Math.PI)  + "deg)";
 
     let boundary;
     if (boundary = outOfBounds()) {
@@ -212,13 +198,13 @@ function setCarAcceleration() {
     }
 }
 
-export /**
+ /**
  * Places the car at the closest point out of a boundary, back within bounds.
  * 
  * @param {Rectangle} boundary A {@link Rectangle} of the boundary to place the car at its edge back within
  * bounds.
  */
- function placeInBounds(boundary) {
+ export function placeInBounds(boundary) {
 
     let carPoint = carProps.getPoint();
     let p1 = boundary.p1, p2 = boundary.p2;
@@ -243,8 +229,10 @@ export /**
  export function outOfBounds() {
     let x2 = document.body.clientWidth, y2 = document.body.clientHeight;
     let boundary;
-    let borderSize = 40;
-    const NORTH_OFFSET = 25, EAST_OFFSET = 27, SOUTH_OFFSET = 28, WEST_OFFSET = 25;
+    let borderSize = 40; // east - 27
+    const WIDTH_1 = parseInt(window.innerWidth) / 100;
+    const NORTH_OFFSET = 25, SOUTH_OFFSET = 28,
+        EAST_OFFSET = 27 + (WIDTH_1 * 2.3), WEST_OFFSET = 25 + (WIDTH_1 * 2.4);
     
     // north
     if (carWithin(boundary = new Rectangle(new Point(0, -borderSize), new Point(x2, NORTH_OFFSET)))) return boundary;
@@ -418,13 +406,15 @@ function getBreakDistanceAndTime(velocity) {
     return predict;
 }
 
-window.addEventListener("resize", () => {
+export function resetCar () {
     placeCarInCenter();
     setCarAcceleration();
 
     carProps.setAngle(Math.PI / 2);
     carProps.setVelocity(0);
-});
+}
+
+window.addEventListener("resize", resetCar);
 
 window.addEventListener("scroll", () => {
     if (!initialScroll) {
