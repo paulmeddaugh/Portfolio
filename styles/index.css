@@ -13,7 +13,7 @@ body {
     height: 100%;
     position: sticky;
     top: 0%;
-    z-index: 4;
+    z-index: 6;
 }
 
 .headerPanel {
@@ -24,7 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 5%;
+    padding-top: 2.5%;
 }
 
 .header-l {
@@ -42,19 +42,22 @@ body {
     height: 60px;
     padding: 0;
     width: 100%;
+    /* background-color: rgba(255, 255, 255, 0.873); */
 }
 
 #headerBar {
-    width: clamp(300px, 80%, 600px);
+    width: clamp(300px, 100%, 76%);
     display: flex;
     padding: 15px;
     border-radius: 3px;
+    background-color: #f8f8f8a1;
+    transition: .65s ease;
 }
 
 #headerTitle {
     font: 16pt "Open Sans";
+    white-space: nowrap;
     flex: 1;
-    opacity: 0;
     transition: .5s;
 }
 
@@ -66,13 +69,20 @@ body {
     cursor: pointer;
 }
 
+#headerTitle, .headerSection {
+    font-size: clamp(12pt, 4.5vw, 16pt);
+}
+
 .headerSection:visited {
     background-color: initial;
 }
 
+.headerIcon {
+    margin-bottom: 25px;
+}
+
 .headerObjects {
     background-color: rgb(135, 135, 135, .5);
-    position: absolute;
 }
 
 .headerLine {
@@ -81,21 +91,27 @@ body {
 }
 
 .headerDot {
+    position: absolute;
     width: 4px;
     height: 4px;
     border-radius: 50%;
     rotate: 45deg;
+    translate: -50% -50%;
 }
 
 h1 {
-    height: 43vh;
+    height: 52vh;
     font: 26pt "Open Sans";
     text-align: center;
     display: flex;
     justify-content: end;
     flex-direction: column;
     margin: 0;
-    padding-bottom: 11vh;
+    padding-bottom: 18vh;
+    background-image: repeating-radial-gradient(circle closest-corner at 100px 100px, dodgerblue, rgb(175, 215, 255) 10%, dodgerblue 20%);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
 }
 
 h1 > div {
@@ -617,6 +633,12 @@ figure:hover a {
 @media (max-width: 652px) {
     .projectText {
         font-size: 20px;
+    }
+    .footer {
+        display: flex;
+    }
+    .header-l {
+        display: none;
     }
 } 
 

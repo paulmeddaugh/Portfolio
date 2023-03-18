@@ -3,6 +3,7 @@ import { resetCar } from './car.js';
 
 export const MOBILE = mobileCheck();
 let nameRect, headerTitleHidden = true;
+let headerTitle, headerTop;
 
 window.addEventListener("load", () => {
     setTimeout(() => {
@@ -14,11 +15,11 @@ window.addEventListener("load", () => {
 
     function scrollTo (e) {
         const targetMap = {
-            'projectHeader': 'projectGrid',
-            'aboutHeader': 'aboutMeHeader'
+            'projectsLink': 'projectHeader',
+            'aboutLink': 'aboutMeHeader'
         }
         const { top } = document.getElementById(targetMap[e.target.id]).getBoundingClientRect();
-        const HEADER_HEIGHT = 45;
+        const HEADER_HEIGHT = 50;
         window.scroll({
             left: 0,
             top: top + window.scrollY - HEADER_HEIGHT,
@@ -27,10 +28,12 @@ window.addEventListener("load", () => {
         setTimeout(() => resetCar(), 500);
     }
 
-    document.getElementById("projectHeader").addEventListener("click", scrollTo);
-    document.getElementById("aboutHeader").addEventListener("click", scrollTo);
+    document.getElementById("projectsLink").addEventListener("click", scrollTo);
+    document.getElementById("aboutLink").addEventListener("click", scrollTo);
 
     nameRect = getElementBounds(document.getElementById('name'));
+    headerTitle = document.getElementById('headerTitle');
+    headerTop = document.getElementById('headerBar');
 });
 
 // Re-processes representational header Rectancle object
@@ -41,13 +44,13 @@ window.addEventListener("resize", () => {
 // Checks if header
 window.addEventListener("scroll", () => {
     if (window.scrollY > Math.max(nameRect.p1.y, nameRect.p2.y) && headerTitleHidden) {
-        document.getElementById('headerTitle').style.opacity = 1;
-        document.getElementsByClassName('header-t')[0].style.backgroundColor = 'rgba(255, 255, 255, 0.873)';
+        // headerTop.style.opacity = 1;
+        headerTop.style.backgroundColor = 'rgba(255, 255, 255, 0.873)';
         headerTitleHidden = false;
     }
     if (window.scrollY <= Math.max(nameRect.p1.y, nameRect.p2.y) && !headerTitleHidden) {
-        document.getElementById('headerTitle').style.opacity = 0;
-        document.getElementsByClassName('header-t')[0].style.backgroundColor = 'transparent';
+        // headerTop.style.opacity = 0;
+        headerTop.style.backgroundColor = 'transparent';
         headerTitleHidden = true;
     }
 })

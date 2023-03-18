@@ -68,7 +68,8 @@ export let carProps = (() => {
 const DRIVE_RATE = 35;
 const FRICTION = 0.005;
 const TURN_ANGLE_CAP = Math.PI / 10;
-const CAR_SCROLLING_MARGIN = -75;
+const CAR_SCROLLING_MARGIN_TOP = 140;
+const CAR_SCROLLING_MARGIN_BOTTOM = 90; //-75
 
 const calculateFPS = false;
 const AVERAGE_RANGE_FPS = 5;
@@ -98,6 +99,14 @@ window.addEventListener("load", () => {
         }, 1000 / AVERAGE_CALC_PER_SEC);
     }
 
+    if (MOBILE) {
+        instructions.children[0].innerHTML = "Try viewing on deskop to navigate driving a car.";
+        instructions.style.transition = '0s';
+        instructions.style.font = '14pt Arial';
+        instructions.style.width = '500px';
+        car.style.display = 'none';
+        return;
+    }
     animateCar();
 });
 
@@ -145,8 +154,8 @@ function setCarAcceleration() {
     ));
 
     // Scrolls the window if the car reaches a 'y' co-or close to the window top or bottom
-    const scrollingPosBottom = parseInt(window.innerHeight) - 65 + window.scrollY + CAR_SCROLLING_MARGIN;
-    const scrollingPosTop = window.scrollY - CAR_SCROLLING_MARGIN;
+    const scrollingPosBottom = parseInt(window.innerHeight) + window.scrollY - CAR_SCROLLING_MARGIN_TOP;
+    const scrollingPosTop = window.scrollY + CAR_SCROLLING_MARGIN_BOTTOM;
 
     if (newPoint.y > scrollingPosBottom && carProps.getVelocity() != 0) {
         window.scroll({
