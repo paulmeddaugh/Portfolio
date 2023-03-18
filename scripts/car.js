@@ -3,7 +3,7 @@ import { Point, Rectangle } from './shapes.js';
 import { getElementBounds } from './utility.js'; 
 import { Predict } from './predict.js';
 import { carWithinFigure, showHideLinks, carWithinHeaderLink, highlightHeaderLinks, highlightTitle } from './showHideElements.js';
-import { highlightInstructions } from './instructions.js';
+import { highlightInstructions, showMobileInfo } from './instructions.js';
 
 let car, carImg;
 let initialScroll = false;
@@ -100,10 +100,7 @@ window.addEventListener("load", () => {
     }
 
     if (MOBILE) {
-        instructions.children[0].innerHTML = "Try viewing on deskop to navigate driving a car.";
-        instructions.style.transition = '0s';
-        instructions.style.font = '14pt Arial';
-        instructions.style.width = '500px';
+        showMobileInfo();
         car.style.display = 'none';
         return;
     }

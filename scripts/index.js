@@ -25,7 +25,7 @@ window.addEventListener("load", () => {
             top: top + window.scrollY - HEADER_HEIGHT,
             behavior: 'smooth',
         })
-        setTimeout(() => resetCar(), 500);
+        setTimeout(() => {if (!MOBILE) resetCar()}, 500);
     }
 
     document.getElementById("projectsLink").addEventListener("click", scrollTo);
@@ -50,7 +50,7 @@ window.addEventListener("scroll", () => {
     }
     if (window.scrollY <= Math.max(nameRect.p1.y, nameRect.p2.y) && !headerTitleHidden) {
         // headerTop.style.opacity = 0;
-        headerTop.style.backgroundColor = 'transparent';
+        headerTop.style.backgroundColor = '#f8f8f8a1';
         headerTitleHidden = true;
     }
 })

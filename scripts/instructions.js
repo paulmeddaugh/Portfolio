@@ -6,10 +6,12 @@ let instructions, closeInstructions;
 let instructionsHighlighted = false;
 
 const INSTRUCTIONS_FADE_OUT_SECS = 10;
+const INSTRUCTIONS_FADE_OUT_MOBILE_SECS = 5;
 
 const INSTRUCTIONS_LOWER = true;
 const INSTRUCTIONS_LOWER_SEC = 0;
-const INSTRUCTIONS_LOWER_TO = '87%';
+const INSTRUCTIONS_LOWER_TO = '68%';
+const INSTRUCTIONS_MOBILE_LOWER_TO = '92%';
 
 window.addEventListener("load", () => {
 
@@ -17,7 +19,8 @@ window.addEventListener("load", () => {
     closeInstructions = document.getElementById('closeInstructions');
 
     // Shows and hides instructions
-    if (!MOBILE) setInstructionTimeouts();
+    if (MOBILE) showMobileInfo();
+    setInstructionTimeouts();
 });
 
 export function highlightInstructions () {
@@ -48,7 +51,7 @@ function setInstructionTimeouts() {
     // Transition eases instructions to display on load
     instructions.style.opacity = 1;
     if (INSTRUCTIONS_LOWER) setTimeout(() => {
-        instructions.style.top = INSTRUCTIONS_LOWER_TO;
+        instructions.style.top = (!MOBILE ? INSTRUCTIONS_LOWER_TO : INSTRUCTIONS_MOBILE_LOWER_TO);
     }, INSTRUCTIONS_LOWER_SEC * 1000);
 
     // Closes instructions
@@ -58,7 +61,7 @@ function setInstructionTimeouts() {
             instructions.style.zIndex = 0;
             instructions.style.display = 'none';
         }, 1000);
-    }, INSTRUCTIONS_FADE_OUT_SECS * 1000);
+    }, (!MOBILE ? INSTRUCTIONS_FADE_OUT_SECS : INSTRUCTIONS_FADE_OUT_MOBILE_SECS) * 1000);
 }
 
 /**
@@ -85,4 +88,12 @@ function setInstructionTimeouts() {
     if (element.children[1].id == 'closeInstructions') {
         element.children[1].style.opacity = 0;
     }
+}
+
+export function showMobileInfo () {
+    instructions.style.fontFamily = 'Corbel Light';
+    instructions.style.width = '92%';
+    instructions.style.background = 'white';
+    instructions.style.height = '10%';
+    instructions.children[0].innerHTML = "Try viewing on deskop to navigate driving a car.";
 }
