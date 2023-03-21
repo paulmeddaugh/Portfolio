@@ -188,6 +188,7 @@ h1 > div {
     border: 1px solid transparent;
     transition: .5s ease;
     padding: 3px;
+    z-index: 2;
 }
 
 .carParts:hover {
@@ -532,6 +533,19 @@ figure:hover a {
     border: none;
 }
 
+#bigPicture img {
+    background-image: url("../resources/Portrait.jpg");
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#bigPicture:hover img {
+    opacity: 1;
+}
+
 .bioContent {
     position: relative;
     padding: 25px;
@@ -555,10 +569,6 @@ figure:hover a {
 
 .bioContent > div * {
     margin: 1.3em 0;
-}
-
-#bigPicture:hover img {
-    opacity: 1;
 }
 
 .p-relative {
@@ -587,6 +597,16 @@ figure:hover a {
 }
 
 @media (max-width: 637px) {
+
+    .nameFadeTo {
+        background-image: repeating-radial-gradient(
+            circle farthest-corner at 100px 300px, 
+            rgb(21, 123, 225), 
+            rgb(169, 212, 255) 10%, 
+            rgb(57, 156, 255) 20%
+        );
+    }
+
     #hiddenFields {
         background-position-y: center, 0;
     }
@@ -611,6 +631,10 @@ figure:hover a {
     #snowFinder img, #graphVisualizer img {
         display: block;
         max-width: 120px;
+    }
+
+    #bigPicture img {
+        background-image: url("../resources/Faceshot.jpg");
     }
 } 
 
