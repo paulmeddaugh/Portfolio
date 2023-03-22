@@ -571,6 +571,10 @@ figure:hover a {
     margin: 1.3em 0;
 }
 
+#OCALinkBioContent {
+    text-decoration: none;
+}
+
 .p-relative {
     position: relative;
 }
