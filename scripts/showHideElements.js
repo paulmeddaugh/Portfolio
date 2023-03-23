@@ -49,7 +49,7 @@ window.addEventListener("resize", loadCollisionRectangles);
     if (!hilightedFig && fig) {
         let figChildren = fig.children;
         for (let i = 0; i < figChildren.length; i++) {
-            if (figChildren[i].tagName == 'A' ) {
+            if (figChildren[i].classList.contains('projectHover')) {
                 figChildren[i].classList.add('textHover'); // opacity to 1
             } else {
                 figChildren[i].classList.add('imgHover'); // opacity to .3
@@ -64,7 +64,7 @@ window.addEventListener("resize", loadCollisionRectangles);
     } else if (hilightedFig && !fig) {
         let figChildren = hilightedFig.children;
         for (let i = 0; i < figChildren.length; i++) {
-            if (figChildren[i].tagName == 'A' ) {
+            if (figChildren[i].classList.contains('projectHover')) {
                 figChildren[i].classList.remove('textHover');
             } else {
                 figChildren[i].classList.remove('imgHover');

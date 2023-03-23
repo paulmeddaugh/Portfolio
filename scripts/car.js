@@ -1,6 +1,6 @@
 import { MOBILE } from './index.js';
 import { Point, Rectangle } from './shapes.js';
-import { getElementBounds } from './utility.js'; 
+import { getElementBounds, mobileCheck } from './utility.js'; 
 import { Predict } from './predict.js';
 import { carWithinFigure, showHideLinks, carWithinHeaderLink, highlightHeaderLinks, highlightTitle } from './showHideElements.js';
 import { highlightInstructions, showMobileInfo } from './instructions.js';
@@ -413,6 +413,16 @@ function getBreakDistanceAndTime(velocity) {
 }
 
 export function resetCar () {
+    if (mobileCheck()) {
+        car.style.display = 'none';
+        carProps.setVelocity(0);
+        carProps.setAngle(Math.PI / 2);
+        return;
+    }
+    if (car.style.display !== 'block') {
+        car.style.display = 'block';
+    }
+
     placeCarInCenter();
     setCarAcceleration();
 

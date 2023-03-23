@@ -450,7 +450,7 @@ img, .projectText {
     margin-left: 5px;
 }
 
-figure a {
+.projectHover {
     font-family: Corbel Light;
     transition: .5s ease;
     opacity: 0;
@@ -461,16 +461,26 @@ figure a {
     text-align: center;
 }
 
+figure:hover .projectHover {
+    opacity: 1;
+}
+
+figure .projectTools {
+    margin-bottom: 5px;
+}
+
+figure .projectLink {
+    text-decoration: none;
+    border-bottom: 1px solid black;
+    color: #0000e0;
+}
+
 figure:hover img, figure:hover .projectText {
     opacity: 0.3;
 }
 
 .imgHover {
     opacity: 0.3;
-}
-
-figure:hover a {
-    opacity: 1;
 }
 
 .textHover {
@@ -582,6 +592,14 @@ figure:hover a {
 
 .opacity-0 {
     opacity: 0;
+}
+
+.font-abuget {
+    font: 16pt 'Abuget';
+}
+
+.c-black {
+    color: black;
 }
 
 @media (max-width: 888px) {

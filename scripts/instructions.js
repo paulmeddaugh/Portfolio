@@ -54,7 +54,10 @@ function setInstructionTimeouts() {
         instructions.style.top = (!MOBILE ? INSTRUCTIONS_LOWER_TO : INSTRUCTIONS_MOBILE_LOWER_TO);
     }, INSTRUCTIONS_LOWER_SEC * 1000);
 
-    // Closes instructions
+    hideInstructions();
+}
+
+function hideInstructions () {
     setTimeout(() => {
         instructions.style.opacity = 0;
         setTimeout(() => { // Lets transition happen
