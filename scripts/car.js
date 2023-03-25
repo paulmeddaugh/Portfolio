@@ -458,7 +458,13 @@ export function resetCar () {
     carProps.setVelocity(0);
 }
 
-window.addEventListener("resize", resetCar);
+function resizingCarOutOfBounds () {
+    if (outOfBounds()) {
+        resetCar();
+    }
+}
+
+window.addEventListener("resize", resizingCarOutOfBounds);
 
 window.addEventListener("scroll", () => {
     if (!initialScroll) {

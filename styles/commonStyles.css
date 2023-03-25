@@ -103,7 +103,7 @@ a[class="noUnderline"] {
     transition: .25s ease;
 }
 
-.footerEmail:hover {
+#footerEmail:hover {
     box-shadow: 0px 0px 6px 0 royalblue;
 }
 
