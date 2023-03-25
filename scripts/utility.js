@@ -72,3 +72,19 @@ export function pointOnLine(line1, line2, p) {
 
     return (line2.x - line1.x) * (p.y - line1.y) - (p.x - line1.x) * (line2.y - line1.y);
 }
+
+export function downloadFromURL (url) {
+    fetch(url).then(res => res.blob()).then(file => {
+        let tempUrl = URL.createObjectURL(file);
+        const aTag = document.createElement('a');
+        aTag.href = tempUrl;
+        aTag.download = url.replace(/^.*[\\\/]/, '');
+        document.body.appendChild(aTag);
+
+        aTag.click();
+        aTag.remove();
+        URL.revokeObjectURL(tempUrl);
+    }).catch(() => {
+        alert('Failed to download ' + url);
+    });
+}

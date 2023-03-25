@@ -1,8 +1,8 @@
 import { MOBILE } from './index.js';
 import { Point, Rectangle } from './shapes.js';
-import { getElementBounds, mobileCheck } from './utility.js'; 
+import { downloadFromURL, getElementBounds, mobileCheck } from './utility.js'; 
 import { Predict } from './predict.js';
-import { carWithinFigure, showHideLinks, carWithinHeaderLink, highlightHeaderLinks, highlightTitle } from './showHideElements.js';
+import { showHideLinks, showHideButtonAnim, isCarWithinEmailButton, isCarWithinFigure } from './showHideElements.js';
 import { highlightInstructions, showMobileInfo } from './instructions.js';
 
 let car, carImg;
@@ -85,7 +85,7 @@ window.addEventListener("load", () => {
 
     car = document.getElementById('car');
     carImg = document.getElementById('carImg');
-    placeCarInCenter(false);
+    placeCarAtStart();
 
     // Calculates the frames per second
     if (calculateFPS) {
@@ -101,11 +101,24 @@ window.addEventListener("load", () => {
 
     if (MOBILE) {
         showMobileInfo();
-        car.style.display = 'none';
         return;
+    } else {
+        car.style.display = 'flex';
+        car.style.animation = 'fadeIn 1s ease';
     }
     animateCar();
 });
+
+function placeCarAtStart () {
+    const HEIGHT_OFFSET = -2 * (window.innerHeight / 100);
+
+    let point = new Point(
+        document.body.offsetWidth / 2,
+        (window.innerHeight) / 2 - car.clientHeight / 2 + HEIGHT_OFFSET
+    );
+
+    placeCarAt(point);
+}
 
 /**
  * Places the car in the center of the window, with or without considering scrolling. Called when 
@@ -115,11 +128,19 @@ window.addEventListener("load", () => {
  * may have done. If false, places car in the center at the top of the document without considering
  * the scrollbar (used for loading). Defaults to true.
  */
- export function placeCarInCenter(withScrolling = true) {
+ export function placeCarInCenter (withScrolling = true) {
     let point = new Point(
         document.body.offsetWidth / 2,
         (window.innerHeight) / 2 + ((withScrolling) ? window.scrollY : 0) - car.clientHeight / 2
     );
+
+    placeCarAt(point);
+}
+
+function placeCarAt(point) {
+    if (!(point.hasOwnProperty('x') && point.hasOwnProperty('y'))) {
+        throw new TypeError("The point to place the car must an instance of the Point class: " + point);
+    };
 
     carProps.setPoint(point);
     car.style.left = point.x + "px";
@@ -178,8 +199,7 @@ function setCarAcceleration() {
     // }
 
     showHideLinks();
-    highlightHeaderLinks();
-    //highlightTitle();
+    showHideButtonAnim();
 
     requestAnimationFrame(animateCar);
 }
@@ -263,11 +283,19 @@ export function driveCar (e) {
     if (e.repeat) return; // the repeat event when key is held down
 
     if (key == 'Enter') {
-        let fig, link;
-        if (fig = carWithinFigure()) {
-            window.location.href = fig.getElementsByTagName('A')[0].href;
-        } else if (link = carWithinHeaderLink()) {
-            window.location.href = link.children[0].href;
+        let fig, overSendEmail;
+        if ((fig = isCarWithinFigure()) || (overSendEmail = isCarWithinEmailButton())) {
+            const url = fig ? 
+                  fig.getElementsByTagName('A')[0].href 
+                : document.getElementById('footerEmail').href;
+
+            if (fig.id === 'snowFinder') {
+                downloadFromURL(url);
+            } else if (overSendEmail) {
+                window.location.href = url;
+            } else {
+                window.open(url, '_blank');
+            }
         } else {
 
             ({ // If 'Enter' pressed on no linkable object, performs a random action
@@ -296,10 +324,10 @@ export function driveCar (e) {
                 document.body.appendChild(img);
             }
         }
+    } else { // key other than 'Enter' pressed
+        carProps.setDrivingDirections(Object.defineProperty({}, e.key, {value: true, enumerable: true}));
+        drive(key);
     }
-
-    carProps.setDrivingDirections(Object.defineProperty({}, e.key, {value: true, enumerable: true}));
-    drive(key);
 }
 
 let drive = (key) => {

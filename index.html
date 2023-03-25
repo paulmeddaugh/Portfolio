@@ -73,10 +73,10 @@
 
         <div class="p-relative">
             <h1 class="nameFadeTo">
-                <div class="greetingText">Hello! <span id="hello" class="opacity-0">I'm Paul</span></div> 
+                <div class="greetingText">Hello, <span id="hello" class="opacity-0">I'm Paul,</span></div> 
                 <div>&nbsp;</div>
             </h1>
-            <h1 id="name" class="greetingText">Hello! I'm Paul</br><div>Full Stack Web Developer</div></h1>
+            <h1 id="name" class="greetingText">Hello, I'm Paul,</br><div>Full Stack Web Developer</div></h1>
             <!-- <img id="headerPicture" alt="Picture" src="./resources/Faceshot (portrait).JPG" /> -->
         </div>
 
@@ -91,7 +91,9 @@
                         </span>
                     </div>
                     <div class="projectHover">
-                        <div class="projectTools"> React / Bootstrap / Java Spring Boot </div>
+                        <div class="projectTools"> 
+                            <b>React</b> / <b>Bootstrap</b> / <b>Java Spring Boot</b> 
+                        </div>
                         <a class="projectLink" href="https://correlation-journal-production.up.railway.app/"
                             target="_blank" rel="noopener noreferrer"
                         >
@@ -100,7 +102,7 @@
                     </div>
                 </figure>
                 <div class="quickAccessAccount">
-                    <i>(Demo)</i> Username: <b>admin</b> | Password: <b>password</b>
+                    <i>(Demo)</i> Username: <b>admin</b>, Password: <b>password</b>
                 </div>
             </div>
             <div class="project flexCenter" id="projGV">
@@ -132,9 +134,11 @@
                         </span>
                     </div>
                     <div class="projectHover">
-                        <div class="projectTools"> Java / RESTful API Consuming / Web Scraping </div>
+                        <div class="projectTools"> 
+                            <b>Java</b> / <b>RESTful API consuming</b> / <b>Web scraping</b> 
+                        </div>
                         <a class="projectLink" href="./resources/SnowFinder v2.0.6.zip" download> 
-                            Find Snow 
+                            Find Snow (Download)
                         </a>
                     </div>
                 </figure>
@@ -145,68 +149,78 @@
         <div class="aboutMeSection flexCenter">
             <div class="content flexCenter">
                 <figure class="flexCenter" id="bigPicture">
-                    <div src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="></div>
+                    <div id="bigPictureContainer"></div>
                 </figure>
                 <div class="bioContent">
-                    <div>
+                    <div id="longVersion">
                         <p>
                             It is sincerely a privilege composing to life the art made through coding, 
                             constructing what was just not thought do-able in wild imagination.  
                         </p>
 
                         <p>
-                            I am an ORU graduate with a bachelor's in Biblical Literature minoring in 
-                            Computer Information Technology, IT work experience of 5 months,
-                            and project experience with web technologies such as React, Bootstrap, JavaScript,
-                            Java Spring Boot, PHP, MySQL, and React Native (mobile apps). I am also an 
+                            I am an Oral Roberts University graduate with a bachelor's minor in 
+                            Computer Information Technology, IT experience of 5 months, and am an 
                             <a 
                                 id="OCALinkBioContent"
                                 class="noUnderline" 
                                 href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=974A7B0ACD417A06F3F245D58B7B26E86BF8B9BFD8193B148DF8563B75F691D3"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                            >
-                                Oracle Certified Assosiate in Java SE 8.
-                            </a>
-                            
+                            >Oracle Certified Assosiate in Java SE 8</a>.
                         </p>
 
                         <p>
                             Web development, to me, is a gift to serve and 
-                            love others well, and I seek to do that tangibly in all that I handle. 
-                            I would be honored to serve through the skills I have been given. Thanks 
-                            so much for checking out the website!
+                            love others well, and I seek to do that tangibly in all I am a part of.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="footer">
-            <div class="headerLinkContainer flexCenter" id="aboutMe">
-                <a class="noUnderline" href="https://github.com/paulmeddaugh">
-                    <img id="githubLogo" src="./resources/footerIcons/GitHub-Mark-120px.png" alt="Github" />
+        <div id="footer">
+            <div id="footerLinkContainer">
+                <div class="headerLinkContainer flexCenter" id="aboutMe">
+                    <a class="noUnderline" href="https://github.com/paulmeddaugh">
+                        <img id="githubLogo" src="./resources/footerIcons/GitHub-Mark-120px.png" alt="Github" />
+                    </a>
+                </div>
+                <div class="headerLinkContainer flexCenter" id="instagram">
+                    <a class="noUnderline" href="https://www.instagram.com/paulleland174">
+                        <img id="instagramLogo" src="./resources/footerIcons/instagram-logo.png" alt="Instagram" />
+                    </a>
+                </div>
+                <div class="headerLinkContainer flexCenter" id="email">
+                    <a class="noUnderline" href="mailto:paul.meddaugh@gmail.com?subject=Let's Make This A Reality">
+                        <img id="emailIcon" src="./resources/footerIcons/email-icon5.png" alt="E-mail" />
+                    </a>
+                </div>
+                <div class="headerLinkContainer flexCenter" id="linkedin">
+                    <a class="noUnderline" href="https://www.linkedin.com/in/paulmeddaugh/">
+                        <img id="linkedInIcon" src="./resources/footerIcons/linkedin-logo2.png" alt="LinkedIn" />
+                    </a>
+                </div>
+                <div class="headerLinkContainer flexCenter" id="oca">
+                    <a class="noUnderline" href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=974A7B0ACD417A06F3F245D58B7B26E86BF8B9BFD8193B148DF8563B75F691D3">
+                        <img id="ocaIcon" src="./resources/footerIcons/OCAJSE8.png" alt="OCA Java SE 8" />
+                    </a>
+                </div>
+            </div>
+            <div class="footerPhrase flexCenter">
+                Let's build what have been just dreams.
+            </div>
+            <div class="footerEmailContainer flexCenter">
+                <a 
+                    id="footerEmail"
+                    class="noUnderline" 
+                    href="mailto:paul.meddaugh@gmail.com?subject=Let's Make This A Reality"
+                >
+                    Send An E-mail
                 </a>
             </div>
-            <div class="headerLinkContainer flexCenter" id="instagram">
-                <a class="noUnderline" href="https://www.instagram.com/paulleland174">
-                    <img id="instagramLogo" src="./resources/footerIcons/instagram-logo.png" alt="Instagram" />
-                </a>
-            </div>
-            <div class="headerLinkContainer flexCenter" id="email">
-                <a class="noUnderline" href="mailto:paul.meddaugh@gmail.com">
-                    <img id="emailIcon" src="./resources/footerIcons/email-icon5.png" alt="E-mail" />
-                </a>
-            </div>
-            <div class="headerLinkContainer flexCenter" id="oca">
-                <a class="noUnderline" href="https://www.linkedin.com/in/paulmeddaugh/">
-                    <img id="linkedInIcon" src="./resources/footerIcons/linkedin-logo2.png" alt="LinkedIn" />
-                </a>
-            </div>
-            <div class="headerLinkContainer flexCenter" id="oca">
-                <a class="noUnderline" href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=974A7B0ACD417A06F3F245D58B7B26E86BF8B9BFD8193B148DF8563B75F691D3">
-                    <img id="ocaIcon" src="./resources/footerIcons/OCAJSE8.png" alt="OCA Java SE 8" />
-                </a>
+            <div class="copyright flexCenter">
+                Paul Meddaugh <span id="copyrightYear">2023</span>
             </div>
         </div>
     </body>

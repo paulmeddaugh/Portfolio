@@ -5,7 +5,7 @@ import { MOBILE } from './index.js';
 let instructions, closeInstructions;
 let instructionsHighlighted = false;
 
-const INSTRUCTIONS_FADE_OUT_SECS = 10;
+const INSTRUCTIONS_FADE_OUT_SECS = 8;
 const INSTRUCTIONS_FADE_OUT_MOBILE_SECS = 5;
 
 const INSTRUCTIONS_LOWER = true;
@@ -95,7 +95,7 @@ function hideInstructions () {
 
 export function showMobileInfo () {
     instructions.style.fontFamily = 'Corbel Light';
-    instructions.style.width = '92%';
+    instructions.style.width = '400px';
     instructions.style.background = 'white';
     instructions.style.height = '10%';
     instructions.children[0].innerHTML = "Try viewing on deskop to navigate driving a car.";

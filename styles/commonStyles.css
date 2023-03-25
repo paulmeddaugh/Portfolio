@@ -7,7 +7,15 @@ body {
     flex-direction: column;
 }
 
-.footer {
+#footer {
+    background-color: #dcdcdc;
+}
+
+#footer > * {
+    padding-bottom: 40px;
+}
+
+#footerLinkContainer {
     display: none;
     justify-content: center;
     align-items: center;
@@ -15,7 +23,7 @@ body {
     flex: 1 1 auto;
     z-index: 1;
     border: 2px solid transparent;
-    padding-bottom: 40px;
+    padding-top: 40px;
 }
 
 #titleText {
@@ -27,11 +35,10 @@ body {
     margin-left: 40px;
 }
 
-.footer a {
+#footerLinkContainer a {
     margin: 0px 20px;
     font: 16px Corbel Light;
     text-decoration: none;
-    border-bottom: 1px solid #1a1a1a;
     white-space: nowrap;
 }
 
@@ -40,7 +47,7 @@ a[class="noUnderline"] {
     flex-shrink: 0;
 }
 
-.footer div {
+#footerLinkContainer div {
     justify-content: start;
 }
 
@@ -78,7 +85,35 @@ a[class="noUnderline"] {
 
 .headerLinkContainer:hover {
     border: 2px solid gold;
-    background-color: #fffade;
+    background-color: #fffadebe;
+}
+
+.footerPhrase {
+    padding-top: 40px;
+}
+
+#footerEmail {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: grey;
+    border: 1px solid dimgrey;
+    color: whitesmoke;
+    font: 12pt 'Corbel Light';
+    width: max-content;
+    transition: .25s ease;
+}
+
+.footerEmail:hover {
+    box-shadow: 0px 0px 6px 0 royalblue;
+}
+
+.copyright {
+    color: grey;
+    font: 12pt 'Corbel Light';
+}
+
+#copyrightYear {
+    margin-left: 10px;
 }
 
 h2 {

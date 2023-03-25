@@ -102,13 +102,13 @@ body {
 }
 
 h1 {
-    height: 52vh;
+    height: 42vh;
     text-align: center;
     display: flex;
     justify-content: end;
     flex-direction: column;
     margin: 0;
-    padding-bottom: 18vh;
+    padding-bottom: 28vh;
     position: relative;
     background-image: repeating-radial-gradient(
         circle closest-corner at 100px 300px, 
@@ -165,11 +165,10 @@ h1 > div {
     width: 24px;
     height: 48px;
     position: absolute;
-    top: 50vh;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    display: flex;
+    display: none;
 }
 
 #car:focus-visible {
@@ -539,7 +538,7 @@ figure:hover img, figure:hover .projectText {
     height: 70vh;
     padding: 25px;
     box-sizing: border-box;
-    background: whitesmoke;
+    background: unset;
     border: none;
 }
 
@@ -602,6 +601,23 @@ figure:hover img, figure:hover .projectText {
     color: black;
 }
 
+.visibility-hidden {
+    visibility: hidden;
+}
+
+.d-none {
+    display: none;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
 @media (max-width: 888px) {
     .content {
         flex-direction: column;
@@ -662,14 +678,21 @@ figure:hover img, figure:hover .projectText {
 } 
 
 @media (max-width: 652px) {
+    
     .projectText {
         font-size: 20px;
     }
-    .footer {
-        display: flex;
-    }
+
     .header-l {
         display: none;
+    }
+
+    .footerPhrase {
+        padding-top: 0;
+    }
+
+    #footerLinkContainer {
+        display: flex;
     }
 } 
 

@@ -1,4 +1,5 @@
 import { carWithin } from "./car.js";
+import { Point } from "./shapes.js";
 import { getElementBounds } from "./utility.js";
 
 /** Pre-processed Rectangle objects of the figures that are checked for collision. */
@@ -8,6 +9,9 @@ let hilightedFig = false;
 let headerLinks;
 let highlightedLink = false;
 let titleHighlighted = false;
+
+let sendEmailRect;
+let isOverEmail = false;
 
 /**
  * Processes each figure to be represented as a Rectangle object that is checked for collision 
@@ -22,6 +26,18 @@ function loadFigureRectangles () {
     }
 }
 
+function loadSendEmailRectangle () {
+    const footerEmail = document.getElementById('footerEmail');
+
+    sendEmailRect = getElementBounds(footerEmail);
+    const { paddingLeft, paddingTop } = window.getComputedStyle(footerEmail);
+
+    sendEmailRect.p2 = new Point(
+        sendEmailRect.p2.x + parseInt(paddingLeft) * 2, 
+        sendEmailRect.p2.y + parseInt(paddingTop) * 2
+    );
+}
+
 function loadHeaderLinkRectangles () {
     headerLinks = [];
 
@@ -32,7 +48,7 @@ function loadHeaderLinkRectangles () {
 
 function loadCollisionRectangles () {
     loadFigureRectangles();
-    loadHeaderLinkRectangles();
+    loadSendEmailRectangle();
 }
 
 window.addEventListener("load", loadCollisionRectangles);
@@ -82,12 +98,39 @@ window.addEventListener("resize", loadCollisionRectangles);
  * 
  * @returns If within a figure, returns the figure the car is within. Otherwise, returns false.
  */
-export function carWithinFigure() {
+function carWithinFigure() {
     for (let figObj of figures) {
         if (carWithin(figObj.rectangle)) return figObj.ref;
     }
 
     return false;
+}
+
+/**
+ * Returns a reference for the highlightable figure tag the car is in if within one, and false otherwise.
+ */
+export function isCarWithinFigure () {
+    return hilightedFig;
+}
+
+export function showHideButtonAnim () {
+    // Adds animation
+    if (carWithin(sendEmailRect) && !isOverEmail) {
+        document.getElementById('footerEmail').style.boxShadow = '0px 0px 6px 0 royalblue';
+        isOverEmail = true;
+    }
+    // Removes animation
+    if (!carWithin(sendEmailRect) && isOverEmail) {
+        document.getElementById('footerEmail').style.boxShadow = '';
+        isOverEmail = false;
+    }
+}
+
+/**
+ * Returns a boolean value of if the car is over the 'Send An E-mail' button.
+ */
+export function isCarWithinEmailButton () {
+    return isOverEmail;
 }
 
 export function highlightHeaderLinks () {
