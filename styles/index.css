@@ -1,5 +1,5 @@
 body {
-    display: block;
+    display: flex;
     background-color: rgba(245, 245, 245, 0.658);
 }
 
@@ -638,6 +638,25 @@ figure:hover img, figure:hover .projectText {
     }
 }
 
+@media (max-width: 652px) {
+    
+    .projectText {
+        font-size: 20px;
+    }
+
+    .header-l {
+        display: none;
+    }
+
+    .footerPhrase {
+        padding-top: 0;
+    }
+
+    #footerLinkContainer {
+        display: flex;
+    }
+} 
+
 @media (max-width: 637px) {
 
     .nameFadeTo {
@@ -680,24 +699,35 @@ figure:hover img, figure:hover .projectText {
     }
 } 
 
-@media (max-width: 652px) {
-    
-    .projectText {
-        font-size: 20px;
+@media (max-width: 500px) {
+
+    h1 {
+        padding-bottom: 16vh;
     }
 
-    .header-l {
-        display: none;
+    #aboutMeHeader {
+        visibility: hidden;
+        order: 0;
+        height: 0;
+        padding: 0;
     }
 
-    .footerPhrase {
-        padding-top: 0;
+    .aboutMeSection {
+        order: 1;
     }
 
-    #footerLinkContainer {
-        display: flex;
+    #projectHeader {
+        order: 2;
     }
-} 
+
+    #projectGrid {
+        order: 3;
+    }
+
+    #footer {
+        order: 10;
+    }
+}
 
 @font-face {
     font-family: "Open Sans";
