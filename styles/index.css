@@ -124,7 +124,7 @@ h1 {
 
 .greetingText {
     font: 32pt "Open Sans";
-    translate: -50px;
+    translate: max((340px - 100vw) / 3, -50px);
 }
 
 .nameFadeTo {
@@ -148,7 +148,8 @@ h1 {
 h1 > div {
     font: 24pt Corbel Light;
     padding-top: 6px;
-    padding-left: 150px;
+    padding-left: clamp(0px, 100vw - 340px, 150px);
+    white-space: nowrap;
 }
 
 #aboutMeHeader {
