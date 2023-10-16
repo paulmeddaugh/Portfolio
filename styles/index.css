@@ -1,3 +1,18 @@
+@font-face {
+    font-family: "Open Sans";
+    src: url(../resources/fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Corbel Light";
+    src: url(../resources/fonts/Corbel\ Light.TTF);
+}
+
+@font-face {
+    font-family: "Abuget";
+    src: url("../resources/projectIcons/Abuget.ttf") format("truetype");
+}
+
 body {
     display: flex;
     background-color: rgba(245, 245, 245, 0.658);
@@ -91,7 +106,7 @@ body {
     height: 4px;
     border-radius: 50%;
     rotate: 45deg;
-    translate: -50% -50%;
+    translate: -35% -35%;
 }
 
 #headerPicture {
@@ -120,11 +135,14 @@ h1 {
     background-clip: text;
     -webkit-background-clip: text;
     z-index: 1;
+    transition: .5s ease;
 }
 
 .greetingText {
     font: 32pt "Open Sans";
-    translate: max((340px - 100vw) / 3, -50px);
+
+    /* translate: max((340px - 100vw) / 3, -50px); */
+    margin-left: -80px;
 }
 
 .nameFadeTo {
@@ -138,6 +156,7 @@ h1 {
     animation: opacity 1s infinite alternate ease-in-out;
     width: 100%;
     z-index: 2;
+    display: none;
 }
 
 @keyframes opacity {
@@ -147,9 +166,11 @@ h1 {
 
 h1 > div {
     font: 24pt Corbel Light;
+
+    line-height: 1.6em;
+
     padding-top: 6px;
-    padding-left: clamp(0px, 100vw - 340px, 150px);
-    white-space: nowrap;
+    padding-left: clamp(0px, 100vw - 340px, 200px);
 }
 
 #aboutMeHeader {
@@ -644,7 +665,7 @@ figure:hover img, figure:hover .projectText {
         font-size: 20px;
     }
 
-    .header-l {
+    .header-l, .header-r {
         display: none;
     }
 
@@ -700,46 +721,15 @@ figure:hover img, figure:hover .projectText {
 } 
 
 @media (max-width: 500px) {
-
     h1 {
         padding-bottom: 16vh;
     }
 
-    #aboutMeHeader {
-        visibility: hidden;
-        order: 0;
-        height: 0;
-        padding: 0;
+    h1 > div {
+        padding-left: 0;
     }
 
-    .aboutMeSection {
-        order: 1;
+    .greetingText {
+        margin-left: 0;
     }
-
-    #projectHeader {
-        order: 2;
-    }
-
-    #projectGrid {
-        order: 3;
-    }
-
-    #footer {
-        order: 10;
-    }
-}
-
-@font-face {
-    font-family: "Open Sans";
-    src: url(../resources/fonts/OpenSans-Regular.ttf);
-}
-
-@font-face {
-    font-family: "Corbel Light";
-    src: url(../resources/fonts/Corbel\ Light.TTF);
-}
-
-@font-face {
-    font-family: "Abuget";
-    src: url("../resources/projectIcons/Abuget.ttf") format("truetype");
 }

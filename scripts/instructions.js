@@ -13,10 +13,14 @@ const INSTRUCTIONS_LOWER_SEC = 0;
 const INSTRUCTIONS_LOWER_TO = '68%';
 const INSTRUCTIONS_MOBILE_LOWER_TO = '92%';
 
-window.addEventListener("load", () => {
-
+function loadElements () {
     instructions = document.getElementById('instructions');
     closeInstructions = document.getElementById('closeInstructions');
+}
+
+window.addEventListener("load", () => {
+
+    loadElements();
 
     // Shows and hides instructions
     if (MOBILE) showMobileInfo();
@@ -94,6 +98,11 @@ function hideInstructions () {
 }
 
 export function showMobileInfo () {
+
+    if (!instructions) {
+        loadElements();
+    }
+
     instructions.style.fontFamily = 'Corbel Light';
     instructions.style.width = '400px';
     instructions.style.background = 'white';

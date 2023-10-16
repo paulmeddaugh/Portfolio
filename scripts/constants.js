@@ -1,0 +1,1 @@
+export const REMOVE_CAR_MIN_WIDTH = 500;

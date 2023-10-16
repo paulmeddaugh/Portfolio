@@ -18,6 +18,9 @@ export let carProps = (() => {
     let VELOCITY_FORWARD = .25;
     let VELOCITY_REVERSE = .2;
 
+    let carAnimCallbackId;
+    let isAnimatingCar = false;
+
     const API = {
 
         getVelocity() {return velocity;},
@@ -60,6 +63,39 @@ export let carProps = (() => {
 
         getVelocityReverse() {return VELOCITY_REVERSE;},
         setVelocityReverse(rate) {VELOCITY_REVERSE = rate;},
+
+        getAnimationCallbackId() { return carAnimCallbackId; },
+        setAnimationCallbackId(id) { carAnimCallbackId = id; },
+
+        isAnimatingCar () { return isAnimatingCar; },
+
+        useCarAnimation(use = false) {
+
+            if (use) {
+
+                car = document.getElementById('car');
+                carImg = document.getElementById('carImg');
+
+                if (MOBILE) {
+                    showMobileInfo();
+                    return;
+                } else {
+                    car.style.display = 'flex';
+                    car.style.animation = 'fadeIn 1s ease';
+                }
+
+                setCarAcceleration();
+                placeCarAtStart();
+                
+                const id = requestAnimationFrame(animateCar);
+                this.setAnimationCallbackId(id);
+                isAnimatingCar = true;
+            } else {
+                cancelAnimationFrame(carAnimCallbackId);
+                car.style.display = 'none';
+                isAnimatingCar = false;
+            }
+        },
     }
 
     return API;
@@ -81,12 +117,6 @@ window.addEventListener("keyup", keyup);
 window.addEventListener("click", driveCarToPoint);
 window.addEventListener("load", () => {
 
-    setCarAcceleration();
-
-    car = document.getElementById('car');
-    carImg = document.getElementById('carImg');
-    placeCarAtStart();
-
     // Calculates the frames per second
     if (calculateFPS) {
         setInterval(() => {
@@ -98,15 +128,6 @@ window.addEventListener("load", () => {
             currentFPS = 0;
         }, 1000 / AVERAGE_CALC_PER_SEC);
     }
-
-    if (MOBILE) {
-        showMobileInfo();
-        return;
-    } else {
-        car.style.display = 'flex';
-        car.style.animation = 'fadeIn 1s ease';
-    }
-    animateCar();
 });
 
 function placeCarAtStart () {

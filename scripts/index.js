@@ -1,5 +1,6 @@
 import { getElementBounds, mobileCheck, pointOnLine } from './utility.js';
-import { resetCar } from './car.js';
+import { REMOVE_CAR_MIN_WIDTH } from './constants.js';
+import { resetCar, carProps } from './car.js';
 
 export const MOBILE = mobileCheck();
 let nameRect, headerTitleHidden = true;
@@ -14,12 +15,13 @@ window.addEventListener("load", () => {
     }, 5);
 
     function scrollTo (e) {
-        const targetMap = {
+        const scrollToId = ({
             'projectsLink': 'projectHeader',
             'aboutLink': 'aboutMeHeader'
-        }
-        const { top } = document.getElementById(targetMap[e.target.id]).getBoundingClientRect();
+        })[e.target.id];
+        const { top } = document.getElementById(scrollToId).getBoundingClientRect();
         const HEADER_HEIGHT = 50;
+        
         window.scroll({
             left: 0,
             top: top + window.scrollY - HEADER_HEIGHT,
@@ -34,11 +36,20 @@ window.addEventListener("load", () => {
     nameRect = getElementBounds(document.getElementById('name'));
     headerTitle = document.getElementById('headerTitle');
     headerTop = document.getElementById('headerBar');
+
+    carProps.useCarAnimation(true);
 });
 
 // Re-processes representational header Rectancle object
 window.addEventListener("resize", () => {
     nameRect = getElementBounds(document.getElementById('name'));
+
+    const windowWidth = parseInt(window.innerWidth);
+    if (windowWidth < REMOVE_CAR_MIN_WIDTH && carProps.isAnimatingCar()) {
+        carProps.useCarAnimation(false);
+    } else if (windowWidth > REMOVE_CAR_MIN_WIDTH && !carProps.isAnimatingCar()) {
+        carProps.useCarAnimation(true);
+    }
 })
 
 // Checks if header
