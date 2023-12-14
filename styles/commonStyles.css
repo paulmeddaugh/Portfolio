@@ -144,3 +144,7 @@ h2 {
 .height-100vh {
     height: 100vh;
 }
+
+.d-inline {
+    display: inline;
+}
