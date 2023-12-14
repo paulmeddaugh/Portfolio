@@ -15,7 +15,11 @@ function loadElements () {
 
 window.addEventListener("load", () => {
     loadElements();
+    // Adds animation then removes instructions once animation completes
     instructions.classList.add('showThenHide');
+    const animDurationSecs = parseInt(getComputedStyle(instructions).animation);
+    setTimeout(() => instructions.remove(), animDurationSecs * 1000);
+    
     if (MOBILE) showMobileInfo();
 });
 

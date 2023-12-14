@@ -116,7 +116,7 @@ body {
     translate: -50% -25%;
 }
 
-h1 {
+#name {
     height: 40vh;
     text-align: center;
     display: flex;
@@ -125,37 +125,33 @@ h1 {
     margin: 0;
     padding-bottom: 28vh;
     position: relative;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    z-index: 1;
+    transition: 1s ease;
     background-image: repeating-radial-gradient(
         circle closest-corner at 100px 300px, 
         dodgerblue, 
         rgb(163, 208, 254) 10%, 
         dodgerblue 20%
     );
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-    z-index: 1;
-    transition: .5s ease;
 }
 
 #name::after {
-    /* content: 'Hello';
-    text-align: center;
-    color: black;
+    content: "Hello! I'm Paul,";
     position: absolute;
-    top: 0;
+    top: -57px;
     left: 0;
     width: 100%;
-    height: 100%;
     background-image: repeating-radial-gradient(
         circle farthest-corner at 100px 300px, 
         rgb(21, 123, 225), 
         rgb(255, 255, 255) 10%, 
         rgb(81, 168, 255) 20%
     );
-    color: transparent;
-    mix-blend-mode:hue;
-    animation: h1FadeInAndOut 2s infinite; */
+    z-index: -1;
+    animation: h1FadeInAndOut 2s infinite;
 }
 
 @keyframes h1FadeInAndOut {
@@ -171,26 +167,7 @@ h1 {
     margin-left: -80px;
 }
 
-.nameFadeTo {
-    position: absolute;
-    background-image: repeating-radial-gradient(
-        circle farthest-corner at 100px 300px, 
-        rgb(21, 123, 225), 
-        rgb(255, 255, 255) 10%, 
-        rgb(81, 168, 255) 20%
-    );
-    animation: opacity 1s infinite alternate ease-in-out;
-    width: 100%;
-    z-index: 2;
-    display: none;
-}
-
-@keyframes opacity {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-}
-
-h1 > div {
+#name > div {
     font: 24pt Corbel Light;
 
     line-height: 1.6em;
@@ -247,7 +224,6 @@ h1 > div {
 
 #instructions {
     position: fixed;
-    /* top: 350%; */
     right: 50%;
     -ms-transform: translate(50%, -50%);
     transform: translate(50%, -50%);
@@ -260,6 +236,7 @@ h1 > div {
     transition: 1s ease;
     z-index: 5;
     animation: lowerInstructions 1s;
+    pointer-events: none;
 }
 
 #instructions.hide {
