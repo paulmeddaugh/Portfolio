@@ -17,7 +17,7 @@ import { Point, Rectangle } from "./shapes.js";
  * @param {function} fn The function to memoize.
  * @returns A function wrapping the function to memoize with caching.
  */
-function memoize (fn) {
+export function memoize (fn) {
     let cache = {};
     return (...args) => {
         let n = args[0];
@@ -87,4 +87,10 @@ export function downloadFromURL (url) {
     }).catch(() => {
         alert('Failed to download ' + url);
     });
+}
+
+export const degreesInRadians = (degrees) => {
+    const initialRadians = -(Math.PI / 2);
+    // (radians - Math.PI / 2) * (180 / Math.PI) = degrees
+    return degrees / (180 / Math.PI) - initialRadians
 }

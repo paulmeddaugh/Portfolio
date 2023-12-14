@@ -1,6 +1,6 @@
 import { MOBILE } from './index.js';
 import { Point, Rectangle } from './shapes.js';
-import { downloadFromURL, getElementBounds, mobileCheck } from './utility.js'; 
+import { degreesInRadians, downloadFromURL, getElementBounds, mobileCheck } from './utility.js'; 
 import { Predict } from './predict.js';
 import { showHideLinks, showHideButtonAnim, isCarWithinEmailButton, isCarWithinFigure } from './showHideElements.js';
 import { highlightInstructions, showMobileInfo } from './instructions.js';
@@ -8,11 +8,13 @@ import { highlightInstructions, showMobileInfo } from './instructions.js';
 let car, carImg;
 let initialScroll = false;
 
-let randomCarObjectCount = 1; // 7 total, 0 is initial blue car image
+let randomCarObjectCount = 0; // 7 total, 0 is initial blue car image
+
+const INITIAL_CAR_ANGLE = -(Math.PI / 2);
 
 export let carProps = (() => {
     let velocity = 0;
-    let angle = Math.PI / 2; // 90
+    let angle = INITIAL_CAR_ANGLE; // 90
     let point = new Point();
     let drivingDirections = {};
     let VELOCITY_FORWARD = .25;
@@ -34,9 +36,13 @@ export let carProps = (() => {
         },
 
         getAngle() {return angle;},
-        setAngle(a) {
-            angle = a;
-            carImg.style.transform = "rotate(" + (angle - Math.PI / 2) * (180 / Math.PI)  + "deg)";
+        setAngle(radians) {
+            angle = radians;
+            carImg.style.transform = "rotate(" + (radians + INITIAL_CAR_ANGLE) * (180 / Math.PI)  + "deg)";
+        },
+        setAngleInDegrees(degrees) {
+            angle = degreesInRadians(degrees);
+            carImg.style.transform = "rotate(" + degrees  + "deg)";
         },
 
         getDrivingDirections() {return JSON.parse(JSON.stringify(drivingDirections));},
@@ -104,8 +110,8 @@ export let carProps = (() => {
 const DRIVE_RATE = 35;
 const FRICTION = 0.005;
 const TURN_ANGLE_CAP = Math.PI / 10;
-const CAR_SCROLLING_MARGIN_TOP = 140;
-const CAR_SCROLLING_MARGIN_BOTTOM = 90; //-75
+const CAR_SCROLLING_MARGIN_TOP = 160;
+const CAR_SCROLLING_MARGIN_BOTTOM = 120; //-75
 
 const calculateFPS = false;
 const AVERAGE_RANGE_FPS = 5;
@@ -131,7 +137,7 @@ window.addEventListener("load", () => {
 });
 
 function placeCarAtStart () {
-    const HEIGHT_OFFSET = -2 * (window.innerHeight / 100);
+    const HEIGHT_OFFSET = 0 * (window.innerHeight / 100);
 
     let point = new Point(
         document.body.offsetWidth / 2,
@@ -139,6 +145,7 @@ function placeCarAtStart () {
     );
 
     placeCarAt(point);
+    carProps.setAngleInDegrees(-180);
 }
 
 /**
@@ -181,11 +188,21 @@ function setCarAcceleration() {
 
     if (calculateFPS) currentFPS++;
 
-    const velocity = carProps.getVelocity(), angle = carProps.getAngle(), carPoint = carProps.getPoint();
+    const velocity = carProps.getVelocity();
+    const angle = carProps.getAngle();
+    const carPoint = carProps.getPoint();
     let newPoint;
 
-    carProps.setVelocity((velocity - FRICTION > 0) ? velocity - FRICTION :
-        (velocity + FRICTION < 0) ? velocity + FRICTION : 0);
+    carProps.setVelocity((velocity - FRICTION > 0) 
+        ? velocity - FRICTION 
+        : (velocity + FRICTION < 0) 
+            ? velocity + FRICTION 
+            : 0
+    );
+    // carProps.setVelocity(velocity > 0 
+    //     ? Math.max(0, velocity - FRICTION)
+    //     : Math.min(0, velocity + FRICTION)
+    // );
 
     carProps.setPoint(newPoint = new Point(
         carPoint.x + velocity * Math.cos(angle),
@@ -318,37 +335,37 @@ export function driveCar (e) {
                 window.open(url, '_blank');
             }
         } else {
-
             ({ // If 'Enter' pressed on no linkable object, performs a random action
-                0: () => changeCarImage(randomCarObjectCount - 1), 
-                1: () => changeCarImage(randomCarObjectCount - 1),
-                2: () => changeCarImage(randomCarObjectCount - 1), 
-                3: () => changeCarImage(randomCarObjectCount - 1),
-                4: () => changeCarImage(randomCarObjectCount - 1),
-                5: () => dropObject('gear'), 
-                6: () => {dropObject('wheel'); randomCarObjectCount = 0;},
+                0: () => dropObject('gear'), 
+                1: () => dropObject('wheel'),
+                2: () => changeCarImage(randomCarObjectCount), 
+                3: () => changeCarImage(randomCarObjectCount),
+                4: () => changeCarImage(randomCarObjectCount), 
+                5: () => changeCarImage(randomCarObjectCount),
+                6: () => changeCarImage(randomCarObjectCount = 0),
             })[randomCarObjectCount++]();
-
-            function changeCarImage (imgNumber) {
-                carImg.src = `./resources/carImages/car${imgNumber}.png`;
-            }
-
-            function dropObject (fileName) {
-                const img = document.createElement('img');
-                img.src = './resources/carImages/' + fileName + '.png';
-                img.classList.add('carParts');
-                const carPoint = carProps.getPoint(), carSize = car.getBoundingClientRect();
-                img.style.left = (carPoint.x - (carSize.width / 3)) + 'px';
-                img.style.top = (carPoint.y - (carSize.height / 3)) + 'px';
-                img.addEventListener("click", () => img.remove());
-
-                document.body.appendChild(img);
-            }
         }
     } else { // key other than 'Enter' pressed
         carProps.setDrivingDirections(Object.defineProperty({}, e.key, {value: true, enumerable: true}));
         drive(key);
     }
+}
+
+function changeCarImage (count) {
+    const imgNumber = count !== 0 ? count - 2 : count;
+    carImg.src = `./resources/carImages/car${imgNumber}.png`;
+}
+
+function dropObject (fileName) {
+    const img = document.createElement('img');
+    img.src = './resources/carImages/' + fileName + '.png';
+    img.classList.add('carParts');
+    const carPoint = carProps.getPoint(), carSize = car.getBoundingClientRect();
+    img.style.left = (carPoint.x - (carSize.width / 3)) + 'px';
+    img.style.top = (carPoint.y - (carSize.height / 3)) + 'px';
+    img.addEventListener("click", () => img.remove());
+
+    document.body.appendChild(img);
 }
 
 let drive = (key) => {
@@ -368,24 +385,20 @@ let drive = (key) => {
         case 'ArrowUp':
             carProps.setVelocity(velocity - VELOCITY_FORWARD); break;
         case 'ArrowDown':
-            carProps.setVelocity((velocity < 3) ? velocity + VELOCITY_REVERSE : 3); break;
+            carProps.setVelocity(Math.min(3, velocity + VELOCITY_REVERSE)); break;
         case 'ArrowLeft':
-            if (velocity == 0) break;
-
-            angChange = (Math.PI / 18) / // decreases angle change when velocity is low
-                ((velocity < 1.25 && velocity > -1.25) ? TURN_ANGLE_CAP + 1 / (velocity * 2) : velocity / 2.5);
-
-            carProps.setAngle(angle + ((Math.abs(angChange) < TURN_ANGLE_CAP) ? 
-                angChange : TURN_ANGLE_CAP * Math.sign(angChange)));
-            break;
         case 'ArrowRight':
             if (velocity == 0) break;
-            
+
             angChange = (Math.PI / 18) / // decreases angle change when velocity is low
                 ((velocity < 1.25 && velocity > -1.25) ? TURN_ANGLE_CAP + 1 / (velocity * 2) : velocity / 2.5);
 
-            carProps.setAngle(angle - ((Math.abs(angChange) < TURN_ANGLE_CAP) ? 
-                angChange : TURN_ANGLE_CAP * Math.sign(angChange)));
+            carProps.setAngle(angle +
+                ((Math.abs(angChange) < TURN_ANGLE_CAP) 
+                    ? angChange 
+                    : TURN_ANGLE_CAP * Math.sign(angChange))
+                * (key === 'ArrowLeft' ? 1 : -1)
+            );
     }
 
     setTimeout(() => {
@@ -465,7 +478,7 @@ export function resetCar () {
     if (mobileCheck()) {
         car.style.display = 'none';
         carProps.setVelocity(0);
-        carProps.setAngle(Math.PI / 2);
+        carProps.setAngle(INITIAL_CAR_ANGLE);
         return;
     }
     if (car.style.display !== 'block') {
@@ -475,7 +488,7 @@ export function resetCar () {
     placeCarInCenter();
     setCarAcceleration();
 
-    carProps.setAngle(Math.PI / 2);
+    carProps.setAngle(INITIAL_CAR_ANGLE);
     carProps.setVelocity(0);
 }
 

@@ -22,19 +22,19 @@ body {
     width: 100%;
     height: 100%;
     position: sticky;
-    top: 0%;
+    top: 0;
     z-index: 6;
 }
 
 .headerPanel {
     position: absolute;
-    top: 0%;
-    width: 5%;
+    top: 0;
+    width: 56px;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 2.5%;
+    padding-top: 20px;
 }
 
 .header-l {
@@ -117,7 +117,7 @@ body {
 }
 
 h1 {
-    height: 42vh;
+    height: 40vh;
     text-align: center;
     display: flex;
     justify-content: end;
@@ -136,6 +136,32 @@ h1 {
     -webkit-background-clip: text;
     z-index: 1;
     transition: .5s ease;
+}
+
+#name::after {
+    /* content: 'Hello';
+    text-align: center;
+    color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-radial-gradient(
+        circle farthest-corner at 100px 300px, 
+        rgb(21, 123, 225), 
+        rgb(255, 255, 255) 10%, 
+        rgb(81, 168, 255) 20%
+    );
+    color: transparent;
+    mix-blend-mode:hue;
+    animation: h1FadeInAndOut 2s infinite; */
+}
+
+@keyframes h1FadeInAndOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 .greetingText {
@@ -221,7 +247,7 @@ h1 > div {
 
 #instructions {
     position: fixed;
-    top: 50%;
+    /* top: 350%; */
     right: 50%;
     -ms-transform: translate(50%, -50%);
     transform: translate(50%, -50%);
@@ -229,10 +255,31 @@ h1 > div {
     text-align: center;
     width: 200px;
     height: 100px;
+    opacity: 0;
     background-color: rgba(255, 255, 255, 0.83);
     transition: 1s ease;
-    opacity: 0;
     z-index: 5;
+    animation: lowerInstructions 1s;
+}
+
+#instructions.hide {
+    animation: hideInstructions 1s;
+}
+
+@keyframes hideInstructions {
+    0% { opacity: 1; top: 280%; }
+    100% { opacity: 0; top: 280%; }
+}
+
+#instructions.showThenHide {
+    animation: showHideInstructions 11s;
+}
+
+@keyframes showHideInstructions {
+    0% { opacity: 0; pointer-events: auto; top: 50%; }
+    6.67% { opacity: 1; pointer-events: auto; top: 280%; } /* 1s with 11s duration */
+    93.3% { opacity: 1; pointer-events: auto; top: 280%; }
+    100% { opacity: 0; pointer-events: none; top: 280%; }
 }
 
 #instructions .translateCenter { /* Instruction message icon and text */
@@ -246,8 +293,6 @@ h1 > div {
     top: -4px;
     margin: 2px 12px;
 }
-
-
 
 #instructions div #driveText {
     top: -5px;

@@ -8,23 +8,15 @@ let instructionsHighlighted = false;
 const INSTRUCTIONS_FADE_OUT_SECS = 8;
 const INSTRUCTIONS_FADE_OUT_MOBILE_SECS = 5;
 
-const INSTRUCTIONS_LOWER = true;
-const INSTRUCTIONS_LOWER_SEC = 0;
-const INSTRUCTIONS_LOWER_TO = '68%';
-const INSTRUCTIONS_MOBILE_LOWER_TO = '92%';
-
 function loadElements () {
     instructions = document.getElementById('instructions');
     closeInstructions = document.getElementById('closeInstructions');
 }
 
 window.addEventListener("load", () => {
-
     loadElements();
-
-    // Shows and hides instructions
+    instructions.classList.add('showThenHide');
     if (MOBILE) showMobileInfo();
-    setInstructionTimeouts();
 });
 
 export function highlightInstructions () {
@@ -42,34 +34,16 @@ export function highlightInstructions () {
 }
 
 document.getElementById('closeInstructions').addEventListener("click", (e) => {
-    instructions.style.opacity = 0;
-    setTimeout(() => { // Lets transition happen
-        instructions.style.zIndex = 0;
-    }, 1000);
+    console.log('clicked');
+    instructions.classList.remove('showThenHide');
+    instructions.classList.add('hide');
+    // instructions.style.opacity = 0;
+    // setTimeout(() => { // Lets transition happen
+    //     instructions.style.zIndex = 0;
+    // }, 1000);
     
     e.stopPropagation();
 });
-
-function setInstructionTimeouts() {
-
-    // Transition eases instructions to display on load
-    instructions.style.opacity = 1;
-    if (INSTRUCTIONS_LOWER) setTimeout(() => {
-        instructions.style.top = (!MOBILE ? INSTRUCTIONS_LOWER_TO : INSTRUCTIONS_MOBILE_LOWER_TO);
-    }, INSTRUCTIONS_LOWER_SEC * 1000);
-
-    hideInstructions();
-}
-
-function hideInstructions () {
-    setTimeout(() => {
-        instructions.style.opacity = 0;
-        setTimeout(() => { // Lets transition happen
-            instructions.style.zIndex = 0;
-            instructions.style.display = 'none';
-        }, 1000);
-    }, (!MOBILE ? INSTRUCTIONS_FADE_OUT_SECS : INSTRUCTIONS_FADE_OUT_MOBILE_SECS) * 1000);
-}
 
 /**
  * 'Highlights' the element by changing its border and background to a gold theme.
