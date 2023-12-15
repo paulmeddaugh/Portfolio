@@ -257,13 +257,13 @@ body {
 }
 
 #instructions.showThenHide {
-    animation: showHideInstructions 11s;
+    animation: showHideInstructions 21s;
 }
 
 @keyframes showHideInstructions {
     0% { opacity: 0; pointer-events: auto; top: 50%; }
-    6.67% { opacity: 1; pointer-events: auto; top: 280%; } /* 1s with 11s duration */
-    93.3% { opacity: 1; pointer-events: auto; top: 280%; }
+    4.76% { opacity: 1; pointer-events: auto; top: 280%; } /* 1s with 11s duration */
+    95.24% { opacity: 1; pointer-events: auto; top: 280%; }
     100% { opacity: 0; pointer-events: none; top: 280%; }
 }
 
@@ -358,13 +358,17 @@ canvas {
     position: relative;
 }
 
+.project figure {
+    overflow: hidden;
+}
+
 #projHF {
     grid-column-start: 2;
     grid-column-end: 5;
     grid-row: 2;
 }
 
-.quickAccessAccount {
+#projHF .quickAccessAccount {
     position: absolute;
     top: 100%;
     right: 0%;
@@ -386,7 +390,7 @@ canvas {
     transform: translateY(0%);
 }
 
-.showAccount {
+#projHF .showAccount {
     opacity: 1;
     transform: translateY(0%);
 }
@@ -592,12 +596,13 @@ figure:hover img, figure:hover .projectText {
     padding-bottom: 40px;
 }
 
-.content {
+.aboutMeSection .content {
     display: flex;
     width: 70%;
     justify-content: space-evenly;
     border: 1px solid grey;
     border-radius: 4px;
+    overflow: hidden;
 }
 
 #bigPicture {
@@ -650,34 +655,6 @@ figure:hover img, figure:hover .projectText {
 
 #OCALinkBioContent {
     text-decoration: none;
-}
-
-.p-relative {
-    position: relative;
-}
-
-.opacity-0 {
-    opacity: 0;
-}
-
-.font-abuget {
-    font: 16pt 'Abuget';
-}
-
-.c-black {
-    color: black;
-}
-
-.visibility-hidden {
-    visibility: hidden;
-}
-
-.d-none {
-    display: none;
-}
-
-.text-align-center {
-    text-align: center;
 }
 
 @keyframes fadeIn {
