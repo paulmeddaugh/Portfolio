@@ -128,9 +128,9 @@ body {
     background-clip: text;
     -webkit-background-clip: text;
     z-index: 1;
-    --glow-color: rgba(211, 221, 248, 0.891); /* rgba(183, 193, 222, 0.674) */
+    --glow-color: rgb(226, 233, 250); /* rgba(183, 193, 222, 0.674) */
     text-shadow: 
-        0 0 10px var(--glow-color);
+        0 0 8px var(--glow-color);
     transition: 1s ease;
 }
 
