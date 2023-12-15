@@ -90,7 +90,9 @@ a[class="noUnderline"] {
 
 .footerPhrase {
     font-family: 'Corbel Light';
-    padding-top: 40px;
+    padding: 40px 20px;
+    padding-bottom: 0;
+    text-align: center;
 }
 
 #footerEmail {
@@ -147,4 +149,32 @@ h2 {
 
 .d-inline {
     display: inline;
+}
+
+.d-none {
+    display: none;
+}
+
+.visibility-hidden {
+    visibility: hidden;
+}
+
+.p-relative {
+    position: relative;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.font-abuget {
+    font: 16pt 'Abuget';
+}
+
+.c-black {
+    color: black;
 }
