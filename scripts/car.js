@@ -390,7 +390,7 @@ let drive = (key) => {
             if (velocity == 0) break;
 
             angChange = (Math.PI / 18) / // decreases angle change when velocity is low
-                ((velocity < 1.25 && velocity > -1.25) ? TURN_ANGLE_CAP + 1 / (velocity * 3.4) : velocity / 3.4);
+                ((velocity < 1.25 && velocity > -1.25) ? TURN_ANGLE_CAP + 1 / (velocity * 1.8) : velocity / 3.4);
 
             carProps.setAngle(angle +
                 ((Math.abs(angChange) < TURN_ANGLE_CAP) 

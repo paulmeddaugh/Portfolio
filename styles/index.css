@@ -128,7 +128,7 @@ body {
     background-clip: text;
     -webkit-background-clip: text;
     z-index: 1;
-    --glow-color: rgb(226, 233, 250); /* rgba(183, 193, 222, 0.674) */
+    --glow-color: rgb(237, 241, 250); /* rgba(183, 193, 222, 0.674) */
     text-shadow: 
         0 0 8px var(--glow-color);
     transition: 1s ease;
@@ -466,7 +466,7 @@ canvas {
     padding-right: 0;
 }
 
-#hiddenFields .projectHover .projectLink {
+#hiddenFields .projectHoverContainer .projectLinkHover {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -487,6 +487,16 @@ canvas {
 #projHFText .projectDescrip {
     font-family: Corbel Light;
     color: #f2fff7; /* #e1ffec; /* #b6ffcf; /* rgb(156, 156, 156) */
+}
+
+#hiddenFields .projectLinkHover .projectHoverContainer .projectLink {
+    display: flex;
+}
+
+#hiddenFields .projectLinkHover .projectHoverContainer .projectLink .font-abuget {
+    display: inline-block;
+    height: 16px;
+    margin-top: -6px;
 }
 
 #graphVisualizer {
@@ -537,11 +547,11 @@ canvas {
 #snowFinder #projSFText {
     color: #689e34;
     background-color: rgba(255, 255, 255, .6);
-    font-weight: bold;
 }
 
 #snowFinder #projSFText .projectTitle {
     border-color: gray;
+    font-weight: bold;
 }
 
 #snowFinder #projSFText .projectDescrip {
@@ -570,7 +580,7 @@ img, .projectText {
     margin-left: 5px;
 }
 
-.projectHover {
+.projectHoverContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -578,13 +588,14 @@ img, .projectText {
     transition: .5s ease;
     opacity: 0;
     position: absolute;
-    padding: 8px 16px;
-    background-color: snow;
-    border: 1px solid black;
+    padding: 16px;
+    background-color: whitesmoke;
+    border-radius: 3px;
+    border: 1px solid darkgrey;
     text-align: center;
 }
 
-figure:hover .projectHover {
+figure:hover .projectHoverContainer {
     opacity: 1;
 }
 
@@ -592,10 +603,23 @@ figure .projectTools {
     margin-bottom: 5px;
 }
 
-figure .projectLink {
-    text-decoration: none;
-    border-bottom: 1px solid black;
-    color: #0000e0;
+figure .projectLinkHover {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+figure .projectLinkHover .projectHoverContainer, figure .projectLinkHover:hover .projectHoverContainer {
+    color: black;
+}
+
+figure .projectLinkHover .projectHoverContainer .projectLink {
+    border-bottom: 1px solid darkgrey;
+    line-height: 1em;
+    color: royalblue;
 }
 
 figure:hover img, figure:hover .projectText {
