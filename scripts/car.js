@@ -11,8 +11,8 @@ let initialScroll = false;
 let randomCarObjectCount = 0; // 7 total, 0 is initial blue car image
 
 const INITIAL_CAR_ANGLE = -(Math.PI / 2);
-const VELOCITY_INCREASE = .3;
-const VELOCITY_DECREASE = .25;
+const VELOCITY_INCREASE = .38;
+const VELOCITY_DECREASE = .34;
 
 export let carProps = (() => {
     let velocity = 0;
@@ -329,9 +329,7 @@ export function driveCar (e) {
                   fig.getElementsByTagName('A')[0].href 
                 : document.getElementById('footerEmail').href;
 
-            if (fig.id === 'snowFinder') {
-                downloadFromURL(url);
-            } else if (overSendEmail) {
+            if (overSendEmail) {
                 window.location.href = url;
             } else {
                 window.open(url, '_blank');
@@ -393,7 +391,7 @@ let drive = (key) => {
             if (velocity == 0) break;
 
             angChange = (Math.PI / 18) / // decreases angle change when velocity is low
-                ((velocity < 1.25 && velocity > -1.25) ? TURN_ANGLE_CAP + 1 / (velocity * 2) : velocity / 2.5);
+                ((velocity < 1.25 && velocity > -1.25) ? TURN_ANGLE_CAP + 1 / (velocity * 3.4) : velocity / 3.4);
 
             carProps.setAngle(angle +
                 ((Math.abs(angChange) < TURN_ANGLE_CAP) 
