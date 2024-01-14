@@ -531,6 +531,7 @@ canvas {
 #snowFinder {
     background-image: url(../resources/projectIcons/DBSBackground.png);
     background-position: 80% 0%;
+    background-size: cover;
 }
 
 #snowFinder img {
