@@ -3,7 +3,9 @@ import { getElementBounds } from './utility.js';
 import { MOBILE } from './index.js';
 
 let instructions, closeInstructions;
-let instructionsHighlighted = false;
+let instructionsHeight, bodyRect;
+let instructionsHighlighted = false, instructionsOnTop = false;
+let instructionsRemoveTimeoutId = null;
 
 const INSTRUCTIONS_FADE_OUT_SECS = 8;
 const INSTRUCTIONS_FADE_OUT_MOBILE_SECS = 5;
@@ -13,14 +15,34 @@ function loadElements () {
     closeInstructions = document.getElementById('closeInstructions');
 }
 
+function setInstructionsRemovalAfterAnimation () {
+    const animDurationSecs = parseInt(getComputedStyle(instructions).animation);
+    const currentId = instructionsRemoveTimeoutId = setTimeout(() => {
+        if (currentId === instructionsRemoveTimeoutId) instructions.remove()
+    }, animDurationSecs * 1000);
+}
+
 window.addEventListener("load", () => {
     loadElements();
     // Adds animation then removes instructions once animation completes
     instructions.classList.add('showThenHide');
-    const animDurationSecs = parseInt(getComputedStyle(instructions).animation);
-    setTimeout(() => instructions.remove(), animDurationSecs * 1000);
+    setInstructionsRemovalAfterAnimation();
+
+    ({ height: instructionsHeight } = instructions.getBoundingClientRect());
+    bodyRect = getElementBounds(document.body);
     
     if (MOBILE) showMobileInfo();
+});
+
+window.addEventListener("scroll", (e) => {
+    if (!bodyRect?.p2?.y) return;
+    const newInstructionsOnTop = (window.scrollY + window.innerHeight + instructionsHeight > bodyRect.p2.y);
+    if (newInstructionsOnTop !== instructionsOnTop) {
+        instructionsOnTop = newInstructionsOnTop;
+        instructions.classList.add(instructionsOnTop ? 'showThenHideOnTop' : 'showThenHide');
+        instructions.classList.remove(instructionsOnTop ? 'showThenHide' : 'showThenHideOnTop');
+        setInstructionsRemovalAfterAnimation();
+    }
 });
 
 export function highlightInstructions () {

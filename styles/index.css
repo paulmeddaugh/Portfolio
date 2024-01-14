@@ -267,6 +267,17 @@ body {
     100% { opacity: 0; pointer-events: none; top: 280%; }
 }
 
+#instructions.showThenHideOnTop {
+    animation: showHideInstructionsOnTop 11s;
+}
+
+@keyframes showHideInstructionsOnTop {
+    0% { opacity: 0; pointer-events: auto; bottom: 50%; }
+    9.09% { opacity: 1; pointer-events: auto; bottom: 100%; } /* 1s with 11s duration */
+    90.91% { opacity: 1; pointer-events: auto; bottom: 100%; }
+    100% { opacity: 0; pointer-events: none; bottom: 100%; }
+}
+
 #instructions .translateCenter { /* Instruction message icon and text */
     width: 100%;
 }

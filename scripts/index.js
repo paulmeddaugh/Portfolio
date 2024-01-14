@@ -64,13 +64,6 @@ window.addEventListener("scroll", () => {
         headerTop.style.backgroundColor = '#f8f8f8a1';
         headerTitleHidden = true;
     }
-})
-
-document.getElementById('snowFinder').getElementsByTagName('A')[0].addEventListener('click', (e) => {
-    if (MOBILE) {
-        alert("Snow Finder is only a desktop application unfortunately.");
-        e.preventDefault();
-    }
 });
 
 window.addEventListener("mousemove", () => {

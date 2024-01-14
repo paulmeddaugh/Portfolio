@@ -11,14 +11,16 @@ let initialScroll = false;
 let randomCarObjectCount = 0; // 7 total, 0 is initial blue car image
 
 const INITIAL_CAR_ANGLE = -(Math.PI / 2);
+const VELOCITY_INCREASE = .3;
+const VELOCITY_DECREASE = .25;
 
 export let carProps = (() => {
     let velocity = 0;
     let angle = INITIAL_CAR_ANGLE; // 90
     let point = new Point();
     let drivingDirections = {};
-    let VELOCITY_FORWARD = .25;
-    let VELOCITY_REVERSE = .2;
+    let VELOCITY_FORWARD = VELOCITY_INCREASE;
+    let VELOCITY_REVERSE = VELOCITY_DECREASE;
 
     let carAnimCallbackId;
     let isAnimatingCar = false;
@@ -177,8 +179,8 @@ function placeCarAt(point) {
 
 function setCarAcceleration() {
     // Sets the speed of the car based on the width of the browser
-    carProps.setVelocityForward((!MOBILE) ? window.innerWidth / 4200 : .6);
-    carProps.setVelocityReverse((!MOBILE) ? window.innerWidth / 3800 : .6);
+    // carProps.setVelocityForward((!MOBILE) ? window.innerWidth / 4200 : .6);
+    // carProps.setVelocityReverse((!MOBILE) ? window.innerWidth / 3800 : .6);
 }
 
 /**
