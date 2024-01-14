@@ -405,20 +405,27 @@ canvas {
     grid-row: 4;
 }
 
+.projectTitle {
+    padding-right: 6px;
+    border-right: 1px solid white;
+}
+
 .projectText {
     font: 24px Corbel Light;
     color: white;
     width: 100%;
     padding: 10px;
     text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .projectDescrip {
-    font-size: small;
+    font-size: 16px;
+    padding-left: 6px;
 }
 
 #hiddenFields {
-    /* background-color: #43c873; /* #43c170; /* #1ed760; /* black */
     background-image: url(../resources/projectIcons/justNotebook.png), url(../resources/projectIcons/thoughtweb.jpg);
     background-size: 300px 500px, cover;
     background-position: center, 0 -14vw;
@@ -433,6 +440,21 @@ canvas {
     object-fit: cover;
 }
 
+#hiddenFields .projectText {
+    display: block;
+    padding-left: 14px;
+}
+
+#hiddenFields .projectText .projectDescrip {
+    border-left: none;
+    padding-left: 0;
+    margin-left: -2px;
+}
+
+#hiddenFields .projectTitle {
+    padding-right: 0;
+}
+
 #hiddenFields .projectHover .projectLink {
     display: flex;
     justify-content: center;
@@ -444,8 +466,7 @@ canvas {
 }
 
 #projHFText {
-    /* background-color: white; /* #4bd17a; /* #00ba42; /* #3d3d3d */
-    background-color: rgb(0, 0, 0, .25);
+    background-color: rgb(0, 0, 0, .2);
     font-family: 'Abuget';
     font-size: 36pt;
     line-height: 18pt;
@@ -458,11 +479,15 @@ canvas {
 }
 
 #graphVisualizer {
-    background-color: blue;
+    background-color: rgba(0, 0, 255, .84);
+    background-position: center;
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-image: url(../resources/projectIcons/graph\ rep3.png);
 }
 
 #projGVText {
-    background-color: #0000e0;
+    background-color: rgb(0, 0, 224);
 }
 
 #projGVText .projectDescrip {
@@ -483,16 +508,33 @@ canvas {
 }
 
 #snowFinder {
-    background-color: #f4f4f4;
+    background-image: url(../resources/projectIcons/DBSBackground.png);
+    background-position: 80% 0%;
 }
 
-#projSFText {
-    background-color: white;
+#snowFinder img {
+    padding-top: 8px;
+    width: clamp(500px, calc(100% - 26px), 0px);
+}
+
+#snowFinder #projSFText {
+    max-width: calc(100% - 26px);
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+#snowFinder #projSFText {
+    color: #689e34;
+    background-color: rgba(255, 255, 255, .4);
+    font-weight: bold;
+}
+
+#snowFinder #projSFText .projectTitle {
+    border-color: gray;
+}
+
+#snowFinder #projSFText .projectDescrip {
     color: black;
-}
-
-#projSFText .projectDescrip {
-    color: grey;
 }
 
 figure {
@@ -674,7 +716,7 @@ figure:hover img, figure:hover .projectText {
         min-height: 300px;
     }
 
-    #snowFinder img, #graphVisualizer img {
+    #graphVisualizer img {
         display: none;
     }
 }
@@ -730,7 +772,7 @@ figure:hover img, figure:hover .projectText {
         grid-row: 6;
     }
 
-    #snowFinder img, #graphVisualizer img {
+    #graphVisualizer img {
         display: block;
         max-width: 120px;
     }

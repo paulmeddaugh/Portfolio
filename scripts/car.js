@@ -120,7 +120,7 @@ let aveFPS = 0, totalFPS = 1, lastFPS = 1, currentFPS = 0, FPSindex = AVERAGE_RA
 
 window.addEventListener("keydown", driveCar);
 window.addEventListener("keyup", keyup);
-window.addEventListener("click", driveCarToPoint);
+// window.addEventListener("click", driveCarToPoint);
 window.addEventListener("load", () => {
 
     // Calculates the frames per second
