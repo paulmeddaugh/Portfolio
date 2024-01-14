@@ -740,7 +740,7 @@ figure:hover img, figure:hover .projectText {
     }
 } 
 
-@media (max-width: 637px) {
+@media (max-width: 717px) {
 
     .nameFadeTo {
         background-image: repeating-radial-gradient(
