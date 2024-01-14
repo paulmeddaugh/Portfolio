@@ -626,11 +626,11 @@ figure:hover img, figure:hover .projectText {
     opacity: 0.3;
 }
 
-.imgHover {
+.imgHover .projectHoverContainer {
     opacity: 0.3;
 }
 
-.textHover {
+.textHover .projectHoverContainer {
     opacity: 1;
 }
 
