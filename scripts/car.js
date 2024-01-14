@@ -13,6 +13,11 @@ let randomCarObjectCount = 0; // 7 total, 0 is initial blue car image
 const INITIAL_CAR_ANGLE = -(Math.PI / 2);
 const VELOCITY_INCREASE = .38;
 const VELOCITY_DECREASE = .34;
+const DRIVE_RATE = 35;
+const FRICTION = 0.03;
+const TURN_ANGLE_CAP = Math.PI / 10;
+const CAR_SCROLLING_MARGIN_TOP = 160;
+const CAR_SCROLLING_MARGIN_BOTTOM = 120; //-75
 
 export let carProps = (() => {
     let velocity = 0;
@@ -108,12 +113,6 @@ export let carProps = (() => {
 
     return API;
 })();
-
-const DRIVE_RATE = 35;
-const FRICTION = 0.005;
-const TURN_ANGLE_CAP = Math.PI / 10;
-const CAR_SCROLLING_MARGIN_TOP = 160;
-const CAR_SCROLLING_MARGIN_BOTTOM = 120; //-75
 
 const calculateFPS = false;
 const AVERAGE_RANGE_FPS = 5;
