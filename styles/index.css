@@ -574,7 +574,7 @@ figure .projectLinkHover {
     display: flex;
     justify-content: center;
     align-items: center;
-    pointer-events: none;
+    /* pointer-events: none; */
     opacity: 0;
     transition: .5s ease;
     z-index: 2;
@@ -741,25 +741,6 @@ figure.hover .projectText {
     }
 }
 
-@media (max-width: 652px) {
-    
-    .projectText {
-        font-size: 20px;
-    }
-
-    .header-l, .header-r {
-        display: none;
-    }
-
-    .footerPhrase {
-        padding-top: 0;
-    }
-
-    #footerLinkContainer {
-        display: flex;
-    }
-} 
-
 @media (max-width: 717px) {
 
     .nameFadeTo {
@@ -780,13 +761,13 @@ figure.hover .projectText {
         grid-template-rows: 6% 24% 8% 24% 8% 24% 6%;
     }
 
-    #projGV {
+    #projSF {
         grid-column-start: 2;
         grid-column-end: 5;
         grid-row: 4;
     }
-    
-    #projSF {
+
+    #projGV {
         grid-column-start: 2;
         grid-column-end: 5;
         grid-row: 6;
@@ -799,6 +780,25 @@ figure.hover .projectText {
 
     #bigPicture div {
         background-image: url("../resources/Faceshot.jpg");
+    }
+}
+
+@media (max-width: 652px) {
+    
+    .projectText {
+        font-size: 20px;
+    }
+
+    .header-l, .header-r {
+        display: none;
+    }
+
+    .footerPhrase {
+        padding-top: 0;
+    }
+
+    #footerLinkContainer {
+        display: flex;
     }
 } 
 
