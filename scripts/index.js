@@ -54,13 +54,12 @@ window.addEventListener("resize", () => {
 
 // Checks if header
 window.addEventListener("scroll", () => {
+    if (!(typeof nameRect?.p1?.y === 'number' && typeof nameRect?.p2?.y === 'number')) return;
     if (window.scrollY > Math.max(nameRect.p1.y, nameRect.p2.y) && headerTitleHidden) {
-        // headerTop.style.opacity = 1;
         headerTop.style.backgroundColor = 'rgba(255, 255, 255, 0.873)';
         headerTitleHidden = false;
     }
     if (window.scrollY <= Math.max(nameRect.p1.y, nameRect.p2.y) && !headerTitleHidden) {
-        // headerTop.style.opacity = 0;
         headerTop.style.backgroundColor = '#f8f8f8a1';
         headerTitleHidden = true;
     }

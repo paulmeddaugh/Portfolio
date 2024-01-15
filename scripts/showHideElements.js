@@ -63,30 +63,16 @@ window.addEventListener("resize", loadCollisionRectangles);
 
     // Adds highlight classes if the first time in a fig
     if (!hilightedFig && fig) {
-        let figChildren = fig.children;
-        for (let i = 0; i < figChildren.length; i++) {
-            if (figChildren[i].classList.contains('projectLinkHover')) {
-                figChildren[i].classList.add('textHover'); // opacity to 1
-            } else {
-                figChildren[i].classList.add('imgHover'); // opacity to .3
-            }
-        }
-        if (fig.id == 'hiddenFields') {
+        fig.classList.add('hover');
+        if (fig.id === 'hiddenFields') {
             document.getElementsByClassName('quickAccessAccount')[0].classList.add('showAccount');
         }
         hilightedFig = fig;
 
     // Removes highlight classes if first time out of highlighted fig
     } else if (hilightedFig && !fig) {
-        let figChildren = hilightedFig.children;
-        for (let i = 0; i < figChildren.length; i++) {
-            if (figChildren[i].classList.contains('projectLinkHover')) {
-                figChildren[i].classList.remove('textHover');
-            } else {
-                figChildren[i].classList.remove('imgHover');
-            }
-        }
-        if (hilightedFig.id == 'hiddenFields') {
+        hilightedFig.classList.remove('hover');
+        if (hilightedFig.id === 'hiddenFields') {
             document.getElementsByClassName('quickAccessAccount')[0].classList.remove('showAccount');
         }
         hilightedFig = false;

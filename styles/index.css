@@ -13,6 +13,15 @@
     src: url("../resources/projectIcons/Abuget.ttf") format("truetype");
 }
 
+:root {
+    --dbs-description-bg-color: rgba(255, 255, 255, .8);
+    --dbs-description-title-color: #689e34;
+    --dbs-description-text-color: dimgrey;
+    --dbs-description-border-color: darkgrey;
+
+    --project-title-text-border-padding: 8px;
+}
+
 body {
     display: flex;
     background-color: rgba(245, 245, 245, 0.658);
@@ -362,7 +371,7 @@ canvas {
     width: 100%;
     height: 70vh;
     grid-template-rows: 6% 33% 20% 33% 10%;
-    grid-template-columns: 10% 30% 20% 30% 10%;
+    grid-template-columns: 10% 34% 12% 34% 10%;
 }
 
 .project {
@@ -377,6 +386,43 @@ canvas {
     grid-column-start: 2;
     grid-column-end: 5;
     grid-row: 2;
+}
+
+#projGV {
+    grid-column: 4;
+    grid-row: 4;
+}
+
+#projSF {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+.projectTitle {
+    padding-right: var(--project-title-text-border-padding);
+    border-right: 1px solid white;
+}
+
+.projectText {
+    font: 24px Corbel Light;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.projectBackground, .projectText {
+    transition: .5s ease;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.projectDescrip {
+    font-size: 16px;
+    padding-left: var(--project-title-text-border-padding);
 }
 
 #projHF .quickAccessAccount {
@@ -406,64 +452,33 @@ canvas {
     transform: translateY(0%);
 }
 
-#projGV {
-    grid-column: 2;
-    grid-row: 4;
-}
-
-#projSF {
-    grid-column: 4;
-    grid-row: 4;
-}
-
-.projectTitle {
-    padding-right: 6px;
-    border-right: 1px solid white;
-}
-
-.projectText {
-    font: 24px Corbel Light;
-    color: white;
+#hiddenFields .projectBackground {
+    position: absolute;
     width: 100%;
-    padding: 10px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-}
-
-.projectDescrip {
-    font-size: 16px;
-    padding-left: 6px;
-}
-
-#hiddenFields {
+    height: 100%;
     background-image: url(../resources/projectIcons/justNotebook.png), url(../resources/projectIcons/thoughtweb.jpg);
     background-size: 300px 500px, cover;
     background-position: center, 0 -14vw;
     background-repeat: no-repeat, no-repeat;
-    image-orientation: 30deg;
-}
-
-#hiddenFields img {
-    max-width: 100%;
-    max-height: 100vh;
-    position: absolute;
-    object-fit: cover;
+    z-index: -1;
 }
 
 #hiddenFields .projectText {
     display: block;
     padding-left: 14px;
+    background-color: rgb(0, 0, 0, .2);
+    font-family: 'Abuget';
+    font-size: 36pt;
+    line-height: 18pt;
+    padding-top: 18px;
 }
 
 #hiddenFields .projectText .projectDescrip {
     border-left: none;
     padding-left: 0;
     margin-left: -2px;
-}
-
-#hiddenFields .projectTitle {
-    padding-right: 0;
+    font-family: Corbel Light;
+    color: #f2fff7; /* #e1ffec; /* #b6ffcf; /* rgb(156, 156, 156) */
 }
 
 #hiddenFields .projectHoverContainer .projectLinkHover {
@@ -476,19 +491,6 @@ canvas {
     width: max-content;
 }
 
-#projHFText {
-    background-color: rgb(0, 0, 0, .2);
-    font-family: 'Abuget';
-    font-size: 36pt;
-    line-height: 18pt;
-    padding-top: 18px;
-}
-
-#projHFText .projectDescrip {
-    font-family: Corbel Light;
-    color: #f2fff7; /* #e1ffec; /* #b6ffcf; /* rgb(156, 156, 156) */
-}
-
 #hiddenFields .projectLinkHover .projectHoverContainer .projectLink {
     display: flex;
 }
@@ -499,7 +501,11 @@ canvas {
     margin-top: -6px;
 }
 
-#graphVisualizer {
+#graphVisualizer .projectBackground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
     background-color: rgba(0, 0, 255, .84);
     background-position: center;
     background-blend-mode: multiply;
@@ -507,56 +513,43 @@ canvas {
     background-image: url(../resources/projectIcons/graph\ rep3.png);
 }
 
-#projGVText {
+#graphVisualizer .projectText {
     background-color: rgb(0, 0, 224);
 }
 
-#projGVText .projectDescrip {
+#graphVisualizer .projectText .projectDescrip {
     color: #e1e1fd;
 }
 
-#spotifyBar {
-    background-color: #1ed760;
-    text-align: center;
-}
-
-#projSBText {
-    background-color: #00ba42;
-}
-
-#projSBText .projectDescrip {
-    color: #b6ffcf;
-}
-
-#snowFinder {
-    background-image: url(../resources/projectIcons/DBSBackground.png);
-    background-position: 80% 0%;
-    background-size: cover;
-}
-
 #snowFinder img {
-    padding-top: 8px;
-    width: clamp(500px, calc(100% - 26px), 0px);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 100% 0%;
+    z-index: -1;
+    background-color: #7f705b;
+    box-shadow: 0 0 5px 10px #7f705b;
 }
 
-#snowFinder #projSFText {
+#snowFinder .projectText {
     max-width: calc(100% - 26px);
     padding-left: 13px;
     padding-right: 13px;
 }
 
-#snowFinder #projSFText {
-    color: #689e34;
-    background-color: rgba(255, 255, 255, .6);
+#snowFinder .projectText {
+    color: var(--dbs-description-title-color);
+    background-color: var(--dbs-description-bg-color);
 }
 
-#snowFinder #projSFText .projectTitle {
-    border-color: gray;
+#snowFinder .projectText .projectTitle {
+    border-color: var(--dbs-description-border-color);
     font-weight: bold;
 }
 
-#snowFinder #projSFText .projectDescrip {
-    color: black;
+#snowFinder .projectText .projectDescrip {
+    color: var(--dbs-description-text-color);
 }
 
 figure {
@@ -570,34 +563,17 @@ figure {
     border-radius: 4px;
 }
 
-img, .projectText {
-    transition: .5s ease;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-#snowFinder img, #graphVisualizer img { /* project images */
-    max-width: calc(100vw / 10);
-    margin-left: 5px;
-}
-
 .projectHoverContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: Corbel Light;
-    transition: .5s ease;
-    opacity: 0;
     position: absolute;
     padding: 16px;
     background-color: whitesmoke;
     border-radius: 3px;
     border: 1px solid darkgrey;
     text-align: center;
-}
-
-figure:hover .projectHoverContainer {
-    opacity: 1;
 }
 
 figure .projectTools {
@@ -611,9 +587,12 @@ figure .projectLinkHover {
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: .5s ease;
 }
 
-figure .projectLinkHover .projectHoverContainer, figure .projectLinkHover:hover .projectHoverContainer {
+figure .projectLinkHover .projectHoverContainer {
     color: black;
 }
 
@@ -623,16 +602,22 @@ figure .projectLinkHover .projectHoverContainer .projectLink {
     color: royalblue;
 }
 
-figure:hover img, figure:hover .projectText {
-    opacity: 0.3;
-}
-
-.imgHover .projectHoverContainer {
-    opacity: 0.3;
-}
-
-.textHover .projectHoverContainer {
+figure:hover .projectLinkHover,
+figure.hover .projectLinkHover {
+    pointer-events: auto;
     opacity: 1;
+}
+
+figure:hover .projectBackground, 
+figure:hover .projectText,
+figure.hover .projectBackground, 
+figure.hover .projectText {
+    opacity: 0.3;
+}
+
+#graphVisualizer:hover .projectText,
+#graphVisualizer.hover .projectText {
+    background-color: rgba(0, 0, 224, .25);
 }
 
 #meFig img {
