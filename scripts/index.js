@@ -5,6 +5,7 @@ import { resetCar, carProps } from './car.js';
 export const MOBILE = mobileCheck();
 let nameRect, headerTitleHidden = true;
 let headerTitle, headerTop;
+let figureHoverTapped = null;
 
 window.addEventListener("load", () => {
     setTimeout(() => {

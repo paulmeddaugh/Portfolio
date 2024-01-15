@@ -458,7 +458,7 @@ canvas {
     height: 100%;
     background-image: url(../resources/projectIcons/justNotebook.png), url(../resources/projectIcons/thoughtweb.jpg);
     background-size: 300px 500px, cover;
-    background-position: center, 0 -14vw;
+    background-position: center, 0;
     background-repeat: no-repeat, no-repeat;
     z-index: -1;
 }
@@ -563,19 +563,6 @@ figure {
     border-radius: 4px;
 }
 
-.projectHoverContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Corbel Light;
-    position: absolute;
-    padding: 16px;
-    background-color: whitesmoke;
-    border-radius: 3px;
-    border: 1px solid darkgrey;
-    text-align: center;
-}
-
 figure .projectTools {
     margin-bottom: 5px;
 }
@@ -590,10 +577,22 @@ figure .projectLinkHover {
     pointer-events: none;
     opacity: 0;
     transition: .5s ease;
+    z-index: 2;
 }
 
 figure .projectLinkHover .projectHoverContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Corbel Light;
+    position: absolute;
+    padding: 16px;
+    background-color: whitesmoke;
+    border-radius: 3px;
+    border: 1px solid darkgrey;
+    text-align: center;
     color: black;
+    z-index: -1;
 }
 
 figure .projectLinkHover .projectHoverContainer .projectLink {
