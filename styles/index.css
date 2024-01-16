@@ -574,7 +574,6 @@ figure .projectLinkHover {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* pointer-events: none; */
     opacity: 0;
     transition: .5s ease;
     z-index: 2;
@@ -603,7 +602,6 @@ figure .projectLinkHover .projectHoverContainer .projectLink {
 
 figure:hover .projectLinkHover,
 figure.hover .projectLinkHover {
-    pointer-events: auto;
     opacity: 1;
 }
 
@@ -677,7 +675,8 @@ figure.hover .projectText {
 }
 
 #bigPicture div {
-    background-image: url("../resources/Portrait.jpg");
+    background-image: url("../resources/Portrait2.jpg");
+    filter: brightness(1.18);
     width: 100%;
     height: 100%;
     background-size: contain;
@@ -779,7 +778,8 @@ figure.hover .projectText {
     }
 
     #bigPicture div {
-        background-image: url("../resources/Faceshot.jpg");
+        background-image: url("../resources/Faceshot2.jpg");
+        filter: brightness(1.04);
     }
 }
 
