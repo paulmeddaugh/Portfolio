@@ -467,16 +467,19 @@ canvas {
     display: block;
     padding-left: 14px;
     background-color: rgb(0, 0, 0, .2);
-    font-family: 'Abuget';
-    font-size: 36pt;
     line-height: 18pt;
     padding-top: 18px;
+}
+
+#hiddenFields .projectText .font-abuget {
+    position: relative;
+    top: 4px;
 }
 
 #hiddenFields .projectText .projectDescrip {
     border-left: none;
     padding-left: 0;
-    margin-left: -2px;
+    margin-left: 1px;
     font-family: Corbel Light;
     color: #f2fff7; /* #e1ffec; /* #b6ffcf; /* rgb(156, 156, 156) */
 }
@@ -498,7 +501,6 @@ canvas {
 #hiddenFields .projectLinkHover .projectHoverContainer .projectLink .font-abuget {
     display: inline-block;
     height: 16px;
-    margin-top: -6px;
 }
 
 #graphVisualizer .projectBackground {
@@ -745,6 +747,10 @@ figure.hover .projectText {
         padding: 30px;
         height: 60vw;
         min-height: 300px;
+    }
+
+    .bioContent {
+        height: unset;
     }
 
     #graphVisualizer img {

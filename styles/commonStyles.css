@@ -165,7 +165,15 @@ h2 {
 }
 
 .font-abuget {
-    font: 16pt 'Abuget';
+    font-family: 'Abuget';
+}
+
+.font-size-16pt {
+    font-size: 16pt;
+}
+
+.font-size-36pt {
+    font-size: 36pt;
 }
 
 .c-black {
