@@ -718,6 +718,18 @@ figure.hover .projectText {
     text-decoration: none;
 }
 
+.footerPhrase {
+    font-family: 'Corbel Light';
+    padding: 40px 30px;
+    padding-bottom: 0;
+    text-align: center;
+    position: relative;
+}
+
+.author {
+    position: relative;
+}
+
 @keyframes fadeIn {
     0% {opacity: 0;}
     100% {opacity: 1;}
