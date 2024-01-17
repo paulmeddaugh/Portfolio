@@ -153,14 +153,14 @@ body {
 }
 
 #name::after {
-    content: "Hello!";
+    content: "Hello";
     white-space: pre;
     position: absolute;
     /* color: transparent;
     background-clip: unset;
     -webkit-background-clip: unset; */
     top: 0;
-    left: -90px;
+    left: -95px;
     width: 100%;
     background-image: repeating-radial-gradient(
         circle farthest-corner at 100px 300px, 
@@ -169,7 +169,9 @@ body {
         rgb(21, 123, 225) 20%
     );
     z-index: -1;
-    animation: h1FadeInAndOut 2s infinite;
+    opacity: 0;
+    animation: h1FadeInAndOut 5s infinite;
+    animation-delay: .75s;
 }
 
 @keyframes h1FadeInAndOut {
@@ -616,7 +618,7 @@ figure.hover .projectText {
 
 #graphVisualizer:hover .projectText,
 #graphVisualizer.hover .projectText {
-    background-color: rgba(0, 0, 224, .25);
+    background-color: rgba(0, 0, 224, .2);
 }
 
 #meFig img {
