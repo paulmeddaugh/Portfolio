@@ -16,7 +16,7 @@
 :root {
     --dbs-description-bg-color: rgba(255, 255, 255, .8);
     --dbs-description-title-color: #689e34;
-    --dbs-description-text-color: dimgrey;
+    --dbs-description-text-color: rgb(71, 71, 71);
     --dbs-description-border-color: darkgrey;
 
     --project-title-text-border-padding: 8px;
@@ -160,17 +160,20 @@ body {
     background-clip: unset;
     -webkit-background-clip: unset; */
     top: 0;
-    left: -95px;
+    left: -95.2px;
     width: 100%;
     background-image: repeating-radial-gradient(
         circle farthest-corner at 100px 300px, 
         rgb(21, 123, 225), 
-        rgb(181, 215, 248) 10%, 
+        rgb(169, 204, 238) 10%,
+        /* rgb(157, 198, 240) 10%,  */
         rgb(21, 123, 225) 20%
     );
+    /* rgb(181, 215, 248) 10%,  */
+    /* rgb(174, 208, 241) 10% */
     z-index: -1;
     opacity: 0;
-    animation: h1FadeInAndOut 5s infinite;
+    animation: h1FadeInAndOut 5.5s infinite;
     animation-delay: .75s;
 }
 
@@ -427,6 +430,11 @@ canvas {
     padding-left: var(--project-title-text-border-padding);
 }
 
+.projectTools {
+    margin-top: 6px;
+    color: dimgrey;
+}
+
 #projHF .quickAccessAccount {
     position: absolute;
     top: 100%;
@@ -475,13 +483,12 @@ canvas {
 
 #hiddenFields .projectText .font-abuget {
     position: relative;
-    top: 4px;
+    top: 5px;
 }
 
 #hiddenFields .projectText .projectDescrip {
     border-left: none;
     padding-left: 0;
-    margin-left: 1px;
     font-family: Corbel Light;
     color: #f2fff7; /* #e1ffec; /* #b6ffcf; /* rgb(156, 156, 156) */
 }
@@ -565,10 +572,6 @@ figure {
     margin: 0;
     background-color: lightgrey;
     border-radius: 4px;
-}
-
-figure .projectTools {
-    margin-bottom: 5px;
 }
 
 figure .projectLinkHover {
