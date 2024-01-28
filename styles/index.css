@@ -66,7 +66,11 @@ body {
 
 #headerBar {
     width: clamp(300px, 100%, 76%);
+    width: 100%;
+    max-width: 82%;
+    box-sizing: border-box;
     display: flex;
+    align-items: center;
     padding: 15px;
     border-radius: 2px;
     background-color: #f8f8f8a1;
@@ -81,10 +85,9 @@ body {
 }
 
 .headerSection {
-    margin-left: 20px;
+    margin-left: clamp(0px, calc(100vw * 0.048), 24px);
     font: 16pt Corbel Light;
     text-decoration: none;
-    border-bottom: 1px solid black;
     cursor: pointer;
 }
 
@@ -161,6 +164,7 @@ body {
     -webkit-background-clip: unset; */
     top: 0;
     left: -95.2px;
+    margin-left: calc(-.5 * clamp(0px, 100vw - 340px, 55.6px));
     width: 100%;
     background-image: repeating-radial-gradient(
         circle farthest-corner at 100px 300px, 
@@ -190,12 +194,16 @@ body {
     margin-left: -80px;
 }
 
-#name > div {
+#name > #occupationIntro {
     font-family: Corbel Light;
-    font-size: clamp(12px, 100vw, 24px);
+    font-size: 24px;
     line-height: 1.6em;
     padding-top: 6px;
-    padding-left: clamp(0px, 100vw - 340px, 200px);
+    padding-left: clamp(0px, 100vw - 340px, 55.6px);
+}
+
+#name > #greeting {
+    margin-left: calc(-1 * clamp(0px, 100vw - 340px, 55.6px));
 }
 
 #aboutMeHeader {
@@ -474,21 +482,23 @@ canvas {
 }
 
 #hiddenFields .projectText {
-    display: block;
-    padding-left: 14px;
+    /* display: block; */
+    /* padding-left: 14px; */
     background-color: rgb(0, 0, 0, .2);
     line-height: 18pt;
-    padding-top: 18px;
+    /* padding-top: 18px; */
 }
 
 #hiddenFields .projectText .font-abuget {
     position: relative;
-    top: 5px;
+    /* top: 5px; */
+    font-size: 24pt;
+    padding-right: 12px;
 }
 
 #hiddenFields .projectText .projectDescrip {
-    border-left: none;
-    padding-left: 0;
+    border-left: 1px solid darkgrey;
+    /* padding-left: 0; */
     font-family: Corbel Light;
     color: #f2fff7; /* #e1ffec; /* #b6ffcf; /* rgb(156, 156, 156) */
 }
@@ -522,6 +532,10 @@ canvas {
     background-blend-mode: multiply;
     background-size: cover;
     background-image: url(../resources/projectIcons/graph\ rep3.png);
+}
+
+#graphVisualizer .projectTitle {
+    border-color: darkgrey;
 }
 
 #graphVisualizer .projectText {
@@ -826,12 +840,23 @@ figure.hover .projectText {
 } 
 
 @media (max-width: 500px) {
-    h1 {
-        padding-bottom: 16vh;
+    #headerBar {
+        max-width: 100%;
+        padding-left: 24px;
+        padding-right: 24px;
     }
 
-    h1 > div {
-        padding-left: 0;
+    #name, #name::after {
+        padding: 24vh 0;
+        font-size: 24pt;
+    }
+
+    #name::after {
+        left: -71.4px;
+    }
+
+    #name > #occupationIntro {
+        font-size: 20px;
     }
 
     .greetingText {
@@ -840,6 +865,10 @@ figure.hover .projectText {
 
     #greetingContainer {
         height: auto;
+    }
+
+    #projectHeader {
+        padding-bottom: 0;
     }
 }
 
