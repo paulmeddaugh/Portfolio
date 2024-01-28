@@ -143,7 +143,6 @@ body {
     --glow-color: rgb(237, 241, 250); /* rgba(183, 193, 222, 0.674) */
     text-shadow: 
         0 0 8px var(--glow-color);
-    transition: 1s ease;
 }
 
 #name {
@@ -153,6 +152,8 @@ body {
         rgb(163, 208, 254) 10%, 
         dodgerblue 20%
     );
+    /* background-image: url(../resources/introBackground.jpeg); */
+    /* background-size: cover; */
 }
 
 #name::after {
@@ -204,6 +205,19 @@ body {
 
 #name > #greeting {
     margin-left: calc(-1 * clamp(0px, 100vw - 340px, 55.6px));
+}
+
+#mobilePicture {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    padding: 8px;
+    border: 1px solid lightgrey;
+    background-color: whitesmoke;
+    border-radius: 2px;
+    transition: .5s ease;
+    background-position: center;
+    opacity: 0;
 }
 
 #aboutMeHeader {
@@ -681,7 +695,7 @@ figure.hover .projectText {
     display: flex;
     width: 70%;
     justify-content: space-evenly;
-    border: 1px solid grey;
+    border: 1px solid darkgray;
     border-radius: 4px;
     overflow: hidden;
 }
@@ -764,8 +778,7 @@ figure.hover .projectText {
 
     #bigPicture {
         padding: 30px;
-        height: 60vw;
-        min-height: 300px;
+        height: 70vw;
     }
 
     .bioContent {
@@ -840,6 +853,11 @@ figure.hover .projectText {
 } 
 
 @media (max-width: 500px) {
+
+    .header-t {
+        justify-content: flex-start;
+    }
+
     #headerBar {
         max-width: 100%;
         padding-left: 24px;
@@ -867,8 +885,31 @@ figure.hover .projectText {
         height: auto;
     }
 
+    #mobilePicture {
+        background-image: url("../resources/Faceshot2.jpg");
+        filter: brightness(1.08);
+        background-size: calc(100% - 16px) calc(100% - 16px);
+        background-repeat: no-repeat;
+        position: relative;
+        top: -76px;
+        opacity: 1;
+    }
+
     #projectHeader {
         padding-bottom: 0;
+    }
+
+    #bigPicture {
+        height: 0;
+        padding: 0;
+    }
+
+    #longVersion p:first-child {
+        margin-top: 0;
+    }
+
+    #longVersion p:last-child {
+        margin-bottom: 0;
     }
 }
 
