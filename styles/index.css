@@ -170,7 +170,7 @@ body {
     background-image: repeating-radial-gradient(
         circle farthest-corner at 100px 300px, 
         rgb(21, 123, 225), 
-        rgb(169, 204, 238) 10%,
+        rgb(152, 195, 239) 10%, 
         /* rgb(157, 198, 240) 10%,  */
         rgb(21, 123, 225) 20%
     );
@@ -178,8 +178,8 @@ body {
     /* rgb(174, 208, 241) 10% */
     z-index: -1;
     opacity: 0;
-    animation: h1FadeInAndOut 5.5s infinite;
-    animation-delay: .75s;
+    animation: h1FadeInAndOut 5.25s infinite;
+    animation-delay: 1s;
 }
 
 @keyframes h1FadeInAndOut {
