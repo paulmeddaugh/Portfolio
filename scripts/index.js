@@ -6,6 +6,7 @@ export const MOBILE = mobileCheck();
 let nameRect, headerTitleHidden = true;
 let headerTitle, headerTop;
 let figureHoverTapped = null;
+let headerBarBgColor = null;
 
 window.addEventListener("load", () => {
     setTimeout(() => {
@@ -37,6 +38,7 @@ window.addEventListener("load", () => {
     nameRect = getElementBounds(document.getElementById('name'));
     headerTitle = document.getElementById('headerTitle');
     headerTop = document.getElementById('headerBar');
+    headerBarBgColor = getComputedStyle(headerTop).backgroundColor;
 
     carProps.useCarAnimation(true);
 });
@@ -61,7 +63,7 @@ window.addEventListener("scroll", () => {
         headerTitleHidden = false;
     }
     if (window.scrollY <= Math.max(nameRect.p1.y, nameRect.p2.y) && !headerTitleHidden) {
-        headerTop.style.backgroundColor = '#f8f8f8a1';
+        headerTop.style.backgroundColor = headerBarBgColor;
         headerTitleHidden = true;
     }
 });

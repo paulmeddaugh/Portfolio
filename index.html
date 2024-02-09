@@ -10,8 +10,7 @@
         <script type="module" src="./scripts/car.js"></script>
     </head>
     <body>
-
-        <div id="header">
+        <header id="header">
             <div class="headerPanel header-l">
                 <a class="noUnderline headerIcon" href="https://github.com/paulmeddaugh"
                     target="_blank" rel="noopener noreferrer"
@@ -48,9 +47,7 @@
                     <div class="headerObjects headerDot"></div>
                 </div>
             </div>
-        </div>
-
-        <canvas id="background" width="0" height="0"></canvas>
+        </header>
 
         <div id="car">
             <img id="carImg" src="./resources/carImages/car0.png" alt="car" max-width="24" max-height="48">
@@ -70,121 +67,129 @@
             <img src="./resources/arrowDown2.png" alt="There's more down">
         </div>
 
-        <div id="greetingContainer" class="p-relative height-100vh">
+        <div class="mobileBackgroundContainer">
+            <div id="mobileBackground"></div>
+        </div>
+
+        <section id="greetingContainer" class="p-relative height-100vh">
             <h1 id="name" class="greetingText">
                 <div id="greeting">Hello, I'm Paul,</div>
-                <div id="occupationIntro">a full stack software developer</div>
+                <div id="occupationIntro">a Full Stack Software Developer</div>
             </h1>
-            <div id="mobilePicture"></div>
-        </div>
+        </section>
 
-        <h2 id="projectHeader">Projects</h2>
-        <div id="projectGrid">
-            <div class="project flexCenter" id="projHF">
-                <figure id="hiddenFields" class="flexCenter projectFigure">
-                    <div class="projectBackground"></div>
-                    <div class="projectText" id="projHFText">
-                        <span class="font-abuget">thoughtweb</span>
-                        <span class="projectDescrip">
-                            An online journal and note arranger that provides connections to overview one's courses of thoughts.
-                        </span>
-                    </div>
-                    <a class="projectLinkHover" href="https://thoughtweb.up.railway.app/"
-                        target="_blank" rel="noopener noreferrer"
-                    >
-                        <div class="projectHoverContainer">
-                            <div class="projectLink">
-                                <div class="d-inline">Think with&nbsp;&nbsp;</div><span class="font-abuget font-size-16pt">thoughtweb</span>
-                            </div>
-                            <div class="projectTools"> 
-                                React.js / Bootstrap / Spring Boot
-                            </div>
-                        </div>
-                    </a>
-                </figure>
-                <div class="quickAccessAccount">
-                    Username: <b>demo</b> | Password: <b>password</b>
-                </div>
-            </div>
-            <div class="project flexCenter" id="projGV">
-                <figure id="graphVisualizer" class="flexCenter projectFigure">
-                    <div class="projectBackground"></div>
-                    <div class="projectText" id="projGVText">
-                        <span class="projectTitle">Graph Visualizer</span>
-                        <span class="projectDescrip">
-                            An online visualizer of the graph theory capabilities.
-                        </span>
-                    </div>
-                    <a class="projectLinkHover" href="https://paulmeddaugh.github.io/Graph-Visualizer/"
-                        target="_blank" rel="noopener noreferrer"
-                    >   
-                        <div class="projectHoverContainer">
-                            <div class="projectLink">I love graphs!</div>
-                            <div class="projectTools">Bootstrap / Webpack</div>
-                        </div>
-                    </a>
-                </figure>
-            </div>
-            <div class="project flexCenter" id="projSF">
-                <figure id="snowFinder" class="flexCenter projectFigure background-white-tint-20">
-                    <img class="projectBackground" src="../resources/projectIcons/DBSBackground.png" alt="Flash was too bright">
-                    <div class="projectText" id="projSFText">
-                        <span class="projectTitle">Discovery Bible Studies</span>
-                        <span class="projectDescrip">
-                            An iOS/Android app for enhancing bible studies of Sent Network with passage links, notes, and audio.
-                        </span>
-                    </div>
-                    <a class="projectLinkHover" href="https://appetize.io/app/73jacdgpfzumincf5kumz3t3vm?audio=true"
-                        target="_blank" rel="noopener noreferrer"
-                    > 
-                        <div class="projectHoverContainer">
-                            <div class="projectLink">View the app</div>
-                            <div class="projectTools"> 
-                                React Native / Expo / Firebase
-                            </div>
-                        </div>
-                    </a>
-                </figure>
-            </div>
-        </div>
 
-        <h2 id="aboutMeHeader">About Me</h2>
-        <div class="aboutMeSection flexCenter">
-            <div class="content flexCenter">
-                <figure class="flexCenter" id="bigPicture">
-                    <div id="bigPictureContainer"></div>
-                </figure>
-                <div class="bioContent">
-                    <div id="longVersion">
-                        <p>
-                            It is a privilege to be able to compose to life the art made through coding, 
-                            constructing what has not been seen in imaginations untamed by what 
-                            may seem reasonable.
-                        </p>
-                        <p>
-                            I am a full stack developer with corporate experience of six months and as a freelancer. 
-                            I have been certified as an
-                            <a 
-                                id="OCALinkBioContent"
-                                class="noUnderline" 
-                                href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=974A7B0ACD417A06F3F245D58B7B26E86BF8B9BFD8193B148DF8563B75F691D3"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >Oracle Certified Associate in Java SE 8</a>, and graduated from Oral Roberts University 
-                            with a bachelor's in Biblical Literature
-                            as well as a minor in Computer Information Technology.
-                        </p>
-                        <p>
-                            Software development, to me, is a gift given for serving and
-                            elevating others as well as myself, and I seek for that to be
-                            what is most of all given in all that I do.
-                        </p>
+        <section class="projects">
+            <h2 id="projectHeader">Projects</h2>
+            <div id="projectGrid">
+                <div class="project flexCenter" id="projHF">
+                    <figure id="hiddenFields" class="flexCenter projectFigure">
+                        <div class="projectBackground"></div>
+                        <div class="projectText" id="projHFText">
+                            <span class="font-abuget">thoughtweb</span>
+                            <span class="projectDescrip">
+                                An online journal and note arranger that provides connections to overview one's courses of thoughts.
+                            </span>
+                        </div>
+                        <a class="projectLinkHover" href="https://thoughtweb.up.railway.app/"
+                            target="_blank" rel="noopener noreferrer"
+                        >
+                            <div class="projectHoverContainer">
+                                <div class="projectLink">
+                                    <div class="d-inline">Think with&nbsp;&nbsp;</div><span class="font-abuget font-size-16pt">thoughtweb</span>
+                                </div>
+                                <div class="projectTools"> 
+                                    React.js / Bootstrap / Spring Boot
+                                </div>
+                            </div>
+                        </a>
+                    </figure>
+                    <div class="quickAccessAccount">
+                        Username: <b>demo</b> | Password: <b>password</b>
                     </div>
                 </div>
+                <div class="project flexCenter" id="projGV">
+                    <figure id="graphVisualizer" class="flexCenter projectFigure">
+                        <div class="projectBackground"></div>
+                        <div class="projectText" id="projGVText">
+                            <span class="projectTitle">Graph Visualizer</span>
+                            <span class="projectDescrip">
+                                An online visualizer of the graph theory capabilities.
+                            </span>
+                        </div>
+                        <a class="projectLinkHover" href="https://paulmeddaugh.github.io/Graph-Visualizer/"
+                            target="_blank" rel="noopener noreferrer"
+                        >   
+                            <div class="projectHoverContainer">
+                                <div class="projectLink">I love graphs!</div>
+                                <div class="projectTools">Bootstrap / Webpack</div>
+                            </div>
+                        </a>
+                    </figure>
+                </div>
+                <div class="project flexCenter" id="projSF">
+                    <figure id="snowFinder" class="flexCenter projectFigure background-white-tint-20">
+                        <img class="projectBackground" src="../resources/projectIcons/DBSBackground.png" alt="Flash was too bright">
+                        <div class="projectText" id="projSFText">
+                            <span class="projectTitle">Discovery Bible Studies</span>
+                            <span class="projectDescrip">
+                                An iOS/Android app for enhancing bible studies of Sent Network with passage links, notes, and audio.
+                            </span>
+                        </div>
+                        <a class="projectLinkHover" href="https://appetize.io/app/73jacdgpfzumincf5kumz3t3vm?audio=true"
+                            target="_blank" rel="noopener noreferrer"
+                        > 
+                            <div class="projectHoverContainer">
+                                <div class="projectLink">View the app</div>
+                                <div class="projectTools"> 
+                                    React Native / Expo / Firebase
+                                </div>
+                            </div>
+                        </a>
+                    </figure>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div id="footer">
+        <section class="aboutMe">
+            <h2 id="aboutMeHeader">About Me</h2>
+            <div class="aboutMeSection flexCenter">
+                <div class="content flexCenter">
+                    <figure class="flexCenter" id="bigPicture">
+                        <div id="bigPictureContainer"></div>
+                    </figure>
+                    <div class="bioContent">
+                        <div id="longVersion">
+                            <p>
+                                It is a privilege to be able to compose to life the art made through coding, 
+                                constructing what has not been seen in imaginations untamed by what 
+                                may seem reasonable.
+                            </p>
+                            <p>
+                                I am a full stack developer with corporate experience of six months and as a freelancer. 
+                                I have been certified as an
+                                <a 
+                                    id="OCALinkBioContent"
+                                    class="noUnderline" 
+                                    href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=974A7B0ACD417A06F3F245D58B7B26E86BF8B9BFD8193B148DF8563B75F691D3"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >Oracle Certified Associate in Java SE 8</a>, and graduated from Oral Roberts University 
+                                with a bachelor's in Biblical Literature
+                                as well as a minor in Computer Information Technology.
+                            </p>
+                            <p>
+                                Software development, to me, is a gift given for serving and
+                                elevating others as well as myself, and I seek for that to be
+                                what is most of all given in all that I do.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="footer">
             <div id="footerLinkContainer">
                 <div class="headerLinkContainer flexCenter" id="aboutMe">
                     <a class="noUnderline" href="https://github.com/paulmeddaugh">
@@ -222,6 +227,6 @@
             <div class="copyright flexCenter">
                 Paul Meddaugh <span id="copyrightYear">2024</span>
             </div>
-        </div>
+        </footer>
     </body>
 </html>
