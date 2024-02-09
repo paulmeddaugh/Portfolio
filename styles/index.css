@@ -891,7 +891,7 @@ figure.hover .projectText {
             dodgerblue 20%
         ); */
         background-image: none;
-        background-color: rgba(255, 255, 255, .58);
+        background-color: rgba(255, 255, 255, .6);
         background-clip: unset;
         -webkit-background-clip: unset;
         color: #88cdf8;
@@ -918,7 +918,7 @@ figure.hover .projectText {
 
     #mobileBackground {
         background-color: rgba(255, 255, 255, .7);
-        background-image: url("../resources/portrait1.jpg");
+        background-image: url("../resources/portrait1.JPG");
         filter: brightness(1.12);
     }
 
