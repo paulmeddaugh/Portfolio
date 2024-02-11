@@ -146,7 +146,7 @@ body {
     z-index: 1;
     --glow-color: rgb(237, 241, 250); /* rgba(183, 193, 222, 0.674) */
     text-shadow: 
-        0 0 8px var(--glow-color);
+        0 0 10px var(--glow-color);
 }
 
 #name {
@@ -182,8 +182,8 @@ body {
     /* rgb(174, 208, 241) 10% */
     z-index: -1;
     opacity: 0;
-    /* animation: h1FadeInAndOut 5.25s infinite; */
-    animation-delay: 1s;
+    animation: h1FadeInAndOut 5.5s infinite;
+    animation-delay: .9s;
 }
 
 @keyframes h1FadeInAndOut {
@@ -902,6 +902,7 @@ figure.hover .projectText {
         left: -71.4px;
         /* color: rgb(115, 194, 243); */
         color: black;
+        animation: none;
     }
 
     #name > #occupationIntro {
