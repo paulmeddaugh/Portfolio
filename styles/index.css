@@ -20,10 +20,10 @@
 
     --link-color: #88cdf8;
 
-    --dbs-description-bg-color: rgba(255, 255, 255, .8);
-    --dbs-description-title-color: #689e34;
-    --dbs-description-text-color: rgb(71, 71, 71);
-    --dbs-description-border-color: darkgrey;
+    --dbs-description-bg-color: rgba(103, 158, 52, 0.831);
+    --dbs-description-title-color: rgba(245, 245, 245, 0.908);
+    --dbs-description-text-color: rgb(215, 215, 215);
+    --dbs-description-border-color: lightgray;
 }
 
 body {
@@ -442,6 +442,7 @@ canvas {
 .projectTitle {
     padding-right: var(--project-title-text-border-padding);
     border-right: 1px solid white;
+    font-style: italic;
 }
 
 .projectText {
