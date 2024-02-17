@@ -599,7 +599,7 @@ canvas {
 
 #snowFinder .projectText .projectTitle {
     border-color: var(--dbs-description-border-color);
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 #snowFinder .projectText .projectDescrip {
