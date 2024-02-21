@@ -513,7 +513,7 @@ canvas {
 #hiddenFields .projectText {
     /* display: block; */
     /* padding-left: 14px; */
-    background-color: rgb(0, 0, 0, .2);
+    background-color: rgb(0, 0, 0, .5);
     line-height: 18pt;
     /* padding-top: 18px; */
 }
@@ -568,7 +568,7 @@ canvas {
 }
 
 #graphVisualizer .projectText {
-    background-color: rgb(0, 0, 224);
+    background-color: rgba(0, 0, 224, .78);
 }
 
 #graphVisualizer .projectText .projectDescrip {
@@ -711,7 +711,7 @@ figure.hover .projectText {
     width: 70%;
     justify-content: space-evenly;
     border: 1px solid darkgray;
-    border-radius: 4px;
+    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -908,6 +908,8 @@ figure.hover .projectText {
 
     #name > #occupationIntro {
         font-size: 20px;
+        color: #51b6f4;
+        /* font-weight: bold; */
     }
 
     .greetingText {
@@ -919,13 +921,17 @@ figure.hover .projectText {
     }
 
     #mobileBackground {
-        background-color: rgba(255, 255, 255, .7);
+        background-color: rgba(255, 255, 255, .68);
         background-image: url("../resources/portrait1.JPG");
         filter: brightness(1.12);
     }
 
     #projectHeader {
         padding-bottom: 0;
+    }
+
+    .aboutMeSection .content {
+        width: 76%;
     }
 
     #bigPicture {
