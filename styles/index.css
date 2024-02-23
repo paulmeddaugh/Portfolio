@@ -418,18 +418,18 @@ body {
 #arrowDownContainer {
     position: absolute;
     right: 3%;
-    bottom: 0vh;
+    bottom: 6vh;
     height: 40px;
-    animation: upAndDown 2s;
+    animation: upAndDown 2.2s -1.42s;
     animation-iteration-count: infinite;
     transition: .5s ease;
     z-index: 2;
 }
 
 @keyframes upAndDown {
-    0%   {bottom: 1vh;}
-    50%  {bottom: 6vh;}
-    100% {bottom: 1vh;}
+    0%   {bottom: 6vh;}
+    50%  {bottom: 1vh;}
+    100% {bottom: 6vh;}
 }
 
 #arrowKeys {
