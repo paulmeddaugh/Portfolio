@@ -14,7 +14,7 @@
 }
 
 :root {
-    --background-color: rgba(245, 245, 245, 0.658);
+    --background-color: rgb(248, 248, 248);
     
     --project-title-text-border-padding: 8px;
 
@@ -186,37 +186,6 @@ body {
     animation-delay: .9s;
 }
 
-#greeting .hello {
-    /* transition: 1s ease; */
-    /* animation: 1s opacity-0-1 ease; */
-}
-
-#greeting .intro {
-    /* animation: 2s opacity-0-0-1 ease; */
-}
-
-#occupationIntro {
-    /* animation: 3s opacity-0-0-0-1 ease; */
-}
-
-@keyframes opacity-0-1 {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-@keyframes opacity-0-0-1 {
-    0% { opacity: 0; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-@keyframes opacity-0-0-0-1 {
-    0% { opacity: 0; }
-    33% { opacity: 0; }
-    66% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
 @keyframes h1FadeInAndOut {
     0% { opacity: 0; }
     50% { opacity: 1; }
@@ -240,6 +209,51 @@ body {
 
 #name > #greeting {
     margin-left: calc(-1 * clamp(0px, 100vw - 340px, 55.6px));
+}
+
+span.cover {
+    width: 310px;
+    position: absolute;
+    height: 58px;
+    transition: 1s ease;
+    opacity: 0;
+    background-color: var(--background-color);
+}
+
+#greeting .hello .cover {
+    animation: 2s opacity-1-1-0-0;
+}
+
+#greeting .intro .cover {
+    animation: 3.1s opacity-1-1-1-0;
+}
+
+#occupationIntro .cover {
+    animation: 4.8s opacity-1-1-1-1-0;
+}
+
+@keyframes opacity-1-1-0-0 {
+    0% { opacity: 1; }
+    33% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes opacity-1-1-0 {
+    0% { opacity: 1; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes opacity-1-1-1-0 {
+    0% { opacity: 1; }
+    66% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes opacity-1-1-1-1-0 {
+    0% { opacity: 1; }
+    75% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 #mobileBackgroundContainer {
@@ -935,7 +949,7 @@ figure.hover .projectText {
 
     #name, #name::after {
         padding: 1vh 0;
-        margin: 20vh 0 26vh 0;
+        margin: 20vh 0 32vh 0;
         font-size: 24pt;
         /* background-image: repeating-radial-gradient(
             circle closest-corner at 100px 300px, 
@@ -970,6 +984,10 @@ figure.hover .projectText {
 
     #greetingContainer {
         height: auto;
+    }
+
+    span.cover {
+        display: none;
     }
 
     #mobileBackground {

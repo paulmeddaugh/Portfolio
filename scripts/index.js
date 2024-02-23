@@ -41,7 +41,7 @@ window.addEventListener("load", () => {
     headerBarBgColor = getComputedStyle(headerTop).backgroundColor;
 
     // carProps.useCarAnimation(true, 1.75);
-    carProps.useCarAnimation(true);
+    carProps.useCarAnimation(true, 5.6);
 });
 
 // Re-processes representational header Rectancle object

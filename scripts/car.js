@@ -95,7 +95,7 @@ export let carProps = (() => {
                 } else {
                     await new Promise(resolve => setTimeout(() => resolve(), fadeInSeconds * 1000));
                     car.style.display = 'flex';
-                    car.style.animation = 'opacity-0-1 1s ease';
+                    car.style.animation = 'fadeIn 2s ease';
                 }
 
                 setCarAcceleration();
