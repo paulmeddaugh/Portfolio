@@ -52,7 +52,9 @@ window.addEventListener("resize", () => {
     if (windowWidth < REMOVE_CAR_MIN_WIDTH && carProps.isAnimatingCar()) {
         carProps.useCarAnimation(false);
     } else if (windowWidth > REMOVE_CAR_MIN_WIDTH && !carProps.isAnimatingCar()) {
-        carProps.useCarAnimation(true);
+        if (carProps.isAnimatingCar()) {
+            carProps.useCarAnimation(true);
+        }
     }
 })
 
