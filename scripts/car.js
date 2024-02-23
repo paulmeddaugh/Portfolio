@@ -93,7 +93,9 @@ export let carProps = (() => {
                     showMobileInfo();
                     return;
                 } else {
+                    console.log(1);
                     await new Promise(resolve => setTimeout(() => resolve(), fadeInSeconds * 1000));
+                    console.log(2);
                     car.style.display = 'flex';
                     car.style.animation = 'fadeIn 2s ease';
                 }
