@@ -60,7 +60,6 @@ export function highlightInstructions () {
 }
 
 document.getElementById('closeInstructions').addEventListener("click", (e) => {
-    console.log('clicked');
     instructions.classList.remove('showThenHide');
     instructions.classList.add('hide');
     // instructions.style.opacity = 0;

@@ -20,9 +20,9 @@
 
     --link-color: #88cdf8;
 
-    --dbs-description-bg-color: rgba(103, 158, 52, 0.831);
+    --dbs-description-bg-color: rgba(103, 158, 52, 0.821);
     --dbs-description-title-color: rgba(245, 245, 245, 0.908);
-    --dbs-description-text-color: rgb(215, 215, 215);
+    --dbs-description-text-color: rgb(240, 240, 240);
     --dbs-description-border-color: lightgray;
 }
 
@@ -184,6 +184,37 @@ body {
     opacity: 0;
     animation: h1FadeInAndOut 5.5s infinite;
     animation-delay: .9s;
+}
+
+#greeting .hello {
+    /* transition: 1s ease; */
+    /* animation: 1s opacity-0-1 ease; */
+}
+
+#greeting .intro {
+    /* animation: 2s opacity-0-0-1 ease; */
+}
+
+#occupationIntro {
+    /* animation: 3s opacity-0-0-0-1 ease; */
+}
+
+@keyframes opacity-0-1 {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes opacity-0-0-1 {
+    0% { opacity: 0; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes opacity-0-0-0-1 {
+    0% { opacity: 0; }
+    33% { opacity: 0; }
+    66% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 @keyframes h1FadeInAndOut {
@@ -361,6 +392,27 @@ body {
     font: 10pt Arial;
     transition: .75s ease;
     opacity: 0;
+    height: 12px;
+    width: 12px;
+    cursor: pointer;
+}
+
+#closeInstructions::after, #closeInstructions::before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 14px;
+    background-color: black;
+    transform-origin: center;
+    translate: -1px -1px;
+}
+
+#closeInstructions::before {
+    rotate: 45deg;
+}
+
+#closeInstructions::after {
+    rotate: -45deg;
 }
 
 #arrowDownContainer {
@@ -781,9 +833,9 @@ figure.hover .projectText {
     position: relative;
 }
 
-@keyframes fadeIn {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
+@keyframes fadeIn { /* accessed in js when car displays */
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 @media (max-width: 888px) {

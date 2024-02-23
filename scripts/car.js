@@ -82,7 +82,7 @@ export let carProps = (() => {
 
         isAnimatingCar () { return isAnimatingCar; },
 
-        useCarAnimation(use = false) {
+        async useCarAnimation(use = false, fadeInSeconds) {
 
             if (use) {
 
@@ -93,8 +93,9 @@ export let carProps = (() => {
                     showMobileInfo();
                     return;
                 } else {
+                    await new Promise(resolve => setTimeout(() => resolve(), fadeInSeconds * 1000));
                     car.style.display = 'flex';
-                    car.style.animation = 'fadeIn 1s ease';
+                    car.style.animation = 'opacity-0-1 1s ease';
                 }
 
                 setCarAcceleration();
@@ -139,10 +140,11 @@ window.addEventListener("load", () => {
 
 function placeCarAtStart () {
     const HEIGHT_OFFSET = 0 * (window.innerHeight / 100);
+    const vh = window.innerHeight / 100;
 
     let point = new Point(
         document.body.offsetWidth / 2,
-        (window.innerHeight) / 2 - car.clientHeight / 2 + HEIGHT_OFFSET
+        (window.innerHeight) / 2 - car.clientHeight / 2 + HEIGHT_OFFSET + (vh * 6)
     );
 
     placeCarAt(point);

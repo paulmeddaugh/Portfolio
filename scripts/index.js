@@ -40,6 +40,7 @@ window.addEventListener("load", () => {
     headerTop = document.getElementById('headerBar');
     headerBarBgColor = getComputedStyle(headerTop).backgroundColor;
 
+    // carProps.useCarAnimation(true, 1.75);
     carProps.useCarAnimation(true);
 });
 
