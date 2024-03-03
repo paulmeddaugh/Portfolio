@@ -40,8 +40,7 @@ window.addEventListener("load", () => {
     headerTop = document.getElementById('headerBar');
     headerBarBgColor = getComputedStyle(headerTop).backgroundColor;
 
-    // carProps.useCarAnimation(true, 1.75);
-    carProps.useCarAnimation(true, 5.6);
+    carProps.useCarAnimation(true, 4.6);
 });
 
 // Re-processes representational header Rectancle object
@@ -52,9 +51,7 @@ window.addEventListener("resize", () => {
     if (windowWidth < REMOVE_CAR_MIN_WIDTH && carProps.isAnimatingCar()) {
         carProps.useCarAnimation(false);
     } else if (windowWidth > REMOVE_CAR_MIN_WIDTH && !carProps.isAnimatingCar()) {
-        if (carProps.isAnimatingCar()) {
-            carProps.useCarAnimation(true);
-        }
+        carProps.useCarAnimation(true);
     }
 })
 

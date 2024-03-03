@@ -28,6 +28,7 @@ export let carProps = (() => {
     let VELOCITY_REVERSE = VELOCITY_DECREASE;
 
     let carAnimCallbackId;
+    let isVisible = false;
     let isAnimatingCar = false;
 
     const API = {
@@ -80,6 +81,9 @@ export let carProps = (() => {
         getAnimationCallbackId() { return carAnimCallbackId; },
         setAnimationCallbackId(id) { carAnimCallbackId = id; },
 
+        isVisible() { return isVisible; },
+        setVisibility(visibility) { isVisible = visibility; },
+
         isAnimatingCar () { return isAnimatingCar; },
 
         async useCarAnimation(use = false, fadeInSeconds) {
@@ -91,13 +95,14 @@ export let carProps = (() => {
 
                 if (MOBILE) {
                     showMobileInfo();
+                    car.style.display = 'none';
                     return;
                 } else {
-                    console.log(1);
-                    await new Promise(resolve => setTimeout(() => resolve(), fadeInSeconds * 1000));
-                    console.log(2);
                     car.style.display = 'flex';
-                    car.style.animation = 'fadeIn 2s ease';
+                    const visibilitySecs = parseInt(getComputedStyle(car).animation) - 1;
+                    if (!this.isVisible()) setTimeout(() => {
+                        this.setVisibility(true);
+                    }, visibilitySecs * 1000);
                 }
 
                 setCarAcceleration();
@@ -105,12 +110,12 @@ export let carProps = (() => {
                 
                 const id = requestAnimationFrame(animateCar);
                 this.setAnimationCallbackId(id);
-                isAnimatingCar = true;
             } else {
                 cancelAnimationFrame(carAnimCallbackId);
+                this.setVisibility(false);
                 car.style.display = 'none';
-                isAnimatingCar = false;
             }
+            isAnimatingCar = use;
         },
     }
 
@@ -296,24 +301,38 @@ function setCarAcceleration() {
  * false.
  */
  export function outOfBounds() {
-    let x2 = document.body.clientWidth, y2 = document.body.clientHeight;
-    let boundary;
     let borderSize = 40; // east - 27
-    const WIDTH_1 = parseInt(window.innerWidth) / 100;
-    const NORTH_OFFSET = 25, SOUTH_OFFSET = 28,
-        EAST_OFFSET = 27 + (WIDTH_1 * 2.3), WEST_OFFSET = 25 + (WIDTH_1 * 2.4);
+    const screenWidth = document.body.clientWidth;
+    const screenHeight = document.body.clientHeight;
+    const VW = parseInt(window.innerWidth) / 100;
     
-    // north
-    if (carWithin(boundary = new Rectangle(new Point(0, -borderSize), new Point(x2, NORTH_OFFSET)))) return boundary;
+    const NORTH_OFFSET = 25;
+    const EAST_OFFSET = 27 + (2.3 * VW);
+    const SOUTH_OFFSET = 28;
+    const WEST_OFFSET = 25 + (2.4 * VW);
+    
+    const boundaries = [
+        new Rectangle( // north
+            new Point(0, -borderSize), 
+            new Point(screenWidth, NORTH_OFFSET)
+        ),
+        new Rectangle( // east
+            new Point(screenWidth - EAST_OFFSET, 0), 
+            new Point(screenWidth + borderSize, screenHeight)
+        ),
+        new Rectangle( // south
+            new Point(0, screenHeight - SOUTH_OFFSET), 
+            new Point(screenWidth, screenHeight + borderSize)
+        ),
+        new Rectangle( // west
+            new Point(-borderSize, 0), 
+            new Point(WEST_OFFSET, screenHeight)
+        )
+    ];
 
-    // east
-    if (carWithin(boundary = new Rectangle(new Point(x2 - EAST_OFFSET, 0), new Point(x2 + borderSize, y2)))) return boundary;
-
-    // south
-    if (carWithin(boundary = new Rectangle(new Point(0, y2 - SOUTH_OFFSET), new Point(x2, y2 + borderSize)))) return boundary;
-
-    // west
-    if (carWithin(boundary = new Rectangle(new Point(-borderSize, 0), new Point(WEST_OFFSET, y2)))) return boundary;
+    for (let boundary of boundaries) {
+        if (carWithin(boundary)) return boundary;
+    }
 
     return false;
 }
@@ -323,7 +342,7 @@ export function driveCar (e) {
     e.preventDefault();
 
     const key = e.key;
-    if (e.repeat) return; // the repeat event when key is held down
+    if (e.repeat || !carProps.isVisible()) return; // the repeat event when key is held down
 
     if (key == 'Enter') {
         let fig, overSendEmail;
