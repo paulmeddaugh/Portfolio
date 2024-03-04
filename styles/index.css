@@ -561,30 +561,15 @@ canvas {
 }
 
 .projectTools {
-    margin-top: 6px;
     color: dimgrey;
 }
 
-#projHF .quickAccessAccount {
-    position: absolute;
-    top: 100%;
-    right: 0%;
-    transform: translateY(-100%);
-    background-color: white;
-    border: 1px solid black;
-    border-top-width: 0px;
-    font: 10pt Arial;
-    text-align: center;
-    padding: 10px;
-    opacity: 0;
-    transition: .5s ease;
-    z-index: 0;
-    pointer-events: none;
+.projectTools, .quickAccessAccount {
+    margin-top: 6px;
 }
 
-#projHF:hover .quickAccessAccount {
-    opacity: 1;
-    transform: translateY(0%);
+#projHF .quickAccessAccount {
+    display: flex;
 }
 
 #projHF .showAccount {
@@ -1025,6 +1010,14 @@ figure.hover .projectText {
 
     #projectHeader {
         padding-bottom: 0;
+    }
+
+    .quickAccessAccount {
+        flex-direction: column;
+    }
+
+    span.desktop-slash {
+        display: none;
     }
 
     .aboutMeSection .content {
