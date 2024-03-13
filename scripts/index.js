@@ -40,7 +40,7 @@ window.addEventListener("load", () => {
     headerTop = document.getElementById('headerBar');
     headerBarBgColor = getComputedStyle(headerTop).backgroundColor;
 
-    carProps.useCarAnimation(true, 4.6);
+    carProps.useCarAnimation(true);
 });
 
 // Re-processes representational header Rectancle object

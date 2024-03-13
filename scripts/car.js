@@ -86,7 +86,7 @@ export let carProps = (() => {
 
         isAnimatingCar () { return isAnimatingCar; },
 
-        async useCarAnimation(use = false, fadeInSeconds) {
+        async useCarAnimation(use = false) {
 
             if (use) {
 
