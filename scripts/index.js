@@ -40,18 +40,22 @@ window.addEventListener("load", () => {
     headerTop = document.getElementById('headerBar');
     headerBarBgColor = getComputedStyle(headerTop).backgroundColor;
 
+    console.log('showing on load');
     carProps.useCarAnimation(true);
 });
 
 // Re-processes representational header Rectancle object
 window.addEventListener("resize", () => {
     nameRect = getElementBounds(document.getElementById('name'));
+    console.log('resizing');
 
     const windowWidth = parseInt(window.innerWidth);
     if (windowWidth < REMOVE_CAR_MIN_WIDTH && carProps.isAnimatingCar()) {
         carProps.useCarAnimation(false);
+        console.log('hiding car')
     } else if (windowWidth > REMOVE_CAR_MIN_WIDTH && !carProps.isAnimatingCar()) {
         carProps.useCarAnimation(true);
+        console.log('showing car')
     }
 })
 
