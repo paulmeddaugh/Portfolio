@@ -442,6 +442,7 @@ canvas {
     padding-right: var(--project-title-text-border-padding);
     border-right: 1px solid white;
     font-style: italic;
+    text-align: right;
 }
 
 .projectText {
@@ -464,6 +465,7 @@ canvas {
 .projectDescrip {
     font-size: 16px;
     padding-left: var(--project-title-text-border-padding);
+    text-align: left;
 }
 
 .projectTools {
