@@ -99,6 +99,10 @@
     translate: -50% -25%;
 }
 
+#greetingContainer {
+    margin-bottom: 1px;
+}
+
 #name, #name::after {
     text-align: center;
     display: flex;
@@ -123,7 +127,7 @@
         rgb(163, 208, 254) 10%, 
         dodgerblue 20%
     );
-    /* background-image: url(../resources/introBackground.jpeg); */
+    /* background-image: url(../resources//introBackground.jpeg); */
     /* background-size: cover; */
 }
 
@@ -489,7 +493,7 @@ canvas {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url(../resources/projectIcons/justNotebook.png), url(../resources/projectIcons/thoughtweb.jpg);
+    background-image: url("../resources//projectIcons/justNotebook.png"), url("../resources//projectIcons/thoughtweb.jpg");
     background-size: 300px 500px, cover;
     background-position: center, 0;
     background-repeat: no-repeat, no-repeat;
@@ -546,7 +550,7 @@ canvas {
     background-position: center;
     background-blend-mode: multiply;
     background-size: cover;
-    background-image: url(../resources/projectIcons/graph\ rep3.png);
+    background-image: url("../resources//projectIcons/graph rep3.png");
 }
 
 #graphVisualizer .projectTitle {
@@ -830,13 +834,12 @@ figure.hover .projectText {
     }
 
     #bigPicture div {
-        background-image: url("../resources/Faceshot2.jpg");
+        background-image: url("../resources//Faceshot2.jpg");
         filter: brightness(1.04);
     }
 }
 
 @media (max-width: 652px) {
-    
     .projectText {
         font-size: 20px;
     }
@@ -912,7 +915,7 @@ figure.hover .projectText {
 
     #mobileBackground {
         background-color: rgba(255, 255, 255, .68);
-        background-image: url("../resources/portrait1.JPG");
+        background-image: url("../resources//portrait1.JPG");
         filter: brightness(1.12);
     }
 

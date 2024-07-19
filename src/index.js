@@ -1,6 +1,7 @@
 import { getElementBounds, mobileCheck, pointOnLine } from './utility.js';
 import { REMOVE_CAR_MIN_WIDTH } from './constants.js';
 import { resetCar, carProps } from './car.js';
+import './scrollAnimations.js';
 
 export const MOBILE = mobileCheck();
 let nameRect, headerTitleHidden = true;
@@ -9,13 +10,6 @@ let figureHoverTapped = null;
 let headerBarBgColor = null;
 
 window.addEventListener("load", () => {
-    setTimeout(() => {
-        window.scroll({
-            top: 0,
-            left: 0
-        });
-    }, 5);
-
     function scrollTo (e) {
         const scrollToId = ({
             'projectsLink': 'projectHeader',
@@ -42,6 +36,10 @@ window.addEventListener("load", () => {
 
     carProps.useCarAnimation(true);
 });
+
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+}
 
 // Re-processes representational header Rectancle object
 window.addEventListener("resize", () => {
