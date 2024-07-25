@@ -67,6 +67,8 @@ window.addEventListener("resize", loadCollisionRectangles);
         if (fig.id === 'hiddenFields') {
             document.getElementsByClassName('quickAccessAccount')[0].classList.add('showAccount');
         }
+        const a = fig.getElementsByTagName('A')[0];
+        a.focus({ preventScroll: true});
         hilightedFig = fig;
 
     // Removes highlight classes if first time out of highlighted fig
@@ -75,6 +77,8 @@ window.addEventListener("resize", loadCollisionRectangles);
         if (hilightedFig.id === 'hiddenFields') {
             document.getElementsByClassName('quickAccessAccount')[0].classList.remove('showAccount');
         }
+        const a = hilightedFig.getElementsByTagName('A')[0];
+        a.blur();
         hilightedFig = false;
     }
 }

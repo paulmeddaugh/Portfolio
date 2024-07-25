@@ -339,9 +339,10 @@ function setCarAcceleration() {
 
 export function driveCar (e) {
 
-    e.preventDefault();
-
     const key = e.key;
+    if (key !== 'Enter') {
+        e.preventDefault();
+    }
     if (e.repeat || !carProps.isVisible()) return; // the repeat event when key is held down
 
     if (key == 'Enter') {
@@ -350,11 +351,11 @@ export function driveCar (e) {
             const url = fig ? 
                   fig.getElementsByTagName('A')[0].href 
                 : document.getElementById('footerEmail').href;
-
+            
             if (overSendEmail) {
                 window.location.href = url;
             } else {
-                window.open(url, '_blank');
+                // the fig's a tag is already focused on; 'Enter' key triggers default behavior
             }
         } else {
             ({ // If 'Enter' pressed on no linkable object, performs a random action
@@ -375,12 +376,12 @@ export function driveCar (e) {
 
 function changeCarImage (count) {
     const imgNumber = count !== 0 ? count - 2 : count;
-    carImg.src = `./resources/carImages/car${imgNumber}.png`;
+    carImg.src = `./src/resources/carImages/car${imgNumber}.png`;
 }
 
 function dropObject (fileName) {
     const img = document.createElement('img');
-    img.src = './resources/carImages/' + fileName + '.png';
+    img.src = './src/resources/carImages/' + fileName + '.png';
     img.classList.add('carParts');
     const carPoint = carProps.getPoint(), carSize = car.getBoundingClientRect();
     img.style.left = (carPoint.x - (carSize.width / 3)) + 'px';

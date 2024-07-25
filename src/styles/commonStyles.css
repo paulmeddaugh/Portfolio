@@ -160,8 +160,8 @@ h2 {
 .fading-content {
     opacity: 0;
     transition: all 1s;
-    filter: blur(5px);
-    transform: translateX(-100%);
+    /* filter: blur(5px);
+    transform: translateX(-100%); */
 }
 
 @media (prefers-reduced-motion) {
